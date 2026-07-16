@@ -1,6 +1,159 @@
 {
-  "todo": [],
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-16T06:40:48.326Z",
+      "description": {
+        "content": "Determine battery storage capacity based on energy usage, autonomy, and depth of discharge.",
+        "mime": "text/markdown"
+      },
+      "id": "8",
+      "prio": 1,
+      "references": [],
+      "title": "Calculate Battery Capacity"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-16T06:40:34.799Z",
+      "description": {
+        "content": "Calculate the required solar array wattage using daily energy demand, peak sun hours, and system efficiency.",
+        "mime": "text/markdown"
+      },
+      "id": "7",
+      "prio": 1,
+      "references": [],
+      "title": "Calculate Solar Array Size"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Frontend",
+      "creation_time": "2026-07-16T06:41:26.609Z",
+      "description": {
+        "content": "Display calculated engineering values in visually organized result cards instead of plain text.",
+        "mime": "text/markdown"
+      },
+      "id": "10",
+      "prio": 1,
+      "references": [],
+      "title": "Create Results Cards"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-07-16T06:41:11.199Z",
+      "description": {
+        "content": "Organize inputs and results into clearly labeled sections using a cleaner engineering dashboard layout.",
+        "mime": "text/markdown"
+      },
+      "id": "9",
+      "prio": 1,
+      "references": [],
+      "title": "Improve Website Layout"
+    }
+  ],
   "in-progress": [],
   "testing": [],
-  "done": []
+  "done": [
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Debugging",
+      "creation_time": "2026-07-16T06:39:21.534Z",
+      "description": {
+        "content": "Resolved an issue where the Calculate button was not calling the JavaScript function due to an HTML configuration error.",
+        "mime": "text/markdown"
+      },
+      "id": "6",
+      "prio": 1,
+      "references": [],
+      "title": "Fix Button Click Event",
+      "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Frontend",
+      "creation_time": "2026-07-16T06:37:14.738Z",
+      "description": {
+        "content": "Created the first webpage and displayed the project title and introductory text.",
+        "mime": "text/markdown"
+      },
+      "id": "2",
+      "prio": 1,
+      "references": [],
+      "title": "Build Initial Homepage"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Frontend",
+      "creation_time": "2026-07-16T06:37:39.736Z",
+      "description": {
+        "content": "Created the project folder and initialized the HTML, CSS, and JavaScript files.",
+        "mime": "text/markdown"
+      },
+      "id": "3",
+      "prio": 1,
+      "references": [],
+      "title": "Connect CSS Stylesheet"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Project Setup",
+      "creation_time": "2026-07-16T06:36:32.828Z",
+      "description": {
+        "content": "Created the project folder and initialized the HTML, CSS, and JavaScript files.",
+        "mime": "text/markdown"
+      },
+      "id": "1",
+      "prio": 1,
+      "references": [],
+      "title": "Create the Project Structure"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Frontend",
+      "creation_time": "2026-07-16T06:38:34.779Z",
+      "description": {
+        "content": "Added the Daily Energy Usage input field, Calculate button, and results section.",
+        "mime": "text/markdown"
+      },
+      "id": "4",
+      "prio": 1,
+      "references": [],
+      "title": "Create User Input Form"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "JavaScript",
+      "creation_time": "2026-07-16T06:39:03.770Z",
+      "description": {
+        "content": "Created the calculate() function to read user input and display dynamic output.",
+        "mime": "text/markdown"
+      },
+      "id": "5",
+      "prio": 1,
+      "references": [],
+      "title": "Implement First JavaScript Function"
+    }
+  ]
 }
