@@ -19,21 +19,6 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
-      "category": "Engineering Calculations",
-      "creation_time": "2026-07-16T06:40:34.799Z",
-      "description": {
-        "content": "Calculate the required solar array wattage using daily energy demand, peak sun hours, and system efficiency.",
-        "mime": "text/markdown"
-      },
-      "id": "7",
-      "prio": 1,
-      "references": [],
-      "title": "Calculate Solar Array Size"
-    },
-    {
-      "assignedTo": {
-        "name": "ayd.huiii"
-      },
       "category": "Frontend",
       "creation_time": "2026-07-16T06:41:26.609Z",
       "description": {
@@ -61,7 +46,23 @@
       "title": "Improve Website Layout"
     }
   ],
-  "in-progress": [],
+  "in-progress": [
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-16T06:40:34.799Z",
+      "description": {
+        "content": "Calculate the required solar array wattage using daily energy demand, peak sun hours, and system efficiency.",
+        "mime": "text/markdown"
+      },
+      "id": "7",
+      "prio": 1,
+      "references": [],
+      "title": "Calculate Solar Array Size"
+    }
+  ],
   "testing": [],
   "done": [
     {

@@ -55,81 +55,49 @@ Corrected the HTML configuration and verified that the button successfully execu
 
 -----------------------------------------------------------------
 
-# 📅 [7/15/2026] - Feature: [Off-Grid Solar Panel Calculator]
+## 📅 July 16, 2026
 
-### 🎯 Objective
+## 🎯 Sprint Goal
 
-### 🚧 Roadblocks & Bugs
-- **The Issue:** Describe the error message or unexpected behavior.
-**The Fix:** How did you solve it? (Include links to StackOverflow or documentation if helpful).
+Implement the first engineering calculation by calculating the required solar array size based on user inputs.
 
-### 💡 Key Takeaway
-- What did you learn about the language, framework, or logic today?
+---
 
+## ✅ Completed
+- Added Peak Sun Hours and System Efficiency input fields
+- Used JavaScript to perform the solar array size calculation
+- Displayed the required solar array size in both watts and kilowatts
+---
 
+## 🐞 Bugs Encountered
 
-# 📅 [7/15/2026] - Feature: [Off-Grid Solar Panel Calculator]
+### Bug 001
 
-### 🎯 Objective
+**Issue**
 
+Wouldn't output the Daily Energy Usage, Peak Sun Hours, System Efficiency
 
-### 🚧 Roadblocks & Bugs
-- **The Issue:** Describe the error message or unexpected behavior.
-**The Fix:** How did you solve it? (Include links to StackOverflow or documentation if helpful).
+**Resolution**
 
-### 💡 Key Takeaway
-- What did you learn about the language, framework, or logic today?
+Forgot to add quotation marks
 
+---
 
+## 💡 What I Learned
 
-# 📅 [7/15/2026] - Feature: [Off-Grid Solar Panel Calculator]
+- User input needs to be converted into numbers before doing calculations.
+- JavaScript can be used to apply engineering formulas and display the results on the webpage.
+- Breaking a formula into smaller variables makes the code easier to understand.
 
-### 🎯 Objective
+---
 
-### 🚧 Roadblocks & Bugs
-- **The Issue:** Describe the error message or unexpected behavior.
-**The Fix:** How did you solve it? (Include links to StackOverflow or documentation if helpful).
+## 🔜 Next Sprint
 
-### 💡 Key Takeaway
-- What did you learn about the language, framework, or logic today?
+- Calculate battery bank capacity
+- Add battery-related input fields
+- Improve the results section
 
-
-
-# 📅 [7/15/2026] - Feature: [Off-Grid Solar Panel Calculator]
-
-### 🎯 Objective
-
-### 🚧 Roadblocks & Bugs
-- **The Issue:** Describe the error message or unexpected behavior.
-**The Fix:** How did you solve it? (Include links to StackOverflow or documentation if helpful).
-
-### 💡 Key Takeaway
-- What did you learn about the language, framework, or logic today?
-
-
-
-# 📅 [7/15/2026] - Feature: [Off-Grid Solar Panel Calculator]
-
-### 🎯 Objective
-
-### 🚧 Roadblocks & Bugs
-- **The Issue:** Describe the error message or unexpected behavior.
-**The Fix:** How did you solve it? (Include links to StackOverflow or documentation if helpful).
-
-### 💡 Key Takeaway
-- What did you learn about the language, framework, or logic today?
-
-
-
-
-
-
-
-
-
-
-
-
+---------------------------------------------------------------
 
 
 
