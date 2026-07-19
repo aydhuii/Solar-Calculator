@@ -8,8 +8,9 @@
 </head>
 
 <body>
-
+    <div class="container">
     <h1>Off-Grid Solar Panel Calculator</h1>
+    <h2>Load Information</h2>
     <p>Enter your daily energy usage in Wh:</p>
     
     <input
@@ -19,7 +20,7 @@
     >
 
     <br><br>
-
+    <h2> Solar Information </h2>
     <label>Peak Sun Hours:</label><br>
     <input
     type="number"
@@ -27,7 +28,13 @@
     placeholder="Example:5"
     step="0.1"
     >
-
+    <br><br>
+    <label>Solar Panel Wattage (W)</label><br>
+    <input
+        type="number"
+        id="panelWattage"
+        placeholder="Example: 450"
+    >
     <br><br>
 
     <label>System Efficiency (%):</label><br>
@@ -39,16 +46,49 @@
     step="0.1"
     >
 
-    
-    <button onclick="calculate()">
-        calculate solar system
-    </button>
+    <br><br>
 
+    <label>Battery Voltage(V):</label><br>
+   
+    <input
+    type="number"
+    id="batteryVoltage"
+    placeholder="Example: 48"
+    >
+
+    <br><br>
+
+    <label>Depth of Discharge (%):</label><br>
+
+    <input
+    type="number"
+    id="dod"
+    placeholder="Example: 80"
+    >
+
+    <br><br>
+    <h2>Battery Information</h2>
+    <label># of Autonomy Days:</label><br>
+
+    <input
+    type="number"
+    id="autonomy"
+    placeholder="Example: 3"
+    step="0.1"
+    >
+
+    <br><br>
+
+    <button onclick="calculate()">
+        Calculate Solar System
+    </button>
+    <h2>Results:</h2>
     <p id="result"></p>
 
     <script src="script.js"></script>
-
+</div>
 </body>
+
 
 
 

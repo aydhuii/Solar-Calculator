@@ -4,21 +4,6 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
-      "category": "Engineering Calculations",
-      "creation_time": "2026-07-16T06:40:48.326Z",
-      "description": {
-        "content": "Determine battery storage capacity based on energy usage, autonomy, and depth of discharge.",
-        "mime": "text/markdown"
-      },
-      "id": "8",
-      "prio": 1,
-      "references": [],
-      "title": "Calculate Battery Capacity"
-    },
-    {
-      "assignedTo": {
-        "name": "ayd.huiii"
-      },
       "category": "Frontend",
       "creation_time": "2026-07-16T06:41:26.609Z",
       "description": {
@@ -34,16 +19,57 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
-      "category": "UI / UX",
-      "creation_time": "2026-07-16T06:41:11.199Z",
+      "category": "Javascript",
+      "creation_time": "2026-07-19T06:21:53.566Z",
       "description": {
-        "content": "Organize inputs and results into clearly labeled sections using a cleaner engineering dashboard layout.",
+        "content": "Prevent calculations when required fields are empty, zero, or contain invalid values.",
         "mime": "text/markdown"
       },
-      "id": "9",
-      "prio": 1,
+      "id": "15",
       "references": [],
-      "title": "Improve Website Layout"
+      "title": "Add Input Validation"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-19T06:21:35.405Z",
+      "description": {
+        "content": "Determine how many battery modules are required based on the total battery capacity and the selected battery size.",
+        "mime": "text/markdown"
+      },
+      "id": "14",
+      "references": [],
+      "title": "Calculate Number of Batteries"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-07-19T00:01:49.997Z",
+      "description": {
+        "content": "Organize calculation results into a cleaner and easier-to-read layout.",
+        "mime": "text/markdown"
+      },
+      "id": "12",
+      "references": [],
+      "title": "Improve Results Display"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-07-19T06:22:09.986Z",
+      "description": {
+        "content": "Display engineering calculations using individual result cards instead of a single text block.",
+        "mime": "text/markdown"
+      },
+      "id": "16",
+      "references": [],
+      "title": "Redesign Results Section"
     }
   ],
   "in-progress": [
@@ -95,6 +121,21 @@
       "prio": 1,
       "references": [],
       "title": "Build Initial Homepage"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-16T06:40:48.326Z",
+      "description": {
+        "content": "Determine battery storage capacity based on energy usage, autonomy, and depth of discharge.",
+        "mime": "text/markdown"
+      },
+      "id": "8",
+      "prio": 1,
+      "references": [],
+      "title": "Calculate Battery Capacity"
     },
     {
       "assignedTo": {
@@ -155,6 +196,49 @@
       "prio": 1,
       "references": [],
       "title": "Implement First JavaScript Function"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-07-16T06:41:11.199Z",
+      "description": {
+        "content": "Organize inputs and results into clearly labeled sections using a cleaner engineering dashboard layout.",
+        "mime": "text/markdown"
+      },
+      "id": "9",
+      "prio": 1,
+      "references": [],
+      "title": "Improve Website Layout"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Frontend",
+      "creation_time": "2026-07-19T00:01:25.551Z",
+      "description": {
+        "content": "Add input fields for battery autonomy, voltage, and depth of discharge.",
+        "mime": "text/markdown"
+      },
+      "id": "11",
+      "references": [],
+      "title": "Add Battery Input Fields"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-19T06:21:14.404Z",
+      "description": {
+        "content": "Calculated the required number of solar panels based on the total array size and selected panel wattage.",
+        "mime": "text/markdown"
+      },
+      "id": "13",
+      "references": [],
+      "title": "Calculate Number of Solar Panels"
     }
   ]
 }

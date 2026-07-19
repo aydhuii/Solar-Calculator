@@ -99,7 +99,43 @@ Forgot to add quotation marks
 
 ---------------------------------------------------------------
 
+## 📅 July 18, 2026
+## 🎯 Sprint Goal
 
+Expand the Off-Grid Solar Calculator by adding battery sizing calculations and improving the organization of the user interface.
+
+## ✅ Completed
+- Added battery-related input fields (days of autonomy, battery voltage, and depth of discharge)
+- Calculated battery capacity in watt-hours and amp-hours
+- Added solar panel wattage input and calculated the number of panels required
+- Organized the calculator into Load, Solar, Battery, and Results sections
+- Improved the page layout with a centered container and cleaner styling
+
+## 🐞 Bugs Encountered
+
+### Bug 002
+
+**Issue**
+
+The Calculate button stopped displaying results after adding the battery calculations.
+
+**Root Cause**
+
+The battery variables were referenced before they were calculated, and one variable name contained a spelling mistake.
+
+**Resolution**
+
+Reordered the calculations so all variables were created before displaying the results and corrected the variable names.
+
+## 💡 What I Learned
+- JavaScript executes code from top to bottom, so variables must be created before they are used.
+- Small spelling mistakes in variable names can stop an entire program from working.
+- Organizing a webpage becomes more important as more features are added.
+
+## 🔜 Next Sprint
+- Calculate the number of batteries required
+- Add input validation for missing or invalid values
+- Improve the results display with separate result cards
 
 
 
