@@ -19,15 +19,15 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
-      "category": "Javascript",
-      "creation_time": "2026-07-19T06:21:53.566Z",
+      "category": "Frontend",
+      "creation_time": "2026-07-20T05:43:34.829Z",
       "description": {
-        "content": "Prevent calculations when required fields are empty, zero, or contain invalid values.",
+        "content": "Allow users to choose between different battery types or capacities for more realistic system sizing.",
         "mime": "text/markdown"
       },
-      "id": "15",
+      "id": "18",
       "references": [],
-      "title": "Add Input Validation"
+      "title": "Add Battery Type Selection"
     },
     {
       "assignedTo": {
@@ -47,6 +47,34 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-20T05:40:12.369Z",
+      "description": {
+        "content": "Calculate how many battery modules are needed based on the required battery capacity and the selected battery module size.",
+        "mime": "text/markdown"
+      },
+      "id": "17",
+      "references": [],
+      "title": "Calculate Number of Battery Modules"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-07-20T05:43:48.644Z",
+      "description": {
+        "content": "Refine the interface with improved colors, spacing, and consistent styling.",
+        "mime": "text/markdown"
+      },
+      "id": "19",
+      "references": [],
+      "title": "Improve Calculator Theme"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "UI / UX",
       "creation_time": "2026-07-19T00:01:49.997Z",
       "description": {
@@ -56,20 +84,6 @@
       "id": "12",
       "references": [],
       "title": "Improve Results Display"
-    },
-    {
-      "assignedTo": {
-        "name": "ayd.huiii"
-      },
-      "category": "UI / UX",
-      "creation_time": "2026-07-19T06:22:09.986Z",
-      "description": {
-        "content": "Display engineering calculations using individual result cards instead of a single text block.",
-        "mime": "text/markdown"
-      },
-      "id": "16",
-      "references": [],
-      "title": "Redesign Results Section"
     }
   ],
   "in-progress": [
@@ -230,6 +244,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "Javascript",
+      "creation_time": "2026-07-19T06:21:53.566Z",
+      "description": {
+        "content": "Prevent calculations when required fields are empty, zero, or contain invalid values.",
+        "mime": "text/markdown"
+      },
+      "id": "15",
+      "references": [],
+      "title": "Add Input Validation"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Engineering Calculations",
       "creation_time": "2026-07-19T06:21:14.404Z",
       "description": {
@@ -239,6 +267,20 @@
       "id": "13",
       "references": [],
       "title": "Calculate Number of Solar Panels"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-07-19T06:22:09.986Z",
+      "description": {
+        "content": "Display engineering calculations using individual result cards instead of a single text block.",
+        "mime": "text/markdown"
+      },
+      "id": "16",
+      "references": [],
+      "title": "Redesign Results Section"
     }
   ]
 }

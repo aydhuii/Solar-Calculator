@@ -137,7 +137,42 @@ Reordered the calculations so all variables were created before displaying the r
 - Add input validation for missing or invalid values
 - Improve the results display with separate result cards
 
+## 📅 July 19, 2026
+## 🎯 Sprint Goal
 
+- Improve the calculator's layout and code structure by redesigning the results section and adding basic input validation.
+
+## ✅ Completed
+- Replaced the single results section with separate result cards
+- Updated JavaScript to display each calculation in its own card
+- Added basic input validation to prevent calculations with missing or invalid values
+- Improved the overall layout to make the calculator easier to read and expand
+
+## 🐞 Bugs Encountered
+
+### Bug 003
+
+***Issue***
+
+The results section became difficult to manage as more calculations were added.
+
+***Root Cause***
+
+All of the output was being generated inside one large innerHTML statement, making the code harder to read and update.
+
+***Resolution***
+
+Separated the results into individual HTML elements and updated each one independently with JavaScript.
+
+## 💡 What I Learned
+- Separating HTML, CSS, and JavaScript makes the project easier to maintain.
+- Updating individual page elements is cleaner than building one large HTML string.
+- Input validation helps prevent errors before calculations are performed.
+
+## 🔜 Next Sprint
+- Calculate the number of battery modules required
+- Add battery type selection
+- Improve the calculator's appearance with icons, spacing, and a more polished layout
 
 
 

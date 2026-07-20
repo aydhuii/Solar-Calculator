@@ -80,6 +80,28 @@ button{
     
 }
 
+.result-card {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.result-card h3 {
+    margin-top: 0;
+    color: #2f7d32;
+}
+
+.result-card p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+
+
+
+
 
 
 
