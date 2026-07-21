@@ -1,5 +1,7 @@
 function calculate() {
 
+    //INPUT VALUES
+
     let energy = 
         Number(document.getElementById("energy").value);
 
@@ -22,6 +24,28 @@ function calculate() {
     let dod =
         Number(document.getElementById("dod").value) / 100;
 
+    let batteryModule = 
+        Number(document.getElementById("batteryModule").value);
+
+        
+    //CHECK INPUTS BEFORE CALCULATING
+
+     if (
+        energy <= 0 ||
+        sunHours <= 0 ||
+        efficiency <= 0 ||
+        autonomy <= 0 ||
+        batteryVoltage <= 0 ||
+        dod <= 0 ||
+        panelWattage <= 0 ||
+        batteryModule <= 0 
+     )  {
+        alert("Please enter valid positive values for all fields.");
+        return;
+    } 
+
+    //CALCULATIONS
+
     let solarArray = 
         energy / (sunHours * efficiency);
 
@@ -34,23 +58,11 @@ function calculate() {
     let batteryCapacityAh = 
         batteryCapacityWh / batteryVoltage;
 
-     if (
-        energy <= 0 ||
-        sunHours <= 0 ||
-        efficiency <= 0 ||
-        autonomy <= 0 ||
-        batteryVoltage <= 0 ||
-        dod <= 0 ||
-        panelWattage <= 0 
-    ) {
-        alert("Please enter valid positive values for all fields.");
-        return;
-    }
+    let numberOfBatteries = 
+        Math.ceil(batteryCapacityWh / batteryModule);
 
-    document.getElementById("result").innerHTML =
-    "Daily Energy Usage: " + energy + " Wh<br><br>" +
-    "Peak Sun Hours: " + sunHours + " hours<br><br>" +
-    "System Efficiency: " + (efficiency * 100).toFixed(0) + "%<br><br>" +
+        
+    //RESULTS
 
     document.getElementById("solarSize").textContent = 
     (solarArray / 1000).toFixed(2) + " kW";
@@ -63,6 +75,9 @@ function calculate() {
 
     document.getElementById("batteryAh").textContent = 
     batteryCapacityAh.toFixed(1) + " Ah";
+
+    document.getElementById("batteryCount").textContent =
+    numberOfBatteries + " batteries";
 
 
 

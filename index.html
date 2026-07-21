@@ -68,6 +68,17 @@
 
     <br><br>
     <h2>Battery Information</h2>
+
+    <label>Battery Module Capacity (Wh)</label>
+    
+    <input
+        type="number"
+        id="batteryModule"
+        placeholder="Example: 5120"
+    >
+
+    <br><br>
+
     <label># of Autonomy Days:</label><br>
 
     <input
@@ -100,6 +111,11 @@
         <h3>Battery Capacity</h3>
         <p id="batteryWh">--</p>
         <p id="batteryAh">--</p>
+    </div>
+
+    <div class="result-card">
+        <h3>Battery Modules Required</h3>
+        <p id="batteryCount">--</p>
     </div>
 
     <script src="script.js"></script>

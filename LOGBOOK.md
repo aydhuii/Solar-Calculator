@@ -174,7 +174,56 @@ Separated the results into individual HTML elements and updated each one indepen
 - Add battery type selection
 - Improve the calculator's appearance with icons, spacing, and a more polished layout
 
+--------------------------------------------------------
 
+# 📅 July 20, 2026
+
+## 🎯 Sprint Goal
+
+Add a calculation that converts the required battery capacity into the number of battery modules needed.
+
+---
+
+## ✅ Completed
+
+- Added an input for battery module capacity
+- Calculated the number of battery modules required
+- Added a separate result card for the battery count
+- Updated the input validation to check all calculator fields
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 004
+
+**Issue**
+
+The Calculate button stopped working after the battery module feature and input validation were added.
+
+**Root Cause**
+
+The validation statement had an extra `||` and misplaced parentheses. The JavaScript also tried to update the old `result` element even though it had been replaced by separate result cards.
+
+**Resolution**
+
+Corrected the validation statement and removed the old `innerHTML` output. Each result is now updated through its own HTML element.
+
+---
+
+## 💡 What I Learned
+
+- One misplaced bracket or operator can prevent an entire JavaScript file from running.
+- JavaScript should not try to update an HTML element that no longer exists.
+- Input validation should happen before calculations are performed.
+
+---
+
+## 🔜 Next Sprint
+
+- Add presets for common battery models
+- Show the total installed battery capacity
+- Improve the calculator layout for larger screens
 
 
 
