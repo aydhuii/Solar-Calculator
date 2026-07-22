@@ -61,25 +61,38 @@ function calculate() {
     let numberOfBatteries = 
         Math.ceil(batteryCapacityWh / batteryModule);
 
+    let installedBatteryCapacityWh =
+        numberOfBatteries * batteryModule;
+
+    let batteryCapacityMarginWh =
+        installedBatteryCapacityWh - batteryCapacityWh;
         
     //RESULTS
 
     document.getElementById("solarSize").textContent = 
-    (solarArray / 1000).toFixed(2) + " kW";
+        (solarArray / 1000).toFixed(2) + " kW";
 
     document.getElementById("panelCount").textContent = 
-    numberOfPanels + " panels";
+        numberOfPanels + " panels";
 
     document.getElementById("batteryWh").textContent = 
-    batteryCapacityWh.toFixed(0) + " Wh";
+        batteryCapacityWh.toFixed(0) + " Wh";
 
     document.getElementById("batteryAh").textContent = 
-    batteryCapacityAh.toFixed(1) + " Ah";
+        batteryCapacityAh.toFixed(1) + " Ah";
 
     document.getElementById("batteryCount").textContent =
-    numberOfBatteries + " batteries";
+        numberOfBatteries + " batteries";
 
+    document.getElementById("installedBatteryWh").textContent =
+        installedBatteryCapacityWh.toFixed(0) +
+        " Wh (" +
+        (installedBatteryCapacityWh / 1000).toFixed(2) +
+        " kWh)";
 
+    document.getElementById("batteryMargin").textContent =
+        batteryCapacityMarginWh.toFixed(0) +
+        " Wh above the required capacity";
 
 
 
