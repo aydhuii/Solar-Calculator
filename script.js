@@ -1,3 +1,6 @@
+
+
+//CALCUJLATOR CODE
 function calculate() {
 
     //INPUT VALUES
@@ -27,7 +30,9 @@ function calculate() {
     let batteryModule = 
         Number(document.getElementById("batteryModule").value);
 
-        
+    let errorMessage = 
+        document.getElementById("errorMessage");
+
     //CHECK INPUTS BEFORE CALCULATING
 
      if (
@@ -40,10 +45,13 @@ function calculate() {
         panelWattage <= 0 ||
         batteryModule <= 0 
      )  {
-        alert("Please enter valid positive values for all fields.");
+        errorMessage.textContent =
+            "Please enter a positive value in every field";
+    
         return;
     } 
 
+    errorMessage.textContent = "";
     //CALCULATIONS
 
     let solarArray = 
@@ -51,6 +59,15 @@ function calculate() {
 
     let numberOfPanels = 
         Math.ceil(solarArray / panelWattage);
+
+    let installedSolarCapacityW = 
+        numberOfPanels * panelWattage;
+
+    let solarCapacityMarginW =
+        installedSolarCapacityW - solarArray;
+
+    let solarCapacityMarginPercent = 
+        (solarCapacityMarginW / solarArray) * 100;
 
     let batteryCapacityWh =
         (energy * autonomy) / dod;
@@ -67,6 +84,8 @@ function calculate() {
     let batteryCapacityMarginWh =
         installedBatteryCapacityWh - batteryCapacityWh;
         
+    let batteryCapacityMarginPercent = 
+        (batteryCapacityMarginWh / batteryCapacityWh) * 100;
     //RESULTS
 
     document.getElementById("solarSize").textContent = 
@@ -92,8 +111,79 @@ function calculate() {
 
     document.getElementById("batteryMargin").textContent =
         batteryCapacityMarginWh.toFixed(0) +
-        " Wh above the required capacity";
+        " Wh above the required (" + 
+        batteryCapacityMarginPercent.toFixed(1) +
+        "%)";
 
+    document.getElementById("installedSolarW").textContent =
+        installedSolarCapacityW.toFixed(0) +
+        " W (" + 
+        (installedSolarCapacityW / 1000).toFixed(2) +
+        " kW)";
 
+    document.getElementById("solarMargin").textContent = 
+        solarCapacityMarginW.toFixed(0) + 
+        " W above required (" +
+        solarCapacityMarginPercent.toFixed(1) + 
+        "%)";
 
+   
+        
 }
+
+//PRESET CODE
+
+function applyBatteryPreset() { 
+    let selectedCapacity = 
+        document.getElementById("batteryPreset").value;
+
+    let batteryModuleInput = 
+        document.getElementById("batteryModule");
+
+    if (selectedCapacity === "custom") {
+        batteryModuleInput.value = "";
+        batteryModuleInput.focus();
+        return;
+    }
+
+    batteryModuleInput.value = selectedCapacity;
+}
+
+//reset button
+function resetCalculator() {
+    let numberInputs =
+        document.querySelectorAll('input[type="number"]');
+
+    numberInputs.forEach(function(input) {
+        input.value = "";
+    });
+
+    document.getElementById("batteryPreset").value =
+        "custom";
+
+    let resultIds = [
+        "solarSize",
+        "panelCount",
+        "installedSolarW",
+        "solarMargin",
+        "batteryWh",
+        "batteryAh",
+        "batteryCount",
+        "installedBatteryWh",
+        "batteryMargin"
+    ];
+
+    resultIds.forEach(function(id) {
+        let resultElement =
+            document.getElementById(id);
+
+        if (resultElement) {
+            resultElement.textContent = "--";
+        }
+    });
+}
+
+
+
+
+

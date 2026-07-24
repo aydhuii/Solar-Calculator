@@ -225,11 +225,86 @@ Corrected the validation statement and removed the old `innerHTML` output. Each 
 - Show the total installed battery capacity
 - Improve the calculator layout for larger screens
 
+----------------------------------------------------
 
+# 📅 July 21, 2026
 
+## 🎯 Sprint Goal
 
+Improve the battery results by showing the actual installed battery capacity after rounding up to whole battery modules.
 
+---
 
+## ✅ Completed
+
+- Calculated the total installed battery capacity
+- Calculated the extra battery capacity created by rounding up
+- Added a result card for installed battery capacity
+- Displayed the capacity in both Wh and kWh
+
+---
+
+## 🐞 Bugs Encountered
+
+None today. The new battery capacity calculations worked as expected.
+
+---
+
+## 💡 What I Learned
+
+- The required battery capacity may be different from the actual installed capacity.
+- Multiplying the number of batteries by the capacity of one module gives the total installed capacity.
+- Rounding up battery quantities can create extra storage capacity.
+
+---
+
+## 🔜 Next Sprint
+
+- Add common battery model presets
+- Show battery capacity margin as a percentage
+- Improve the layout for desktop screens
+
+------------------------------------------------------------
+
+# 📅 July 22, 2026
+
+## 🎯 Sprint Goal
+
+Add more useful solar and battery results while improving the calculator’s controls and page layout.
+
+---
+
+## ✅ Completed
+
+- Calculated installed solar capacity and the extra solar capacity after rounding up
+- Added battery capacity margin as a percentage
+- Added battery module presets and a Reset button
+- Organized the result cards into a responsive grid
+- Replaced the alert box with an error message displayed on the page
+
+---
+
+## 🐞 Bugs Encountered
+
+None today. Each feature worked correctly after testing.
+
+---
+
+## 💡 What I Learned
+
+- Installed system capacity can be higher than required capacity because panels and batteries must be whole units.
+- Dropdown presets can make a calculator faster and easier to use.
+- JavaScript can reset multiple inputs and results at the same time.
+- Responsive CSS changes the layout depending on the user’s screen size.
+
+---
+
+## 🔜 Next Sprint
+
+- Add presets for common solar panel wattages
+- Add limits for efficiency and depth-of-discharge percentages
+- Display a summary of all user inputs
+- Improve the input layout for desktop screens
 
 
 

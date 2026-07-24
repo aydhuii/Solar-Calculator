@@ -19,6 +19,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-22T06:22:18.137Z",
+      "description": {
+        "content": "Show the extra installed battery capacity as a percentage of the required capacity.",
+        "mime": "text/markdown"
+      },
+      "id": "28",
+      "references": [],
+      "title": "Add Battery Capacity Margin Percentage"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Frontend",
       "creation_time": "2026-07-20T05:43:34.829Z",
       "description": {
@@ -42,6 +56,48 @@
       "id": "24",
       "references": [],
       "title": "Add Common Battery Presets"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Frontend",
+      "creation_time": "2026-07-22T06:22:29.948Z",
+      "description": {
+        "content": "Allow users to select common battery module sizes instead of typing the capacity manually.",
+        "mime": "text/markdown"
+      },
+      "id": "29",
+      "references": [],
+      "title": "Add Common Battery Presets"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-07-24T01:46:40.128Z",
+      "description": {
+        "content": "Display the values used in the calculation so users can review their system assumptions.",
+        "mime": "text/markdown"
+      },
+      "id": "37",
+      "references": [],
+      "title": "Add Input Summary"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Frontend",
+      "creation_time": "2026-07-24T01:46:20.986Z",
+      "description": {
+        "content": "Add a dropdown for common solar panel wattages while still allowing a custom value.",
+        "mime": "text/markdown"
+      },
+      "id": "36",
+      "references": [],
+      "title": "Add Solar Panel Presets"
     },
     {
       "assignedTo": {
@@ -90,6 +146,20 @@
         "name": "ayd.huiii"
       },
       "category": "UI / UX",
+      "creation_time": "2026-07-22T06:22:46.063Z",
+      "description": {
+        "content": "Use the extra space on larger screens to organize the inputs and results into columns.",
+        "mime": "text/markdown"
+      },
+      "id": "30",
+      "references": [],
+      "title": "Improve Desktop Layout"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
       "creation_time": "2026-07-19T00:01:49.997Z",
       "description": {
         "content": "Organize calculation results into a cleaner and easier-to-read layout.",
@@ -98,34 +168,6 @@
       "id": "12",
       "references": [],
       "title": "Improve Results Display"
-    },
-    {
-      "assignedTo": {
-        "name": "ayd.huiii"
-      },
-      "category": "Engineering Calculations",
-      "creation_time": "2026-07-21T06:50:13.909Z",
-      "description": {
-        "content": "Compare the required battery capacity with the installed capacity and show the extra storage created by rounding up.",
-        "mime": "text/markdown"
-      },
-      "id": "26",
-      "references": [],
-      "title": "Show Battery Capacity Margin"
-    },
-    {
-      "assignedTo": {
-        "name": "ayd.huiii"
-      },
-      "category": "Engineering Calculations",
-      "creation_time": "2026-07-21T06:50:00.570Z",
-      "description": {
-        "content": "Calculate the total installed battery capacity after rounding up the number of modules.",
-        "mime": "text/markdown"
-      },
-      "id": "25",
-      "references": [],
-      "title": "Show Installed Battery Capacity"
     }
   ],
   "in-progress": [
@@ -288,6 +330,20 @@
         "name": "ayd.huiii"
       },
       "category": "Frontend",
+      "creation_time": "2026-07-24T01:45:37.187Z",
+      "description": {
+        "content": "Added a dropdown with common battery capacities that automatically fills the battery module input.",
+        "mime": "text/markdown"
+      },
+      "id": "35",
+      "references": [],
+      "title": "Add Battery Capacity Presets"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Frontend",
       "creation_time": "2026-07-19T00:01:25.551Z",
       "description": {
         "content": "Add input fields for battery autonomy, voltage, and depth of discharge.",
@@ -324,6 +380,20 @@
       "id": "15",
       "references": [],
       "title": "Add Input Validation"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "JavaScript",
+      "creation_time": "2026-07-24T00:16:43.542Z",
+      "description": {
+        "content": "Clear all inputs and return the result cards to their original state.",
+        "mime": "text/markdown"
+      },
+      "id": "32",
+      "references": [],
+      "title": "Add Reset Button"
     },
     {
       "assignedTo": {
@@ -380,6 +450,76 @@
       "id": "16",
       "references": [],
       "title": "Redesign Results Section"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-21T06:50:13.909Z",
+      "description": {
+        "content": "Compare the required battery capacity with the installed capacity and show the extra storage created by rounding up.",
+        "mime": "text/markdown"
+      },
+      "id": "26",
+      "references": [],
+      "title": "Show Battery Capacity Margin"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-21T06:50:00.570Z",
+      "description": {
+        "content": "Calculate the total installed battery capacity after rounding up the number of modules.",
+        "mime": "text/markdown"
+      },
+      "id": "25",
+      "references": [],
+      "title": "Show Installed Battery Capacity"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-24T01:45:12.270Z",
+      "description": {
+        "content": "Calculated the actual installed solar capacity by multiplying the number of panels by the wattage of each panel.",
+        "mime": "text/markdown"
+      },
+      "id": "33",
+      "references": [],
+      "title": "Show Installed Solar Capacity"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-24T00:16:09.245Z",
+      "description": {
+        "content": "Calculate the actual solar array capacity after rounding the number of panels up.",
+        "mime": "text/markdown"
+      },
+      "id": "31",
+      "references": [],
+      "title": "Show Installed Solar Capacity"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-24T01:45:21.787Z",
+      "description": {
+        "content": "Displayed the extra installed solar capacity in watts and as a percentage above the required array size.",
+        "mime": "text/markdown"
+      },
+      "id": "34",
+      "references": [],
+      "title": "Show Solar Capacity Margin"
     },
     {
       "assignedTo": {

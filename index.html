@@ -69,13 +69,26 @@
     <br><br>
     <h2>Battery Information</h2>
 
-    <label>Battery Module Capacity (Wh)</label>
     
+    <label for="batteryPreset">Battery Module Preset</label><br>
+    
+    <select id="batteryPreset" onchange="applyBatteryPreset()">
+        <option value ="custom">Custom capacity</option>
+        <option value ="5120">5.12kWh module</option>
+        <option value ="10240">10.24kWh module</option>
+        <option value ="15360">15.36kWh module</option>
+    </select>
+
+    <br><br>
+
+    <label for="batteryModule">Battery Module Capacity (Wh)</label><br>
     <input
         type="number"
         id="batteryModule"
         placeholder="Example: 5120"
     >
+    
+
 
     <br><br>
 
@@ -90,39 +103,72 @@
 
     <br><br>
 
+    <p id="errorMessage" class="error-message"></p>
+
     <button onclick="calculate()">
         Calculate Solar System
     </button>
+        
+    <button
+        type="button"
+        class="secondary-button"
+        onclick="resetCalculator()"
+    >
+        Reset Calculator
+    </button>
+
+
+
     
     
     <h2>Results:</h2>
+
+    <div class="results-grid">
     
-    <div class="result-card">
+        <div class="result-card">
         <h3>Solar Array Size</h3>
         <p id="solarSize">--</p>
-    </div>
+        </div>
 
-    <div class="result-card">
+        <div class="result-card">
         <h3>Solar Panels Required</h3>
         <p id="panelCount">--</p>
-    </div>
+        </div>
 
-    <div class="result-card">
+        <div class="result-card">
         <h3>Battery Capacity</h3>
         <p id="batteryWh">--</p>
         <p id="batteryAh">--</p>
-    </div>
+        </div>
 
-    <div class="result-card">
+        <div class="result-card">
         <h3>Battery Modules Required</h3>
         <p id="batteryCount">--</p>
-    </div>
+        </div>
 
-    <div class="result-card">
+        <div class="result-card">
         <h3>Installed Battery Capacity</h3>
         <p id="installedBatteryWh">--</p>
         <p id="batteryMargin">--</p>
+        </div>
+
+        <div class="result-card">
+        <h3>Installed Solar Capacity</h3>
+        <p id="installedSolarW">--</p>
+        <p id ="solarMargin">--</p>
+        </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
 
     <script src="script.js"></script>
 </div>
