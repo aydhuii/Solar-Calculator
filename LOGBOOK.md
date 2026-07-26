@@ -367,7 +367,59 @@ Restored all of the original result cards and kept the System Input Summary as a
 - Add warnings when the selected system may be undersized
 - Improve the overall visual design
 
+-----------------------------------------------------------------
 
+# 📅 July 26, 2026
+
+## 🎯 Sprint Goal
+
+Add inverter sizing to the calculator and improve the calculator by showing inverter requirements, warnings, and inverter-related assumptions in the summary.
+
+---
+
+## ✅ Completed
+
+- Added inverter input fields for peak continuous load, surge load, and inverter safety margin
+- Added validation for inverter inputs
+- Calculated inverter minimum continuous rating, design target, and rounded recommendation
+- Added inverter surge requirement and warning messages
+- Added inverter information to the system summary
+- Updated the reset function to clear the new inverter results and summary values
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 006
+
+**Issue**
+
+The Calculate button stopped working after the inverter feature was added.
+
+**Root Cause**
+
+The code tried to use the `recommendedInverterW` variable before it had been calculated, which caused the JavaScript to stop running.
+
+**Resolution**
+
+Moved the inverter warning logic to after the inverter calculations so the variable existed before it was used.
+
+---
+
+## 💡 What I Learned
+
+- In programming, the order of calculations matters because JavaScript runs from top to bottom.
+- An inverter must be sized using power (watts), not just daily energy usage.
+- A safety margin helps size the inverter more realistically.
+- Surge load is different from continuous load and should be checked separately.
+
+---
+
+## 🔜 Next Sprint
+
+- Finish any remaining calculator features
+- Add more helpful engineering guidance if needed
+- Start redesigning the calculator layout and visual style
 
 
 

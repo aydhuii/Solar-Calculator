@@ -140,6 +140,58 @@
 
     <p id="errorMessage" class="error-message"></p>
 
+    <h2>Inverter Information</h2>
+
+    <div class="input-grid">
+
+        <div class="input-group">
+            <label for="peakLoad">Peak Continuous Load (W)</label>
+
+            <small class="help-text">
+                The highest total wattage expected to operate at the same time.
+            </small>
+
+            <input
+                type="number"
+                id="peakLoad"
+                placeholder="Example: 500"
+            >
+        </div>
+
+        <div class="input-group">
+            <label for="surgeLoad">Peak Surge Load (W)</label>
+
+            <small class="help-text">
+                The highest short startup load from equipment such as motors or pumps.
+            </small>
+
+            <input
+                type="number"
+                id="surgeLoad"
+                placeholder="Example: 800"
+            >
+        </div>
+
+        <div class="input-group">
+            <label for="inverterMargin">Inverter Safety Margin (%)</label>
+
+            <small class="help-text">
+                Extra continuous capacity for future loads and operating conditions.
+            </small>
+
+            <input
+                type="number"
+                id="inverterMargin"
+                placeholder="Example: 25"
+                step="0.1"
+            >
+        </div>
+
+    </div>
+
+
+
+
     <button type="button" onclick="calculate()">
         Calculate Solar System
     </button>
@@ -193,6 +245,21 @@
         <p id="batteryMargin">--</p>
     </div>
 
+    <div class="result-card">
+        <h3>Inverter Continuous Rating</h3>
+
+        <p id = "inverterMinimum">--</p>
+        <p id = "inverterDesignTarget">--</p>
+        <p id = "inverterRecommended">--</p>
+    </div>
+
+    <div class="result-card">
+        <h3>Inverter Surge Requirement</h3>
+
+        <p id = "inverterSurge">--</p>
+        <p id = "inverterWarning">--</p>
+    </div>
+
     <div class="result-card summary-card">
         <h3>System Input Summary</h3>
 
@@ -236,6 +303,21 @@
             <p>
                 <strong>Battery Module:</strong>
                 <span id="summaryBatteryModule">--</span>
+            </p>
+
+            <p>
+                <strong>Peak Continuous Load:</strong>
+                <span id="summaryPeakLoad">--</span>
+            </p>
+
+            <p>
+                <strong>Peak Surge Load:</strong>
+                <span id="summarySurgeLoad">--</span>
+            </p>
+
+            <p>
+                <strong>Inverter Margin:</strong>
+                <span id="summaryInverterMargin">--</span>
             </p>
 
         </div>

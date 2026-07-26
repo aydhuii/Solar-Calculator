@@ -196,6 +196,20 @@
       "id": "12",
       "references": [],
       "title": "Improve Results Display"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-07-26T21:30:23.219Z",
+      "description": {
+        "content": "Redesign the calculator using a more polished dashboard style inspired by modern card-based layouts and clean two-column builder interfaces, with improved spacing, colors, and visual hierarchy.",
+        "mime": "text/markdown"
+      },
+      "id": "50",
+      "references": [],
+      "title": "Redesign Calculator Interface"
     }
   ],
   "in-progress": [
@@ -357,6 +371,21 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "Javascript",
+      "creation_time": "2026-07-26T21:30:02.029Z",
+      "description": {
+        "content": "Fixed an issue where the Calculate button stopped working because the inverter warning logic used a variable before it was defined.",
+        "mime": "text/markdown"
+      },
+      "id": "49",
+      "references": [],
+      "title": "Fix Inverter Calculation Bug",
+      "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "HTML/Javascript",
       "creation_time": "2026-07-26T05:39:24.405Z",
       "description": {
@@ -423,6 +452,34 @@
       "id": "15",
       "references": [],
       "title": "Add Input Validation"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-26T21:29:08.522Z",
+      "description": {
+        "content": "Added inverter sizing inputs and calculations, including peak continuous load, peak surge load, safety margin, minimum inverter size, calculated design target, and rounded inverter recommendation.",
+        "mime": "text/markdown"
+      },
+      "id": "46",
+      "references": [],
+      "title": "Add Inverter Sizing"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "JavaScript",
+      "creation_time": "2026-07-26T21:29:20.312Z",
+      "description": {
+        "content": "Added validation for inverter-related inputs and displayed warning messages for low inverter safety margin or surge requirements that may exceed the recommended continuous inverter size.",
+        "mime": "text/markdown"
+      },
+      "id": "47",
+      "references": [],
+      "title": "Add Inverter Validation and Warnings"
     },
     {
       "assignedTo": {
@@ -535,6 +592,20 @@
       "id": "39",
       "references": [],
       "title": "Improve User Input Experience"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Frontend / UI",
+      "creation_time": "2026-07-26T21:29:47.599Z",
+      "description": {
+        "content": "Added inverter result cards, included inverter values in the system input summary, and updated the reset function so all new inverter fields and outputs reset correctly.",
+        "mime": "text/markdown"
+      },
+      "id": "48",
+      "references": [],
+      "title": "Integrate Inverter Results Into Calculator"
     },
     {
       "assignedTo": {

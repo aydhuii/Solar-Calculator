@@ -31,6 +31,19 @@ function calculate() {
     let errorMessage = 
         document.getElementById("errorMessage");
 
+    let peakLoad =
+    Number(document.getElementById("peakLoad").value);
+
+    let surgeLoad =
+    Number(document.getElementById("surgeLoad").value);
+
+    let inverterMarginPercent =
+    Number(document.getElementById("inverterMargin").value);
+
+    let inverterWarning =
+    document.getElementById("inverterWarning");
+
+    
     //create input array
 
     let inputValues = [
@@ -41,7 +54,10 @@ function calculate() {
         autonomy,
         batteryVoltage,
         dodPercent,
-        batteryModule
+        batteryModule,
+        peakLoad,
+        surgeLoad,
+        inverterMarginPercent
     ];
 
     let hasInvalidInput = 
@@ -51,22 +67,39 @@ function calculate() {
 
     //CHECK INPUTS BEFORE CALCULATING
 
-     if (hasInvalidInput) {
+    if (hasInvalidInput) {
         errorMessage.textContent = 
         "Please enter a positive value in every field.";
 
         return;
-     }
+    }
 
-     if (
+    if (
         efficiencyPercent > 100 ||
         dodPercent > 100 
-     ) {
+    ) {
         errorMessage.textContent = 
         "Please enter a value between 1 and 100 for efficiency or depth of discharge."
 
         return;
-     }
+    }
+
+    if (inverterMarginPercent > 100) {
+        errorMessage.textContent = 
+            "The inverter safety margin needs to be between 1 and 100 percent.";
+
+        return;
+    }
+
+    if (surgeLoad < peakLoad) {
+        errorMessage.textContent = 
+            "The peak surge load can't be lower than the peak continuous load"
+
+        return;
+    }
+
+
+
 
      errorMessage.textContent = "";
      
@@ -112,6 +145,39 @@ function calculate() {
         
     let batteryCapacityMarginPercent = 
         (batteryCapacityMarginWh / batteryCapacityWh) * 100;
+
+    let inverterMargin = 
+        inverterMarginPercent / 100;
+    
+    let minimumInverterW =           //absolute min continuous output needed to power expected load.
+        peakLoad;
+    
+    let inverterDesignTargetW =
+        peakLoad * (1 + inverterMargin);
+        
+    let inverterRoundingIncrementW = 
+        250;
+
+    let recommendedInverterW =              //round upwards in 250W increments
+        Math.ceil(
+            inverterDesignTargetW /
+            inverterRoundingIncrementW 
+        ) * inverterRoundingIncrementW;
+
+    //INVERTER WARNING
+    if (inverterMarginPercent < 20) {
+        inverterWarning.textContent =
+            "Warning: The selected continuous-load safety margin is below 20%.";
+    } else if (surgeLoad > recommendedInverterW) {
+        inverterWarning.textContent =
+            "Check that the selected inverter can provide at least " +
+            formatNumber(surgeLoad, 0) +
+            " W of short-term surge output.";
+    } else {
+        inverterWarning.textContent =
+            "The entered surge requirement doesn't exceed the rounded continuous recommendation.";
+    }
+
     //RESULTS
 
     document.getElementById("solarSize").textContent =
@@ -195,6 +261,34 @@ function calculate() {
     document.getElementById("summaryBatteryModule").textContent =
         formatNumber(batteryModule, 0) +
         " Wh";
+
+    document.getElementById("inverterMinimum").textContent = 
+        formatNumber(minimumInverterW, 0) +
+        "W minimum continous rating";
+
+    document.getElementById("inverterDesignTarget").textContent = 
+        formatNumber(inverterDesignTargetW, 0) + 
+        "W calculated design target";
+
+    document.getElementById("inverterRecommended").textContent = 
+        formatNumber(recommendedInverterW, 0) + 
+        "W rounded recommendation";
+
+    document.getElementById("inverterSurge").textContent = 
+        formatNumber(surgeLoad, 0) + 
+        "W required surge rating"
+
+    document.getElementById("summaryPeakLoad").textContent =
+        formatNumber(peakLoad, 0) +
+        " W";
+
+    document.getElementById("summarySurgeLoad").textContent =
+        formatNumber(surgeLoad, 0) +
+        " W";
+
+    document.getElementById("summaryInverterMargin").textContent =
+        formatNumber(inverterMarginPercent, 1) +
+        "%";
 }
 
 function syncPanelPreset() {
@@ -312,7 +406,15 @@ function resetCalculator() {
         "summaryAutonomy",
         "summaryBatteryVoltage",
         "summaryDod",
-        "summaryBatteryModule"
+        "summaryBatteryModule",
+        "inverterMinimum",
+        "inverterDesignTarget",
+        "inverterRecommended",
+        "inverterSurge",
+        "inverterWarning",
+        "summaryPeakLoad",
+        "summarySurgeLoad",
+        "summaryInverterMargin"
     ];
 
     resultIds.forEach(function(id) {
