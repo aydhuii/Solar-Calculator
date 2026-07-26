@@ -1,5 +1,4 @@
 
-
 //CALCUJLATOR CODE
 function calculate() {
 
@@ -11,12 +10,14 @@ function calculate() {
     let sunHours = 
         Number(document.getElementById("sunHours").value);
 
-    let efficiency =
-        Number(document.getElementById("efficiency").value) / 100;
+    let efficiencyPercent =
+    parseFloat(document.getElementById("efficiency").value);
+
+    let dodPercent =
+    parseFloat(document.getElementById("dod").value);
 
     let panelWattage = 
         Number(document.getElementById("panelWattage").value);
-
 
     let autonomy =
         Number(document.getElementById("autonomy").value);
@@ -24,36 +25,61 @@ function calculate() {
     let batteryVoltage =
         Number(document.getElementById("batteryVoltage").value);
 
-    let dod =
-        Number(document.getElementById("dod").value) / 100;
-
     let batteryModule = 
         Number(document.getElementById("batteryModule").value);
 
     let errorMessage = 
         document.getElementById("errorMessage");
 
+    //create input array
+
+    let inputValues = [
+        energy,
+        sunHours,
+        efficiencyPercent,
+        panelWattage,
+        autonomy,
+        batteryVoltage,
+        dodPercent,
+        batteryModule
+    ];
+
+    let hasInvalidInput = 
+        inputValues.some(function(value) {
+            return Number.isNaN(value) || value <= 0;
+        });
+
     //CHECK INPUTS BEFORE CALCULATING
 
-     if (
-        energy <= 0 ||
-        sunHours <= 0 ||
-        efficiency <= 0 ||
-        autonomy <= 0 ||
-        batteryVoltage <= 0 ||
-        dod <= 0 ||
-        panelWattage <= 0 ||
-        batteryModule <= 0 
-     )  {
-        errorMessage.textContent =
-            "Please enter a positive value in every field";
-    
+     if (hasInvalidInput) {
+        errorMessage.textContent = 
+        "Please enter a positive value in every field.";
+
         return;
-    } 
+     }
 
-    errorMessage.textContent = "";
+     if (
+        efficiencyPercent > 100 ||
+        dodPercent > 100 
+     ) {
+        errorMessage.textContent = 
+        "Please enter a value between 1 and 100 for efficiency or depth of discharge."
+
+        return;
+     }
+
+     errorMessage.textContent = "";
+     
+
+
+    //convert percentages to decimals
+    let efficiency =
+    efficiencyPercent / 100;
+
+    let dod =
+    dodPercent / 100;
+
     //CALCULATIONS
-
     let solarArray = 
         energy / (sunHours * efficiency);
 
@@ -88,50 +114,138 @@ function calculate() {
         (batteryCapacityMarginWh / batteryCapacityWh) * 100;
     //RESULTS
 
-    document.getElementById("solarSize").textContent = 
-        (solarArray / 1000).toFixed(2) + " kW";
+    document.getElementById("solarSize").textContent =
+    formatNumber(solarArray, 0) +
+    " W (" +
+    formatNumber(solarArray / 1000, 2) +
+    " kW)";
 
-    document.getElementById("panelCount").textContent = 
-        numberOfPanels + " panels";
+    document.getElementById("panelCount").textContent =
+        formatNumber(numberOfPanels, 0) +
+        " panels";
 
-    document.getElementById("batteryWh").textContent = 
-        batteryCapacityWh.toFixed(0) + " Wh";
+    document.getElementById("installedSolarW").textContent =
+        formatNumber(installedSolarCapacityW, 0) +
+        " W (" +
+        formatNumber(installedSolarCapacityW / 1000, 2) +
+        " kW)";
 
-    document.getElementById("batteryAh").textContent = 
-        batteryCapacityAh.toFixed(1) + " Ah";
+    document.getElementById("solarMargin").textContent =
+        formatNumber(solarCapacityMarginW, 0) +
+        " W above required (" +
+        formatNumber(solarCapacityMarginPercent, 1) +
+        "%)";
+
+    document.getElementById("batteryWh").textContent =
+        formatNumber(batteryCapacityWh, 0) +
+        " Wh (" +
+        formatNumber(batteryCapacityWh / 1000, 2) +
+        " kWh)";
+
+    document.getElementById("batteryAh").textContent =
+        formatNumber(batteryCapacityAh, 1) +
+        " Ah at " +
+        formatNumber(batteryVoltage, 0) +
+        " V";
 
     document.getElementById("batteryCount").textContent =
-        numberOfBatteries + " batteries";
+        formatNumber(numberOfBatteries, 0) +
+        " batteries";
 
     document.getElementById("installedBatteryWh").textContent =
-        installedBatteryCapacityWh.toFixed(0) +
+        formatNumber(installedBatteryCapacityWh, 0) +
         " Wh (" +
-        (installedBatteryCapacityWh / 1000).toFixed(2) +
+        formatNumber(installedBatteryCapacityWh / 1000, 2) +
         " kWh)";
 
     document.getElementById("batteryMargin").textContent =
-        batteryCapacityMarginWh.toFixed(0) +
-        " Wh above the required (" + 
-        batteryCapacityMarginPercent.toFixed(1) +
+        formatNumber(batteryCapacityMarginWh, 0) +
+        " Wh above required (" +
+        formatNumber(batteryCapacityMarginPercent, 1) +
         "%)";
+    
+    document.getElementById("summaryEnergy").textContent =
+    formatNumber(energy, 0) +
+    " Wh/day";
 
-    document.getElementById("installedSolarW").textContent =
-        installedSolarCapacityW.toFixed(0) +
-        " W (" + 
-        (installedSolarCapacityW / 1000).toFixed(2) +
-        " kW)";
+    document.getElementById("summarySunHours").textContent =
+        formatNumber(sunHours, 1) +
+        " hours/day";
 
-    document.getElementById("solarMargin").textContent = 
-        solarCapacityMarginW.toFixed(0) + 
-        " W above required (" +
-        solarCapacityMarginPercent.toFixed(1) + 
-        "%)";
+    document.getElementById("summaryEfficiency").textContent =
+        formatNumber(efficiencyPercent, 1) +
+        "%";
 
-   
-        
+    document.getElementById("summaryPanelWattage").textContent =
+        formatNumber(panelWattage, 0) +
+        " W";
+
+    document.getElementById("summaryAutonomy").textContent =
+        formatNumber(autonomy, 1) +
+        " days";
+
+    document.getElementById("summaryBatteryVoltage").textContent =
+        formatNumber(batteryVoltage, 0) +
+        " V";
+
+    document.getElementById("summaryDod").textContent =
+        formatNumber(dodPercent, 1) +
+        "%";
+
+    document.getElementById("summaryBatteryModule").textContent =
+        formatNumber(batteryModule, 0) +
+        " Wh";
 }
 
-//PRESET CODE
+function syncPanelPreset() {
+    let panelValue =
+        document.getElementById("panelWattage").value;
+
+    let panelPreset =
+        document.getElementById("panelPreset");
+
+    let presetValues = [
+        "400",
+        "450",
+        "500",
+        "550"
+    ];
+
+    if (presetValues.includes(panelValue)) {
+        panelPreset.value = panelValue;
+    } else {
+        panelPreset.value = "custom";
+    }
+}
+
+function formatNumber(value, decimals = 0) {
+    return value.toLocaleString("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+    });
+}
+
+function syncBatteryPreset() {
+    let batteryValue =
+        document.getElementById("batteryModule").value;
+
+    let batteryPreset =
+        document.getElementById("batteryPreset");
+
+    let presetValues = [
+        "5120",
+        "10240",
+        "15360"
+    ];
+
+    if (presetValues.includes(batteryValue)) {
+        batteryPreset.value = batteryValue;
+    } else {
+        batteryPreset.value = "custom";
+    }
+}   
+
+//BATTERY PRESET CODE
 
 function applyBatteryPreset() { 
     let selectedCapacity = 
@@ -149,6 +263,23 @@ function applyBatteryPreset() {
     batteryModuleInput.value = selectedCapacity;
 }
 
+//PANEL PRESET CODE
+function applyPanelPreset() {
+    let selectedWattage =
+        document.getElementById("panelPreset").value;
+
+    let panelWattageInput =
+        document.getElementById("panelWattage");
+
+    if (selectedWattage === "custom") {
+        panelWattageInput.value = "";
+        panelWattageInput.focus();
+        return;
+    }
+
+    panelWattageInput.value = selectedWattage;
+}
+
 //reset button
 function resetCalculator() {
     let numberInputs =
@@ -159,7 +290,10 @@ function resetCalculator() {
     });
 
     document.getElementById("batteryPreset").value =
-        "custom";
+    "custom";
+
+    document.getElementById("panelPreset").value =
+    "custom";
 
     let resultIds = [
         "solarSize",
@@ -170,7 +304,15 @@ function resetCalculator() {
         "batteryAh",
         "batteryCount",
         "installedBatteryWh",
-        "batteryMargin"
+        "batteryMargin",
+        "summaryEnergy",
+        "summarySunHours",
+        "summaryEfficiency",
+        "summaryPanelWattage",
+        "summaryAutonomy",
+        "summaryBatteryVoltage",
+        "summaryDod",
+        "summaryBatteryModule"
     ];
 
     resultIds.forEach(function(id) {
@@ -181,6 +323,8 @@ function resetCalculator() {
             resultElement.textContent = "--";
         }
     });
+    
+    document.getElementById("errorMessage").textContent = "";
 }
 
 

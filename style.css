@@ -132,6 +132,14 @@ button{
     .results-grid {
         grid-template-columns: 1fr;
     }
+
+    .input-grid {
+    grid-template-columns: 1fr;
+    }
+
+    .summary-grid {
+    grid-template-columns: 1fr;
+    }
 } 
 
 .error-message {
@@ -140,9 +148,29 @@ button{
     min-weight: 20px;
 }
 
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+}
 
+.input-group {
+    min-width: 0;
+}
 
+.summary-card {
+    grid-column: 1 / -1;
+}
 
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px 20px;
+}
+
+.summary-grid p {
+    margin: 8px 0;
+}
 
 
 

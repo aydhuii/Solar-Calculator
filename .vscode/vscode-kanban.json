@@ -89,6 +89,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-26T05:39:38.583Z",
+      "description": {
+        "content": "Calculate the recommended inverter size, apply a safety margin, and display the final recommended inverter rating.",
+        "mime": "text/markdown"
+      },
+      "id": "44",
+      "references": [],
+      "title": "Add Inverter Sizing"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Frontend",
       "creation_time": "2026-07-24T01:46:20.986Z",
       "description": {
@@ -98,6 +112,20 @@
       "id": "36",
       "references": [],
       "title": "Add Solar Panel Presets"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-07-26T05:39:55.650Z",
+      "description": {
+        "content": "Improve the calculator's overall appearance by refining spacing, typography, colors, and card layouts while maintaining responsiveness across different screen sizes.",
+        "mime": "text/markdown"
+      },
+      "id": "45",
+      "references": [],
+      "title": "Better Visual Design"
     },
     {
       "assignedTo": {
@@ -329,6 +357,21 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "HTML/Javascript",
+      "creation_time": "2026-07-26T05:39:24.405Z",
+      "description": {
+        "content": "Resolved an issue where the Calculate button stopped working after the system summary replaced the original result cards. Restored the missing result elements so JavaScript could update all outputs correctly.",
+        "mime": "text/markdown"
+      },
+      "id": "43",
+      "references": [],
+      "title": "Fix Results Display Bug",
+      "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Frontend",
       "creation_time": "2026-07-24T01:45:37.187Z",
       "description": {
@@ -399,6 +442,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "Frontend",
+      "creation_time": "2026-07-26T05:37:35.881Z",
+      "description": {
+        "content": "Added a dropdown for common solar panel wattages while keeping a custom wattage option.",
+        "mime": "text/markdown"
+      },
+      "id": "38",
+      "references": [],
+      "title": "Add Solar Panel Presets"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Engineering Calculations",
       "creation_time": "2026-07-20T05:40:12.369Z",
       "description": {
@@ -436,6 +493,48 @@
       "id": "22",
       "references": [],
       "title": "Display Battery Module Count"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Javascript",
+      "creation_time": "2026-07-26T05:38:44.041Z",
+      "description": {
+        "content": "Strengthened input validation by checking for blank, zero, negative, and invalid percentage values. Replaced browser alerts with on-page error messages to provide clearer feedback to users.",
+        "mime": "text/markdown"
+      },
+      "id": "40",
+      "references": [],
+      "title": "Improve Calculator Validation"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI/Engineering Calculations",
+      "creation_time": "2026-07-26T05:38:56.849Z",
+      "description": {
+        "content": "Enhanced the results section by formatting large numbers with commas, adding a complete system input summary, and improving the overall readability of calculation results.",
+        "mime": "text/markdown"
+      },
+      "id": "41",
+      "references": [],
+      "title": "Improve Result Display"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX Frontend",
+      "creation_time": "2026-07-26T05:38:30.635Z",
+      "description": {
+        "content": "Enhanced the calculator's input interface by adding solar panel presets, synchronizing preset selections with manual input, and reorganizing the input fields into responsive desktop and mobile layouts for a smoother user experience.",
+        "mime": "text/markdown"
+      },
+      "id": "39",
+      "references": [],
+      "title": "Improve User Input Experience"
     },
     {
       "assignedTo": {
@@ -534,6 +633,20 @@
       "id": "23",
       "references": [],
       "title": "Update Battery Input Validation"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Javascript",
+      "creation_time": "2026-07-26T05:39:10.746Z",
+      "description": {
+        "content": "Expanded the reset functionality to clear all calculator inputs, preset selections, result cards, summary values, and validation messages, restoring the calculator to its default state.",
+        "mime": "text/markdown"
+      },
+      "id": "42",
+      "references": [],
+      "title": "Update Reset Functionality"
     }
   ]
 }

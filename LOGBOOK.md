@@ -306,7 +306,66 @@ None today. Each feature worked correctly after testing.
 - Display a summary of all user inputs
 - Improve the input layout for desktop screens
 
+------------------------------------------------------------------------------
 
+# 📅 July 25, 2026
+
+## 🎯 Sprint Goal
+
+Improve the calculator’s usability, validation, layout, number formatting, and system summary.
+
+---
+
+## ✅ Completed
+
+- Added solar panel wattage presets
+- Added automatic synchronization between panel presets and manually entered values
+- Added automatic synchronization between battery presets and manually entered values
+- Improved validation for blank, zero, negative, and invalid percentage inputs
+- Organized solar and battery inputs into responsive grids
+- Added comma formatting and consistent decimal places to results
+- Added a full system input summary
+- Updated the Reset button to clear presets, results, summary values, and error messages
+- Restored missing result cards after the summary card accidentally replaced them
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 005
+
+**Issue**
+
+The Calculate button appeared to stop working after adding the system input summary.
+
+**Root Cause**
+
+The original result cards were accidentally removed from the HTML. JavaScript still tried to update elements such as `solarSize`, `panelCount`, and `batteryWh`, but those IDs no longer existed.
+
+**Resolution**
+
+Restored all of the original result cards and kept the System Input Summary as an additional card at the bottom of the results grid.
+
+---
+
+## 💡 What I Learned
+
+- JavaScript stops running when it tries to update an HTML element that does not exist.
+- HTML element IDs must match the IDs used in JavaScript exactly.
+- A summary card should be added to the results section instead of replacing the existing result cards.
+- Helper functions can reduce repeated code and make number formatting more consistent.
+- Responsive grids can improve the desktop layout while still working on mobile screens.
+- Preset menus can stay accurate by updating when users type custom values.
+
+---
+
+## 🔜 Next Sprint
+
+- Add estimated inverter sizing
+- Add inverter safety margin
+- Add labels explaining each engineering assumption
+- Add warnings when the selected system may be undersized
+- Improve the overall visual design
 
 
 

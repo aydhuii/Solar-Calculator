@@ -21,33 +21,67 @@
 
     <br><br>
     <h2> Solar Information </h2>
-    <label>Peak Sun Hours:</label><br>
-    <input
-    type="number"
-    id="sunHours"
-    placeholder="Example:5"
-    step="0.1"
-    >
-    <br><br>
-    <label>Solar Panel Wattage (W)</label><br>
-    <input
-        type="number"
-        id="panelWattage"
-        placeholder="Example: 450"
-    >
-    <br><br>
+    
+    <div class = "input-grid">
+    
+        <div class="input-group">
+            <label>Peak Sun Hours:</label><br>
+        
+            <input
+            type="number"
+            id="sunHours"
+            placeholder="Example:5"
+            step="0.1"
+            >
+        </div>
+        
+        
+        <div class="input-group">
+            <label for="panelPreset">Solar Panel Preset</label>
 
-    <label>System Efficiency (%):</label><br>
+            <select id="panelPreset" onchange="applyPanelPreset()">
+                <option value ="custom">Custom wattage</option>
+                <option value="400">400 W</option>
+                <option value="450">450 W</option>
+                <option value="500">500 W</option>
+                <option value="550">550 W</option>
+            </select>
+        </div>
 
-    <input
-    type="number"
-    id="efficiency"
-    placeholder="Example: 85"
-    step="0.1"
-    >
+        
 
-    <br><br>
 
+        <div class="input-group">
+            <label>Solar Panel Wattage (W)</label><br>
+        
+            <input
+                type="number"
+                id="panelWattage"
+                placeholder="Example: 450"
+                oninput="syncPanelPreset()"
+            >
+        </div>
+        
+
+
+        <div class="input-group">
+            <label>System Efficiency (%):</label><br>
+
+            <input
+            type="number"
+            id="efficiency"
+            placeholder="Example: 85"
+            step="0.1"
+            >
+        </div>
+
+    </div>
+   
+   <h2>Battery Information</h2>
+
+   <div class="input-grid">
+
+    <div class="input-group">
     <label>Battery Voltage(V):</label><br>
    
     <input
@@ -56,56 +90,57 @@
     placeholder="Example: 48"
     >
 
-    <br><br>
-
-    <label>Depth of Discharge (%):</label><br>
-
-    <input
-    type="number"
-    id="dod"
-    placeholder="Example: 80"
-    >
-
-    <br><br>
-    <h2>Battery Information</h2>
-
+    </div>
     
-    <label for="batteryPreset">Battery Module Preset</label><br>
-    
-    <select id="batteryPreset" onchange="applyBatteryPreset()">
-        <option value ="custom">Custom capacity</option>
-        <option value ="5120">5.12kWh module</option>
-        <option value ="10240">10.24kWh module</option>
-        <option value ="15360">15.36kWh module</option>
-    </select>
+    <div class="input-group">
+        <label>Depth of Discharge (%):</label><br>
 
-    <br><br>
-
-    <label for="batteryModule">Battery Module Capacity (Wh)</label><br>
-    <input
+        <input
         type="number"
-        id="batteryModule"
-        placeholder="Example: 5120"
-    >
-    
+        id="dod"
+        placeholder="Example: 80"
+        >
 
+    </div>
+   
 
-    <br><br>
+    <div class="input-group">
+        <label for="batteryPreset">Battery Module Preset</label><br>
+        
+        <select id="batteryPreset" onchange="applyBatteryPreset()">
+            <option value ="custom">Custom capacity</option>
+            <option value ="5120">5.12kWh module</option>
+            <option value ="10240">10.24kWh module</option>
+            <option value ="15360">15.36kWh module</option>
+        </select>
 
-    <label># of Autonomy Days:</label><br>
+    </div>
 
-    <input
-    type="number"
-    id="autonomy"
-    placeholder="Example: 3"
-    step="0.1"
-    >
+    <div class="input-group">
+        <label for="batteryModule">Battery Module Capacity (Wh)</label><br>
+        <input
+            type="number"
+            id="batteryModule"
+            placeholder="Example: 5120"
+            oninput="syncBatteryPreset()"
+        >
 
-    <br><br>
+    </div>
+    <div class="input-group">
+        <label># of Autonomy Days:</label><br>
+
+        <input
+        type="number"
+        id="autonomy"
+        placeholder="Example: 3"
+        step="0.1"
+        >
+    </div>
+    </div>
 
     <p id="errorMessage" class="error-message"></p>
 
-    <button onclick="calculate()">
+    <button type="button" onclick="calculate()">
         Calculate Solar System
     </button>
         
@@ -123,42 +158,90 @@
     
     <h2>Results:</h2>
 
-    <div class="results-grid">
-    
-        <div class="result-card">
-        <h3>Solar Array Size</h3>
-        <p id="solarSize">--</p>
-        </div>
+<div class="results-grid">
 
-        <div class="result-card">
+    <div class="result-card">
+        <h3>Required Solar Array</h3>
+        <p id="solarSize">--</p>
+    </div>
+
+    <div class="result-card">
         <h3>Solar Panels Required</h3>
         <p id="panelCount">--</p>
-        </div>
+    </div>
 
-        <div class="result-card">
-        <h3>Battery Capacity</h3>
+    <div class="result-card">
+        <h3>Installed Solar Capacity</h3>
+        <p id="installedSolarW">--</p>
+        <p id="solarMargin">--</p>
+    </div>
+
+    <div class="result-card">
+        <h3>Required Battery Capacity</h3>
         <p id="batteryWh">--</p>
         <p id="batteryAh">--</p>
-        </div>
+    </div>
 
-        <div class="result-card">
+    <div class="result-card">
         <h3>Battery Modules Required</h3>
         <p id="batteryCount">--</p>
-        </div>
+    </div>
 
-        <div class="result-card">
+    <div class="result-card">
         <h3>Installed Battery Capacity</h3>
         <p id="installedBatteryWh">--</p>
         <p id="batteryMargin">--</p>
-        </div>
+    </div>
 
-        <div class="result-card">
-        <h3>Installed Solar Capacity</h3>
-        <p id="installedSolarW">--</p>
-        <p id ="solarMargin">--</p>
+    <div class="result-card summary-card">
+        <h3>System Input Summary</h3>
+
+        <div class="summary-grid">
+
+            <p>
+                <strong>Daily Energy:</strong>
+                <span id="summaryEnergy">--</span>
+            </p>
+
+            <p>
+                <strong>Peak Sun Hours:</strong>
+                <span id="summarySunHours">--</span>
+            </p>
+
+            <p>
+                <strong>System Efficiency:</strong>
+                <span id="summaryEfficiency">--</span>
+            </p>
+
+            <p>
+                <strong>Panel Wattage:</strong>
+                <span id="summaryPanelWattage">--</span>
+            </p>
+
+            <p>
+                <strong>Autonomy:</strong>
+                <span id="summaryAutonomy">--</span>
+            </p>
+
+            <p>
+                <strong>Battery Voltage:</strong>
+                <span id="summaryBatteryVoltage">--</span>
+            </p>
+
+            <p>
+                <strong>Depth of Discharge:</strong>
+                <span id="summaryDod">--</span>
+            </p>
+
+            <p>
+                <strong>Battery Module:</strong>
+                <span id="summaryBatteryModule">--</span>
+            </p>
+
         </div>
     </div>
 
+</div>
 
 
 
