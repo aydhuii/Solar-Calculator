@@ -11,10 +11,10 @@ function calculate() {
         Number(document.getElementById("sunHours").value);
 
     let efficiencyPercent =
-    parseFloat(document.getElementById("efficiency").value);
+        parseFloat(document.getElementById("efficiency").value);
 
     let dodPercent =
-    parseFloat(document.getElementById("dod").value);
+        parseFloat(document.getElementById("dod").value);
 
     let panelWattage = 
         Number(document.getElementById("panelWattage").value);
@@ -32,16 +32,21 @@ function calculate() {
         document.getElementById("errorMessage");
 
     let peakLoad =
-    Number(document.getElementById("peakLoad").value);
+        Number(document.getElementById("peakLoad").value);
 
     let surgeLoad =
-    Number(document.getElementById("surgeLoad").value);
+        Number(document.getElementById("surgeLoad").value);
 
     let inverterMarginPercent =
-    Number(document.getElementById("inverterMargin").value);
+        Number(document.getElementById("inverterMargin").value);
+
+     let controllerMarginPercent = 
+        Number(document.getElementById("controllerMargin").value);
 
     let inverterWarning =
-    document.getElementById("inverterWarning");
+        document.getElementById("inverterWarning");
+
+    
 
     
     //create input array
@@ -57,7 +62,8 @@ function calculate() {
         batteryModule,
         peakLoad,
         surgeLoad,
-        inverterMarginPercent
+        inverterMarginPercent,
+        controllerMarginPercent
     ];
 
     let hasInvalidInput = 
@@ -87,6 +93,13 @@ function calculate() {
     if (inverterMarginPercent > 100) {
         errorMessage.textContent = 
             "The inverter safety margin needs to be between 1 and 100 percent.";
+
+        return;
+    }
+
+    if (controllerMarginPercent > 100) {
+        errorMessage.textContent = 
+            "The charge controller safety margin needs to be between 1 and 100 percent."
 
         return;
     }
@@ -158,11 +171,29 @@ function calculate() {
     let inverterRoundingIncrementW = 
         250;
 
+    let controllerMargin =
+        controllerMarginPercent / 100;
+
+    let controllerMinimumA =
+        installedSolarCapacityW / batteryVoltage;
+
+    let controllerDesignTargetA =
+        controllerMinimumA * (1 + controllerMargin);
+
+    let controllerRoundingIncrementA =
+        10;
+
     let recommendedInverterW =              //round upwards in 250W increments
         Math.ceil(
             inverterDesignTargetW /
             inverterRoundingIncrementW 
         ) * inverterRoundingIncrementW;
+
+    let recommendedControllerA =           //round upwards in 10 increments
+        Math.ceil(
+            controllerDesignTargetA /
+            controllerRoundingIncrementA
+        ) * controllerRoundingIncrementA;
 
     //INVERTER WARNING
     if (inverterMarginPercent < 20) {
@@ -278,6 +309,18 @@ function calculate() {
         formatNumber(surgeLoad, 0) + 
         "W required surge rating"
 
+    document.getElementById("controllerMinimum").textContent = 
+        formatNumber(controllerMinimumA, 1) +
+        " A minimum output current";
+
+    document.getElementById("controllerDesignTarget").textContent =
+        formatNumber(controllerDesignTargetA, 1) +
+        " A calculated design target";
+
+    document.getElementById("controllerRecommended").textContent =
+        formatNumber(recommendedControllerA, 0) +
+        " A rounded recommendation";
+
     document.getElementById("summaryPeakLoad").textContent =
         formatNumber(peakLoad, 0) +
         " W";
@@ -289,6 +332,12 @@ function calculate() {
     document.getElementById("summaryInverterMargin").textContent =
         formatNumber(inverterMarginPercent, 1) +
         "%";
+    
+    document.getElementById("summaryControllerMargin").textContent =
+        formatNumber(controllerMarginPercent, 1) +
+        "%";
+
+    
 }
 
 function syncPanelPreset() {
@@ -389,7 +438,7 @@ function resetCalculator() {
     document.getElementById("panelPreset").value =
     "custom";
 
-    let resultIds = [
+        let resultIds = [
         "solarSize",
         "panelCount",
         "installedSolarW",
@@ -399,6 +448,14 @@ function resetCalculator() {
         "batteryCount",
         "installedBatteryWh",
         "batteryMargin",
+        "inverterMinimum",
+        "inverterDesignTarget",
+        "inverterRecommended",
+        "inverterSurge",
+        "inverterWarning",
+        "controllerMinimum",
+        "controllerDesignTarget",
+        "controllerRecommended",
         "summaryEnergy",
         "summarySunHours",
         "summaryEfficiency",
@@ -407,14 +464,10 @@ function resetCalculator() {
         "summaryBatteryVoltage",
         "summaryDod",
         "summaryBatteryModule",
-        "inverterMinimum",
-        "inverterDesignTarget",
-        "inverterRecommended",
-        "inverterSurge",
-        "inverterWarning",
         "summaryPeakLoad",
         "summarySurgeLoad",
-        "summaryInverterMargin"
+        "summaryInverterMargin",
+        "summaryControllerMargin"
     ];
 
     resultIds.forEach(function(id) {

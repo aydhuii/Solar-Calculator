@@ -421,7 +421,54 @@ Moved the inverter warning logic to after the inverter calculations so the varia
 - Add more helpful engineering guidance if needed
 - Start redesigning the calculator layout and visual style
 
+----------------------------------------------------------------------------
 
+# 📅 July 28, 2026
+
+## 🎯 Sprint Goal
+
+Add charge controller sizing to the calculator so the system can recommend a controller current rating based on the installed solar capacity and battery voltage.
+
+---
+
+## ✅ Completed
+
+- Added a charge controller safety margin input
+- Added charge controller validation
+- Calculated the minimum controller output current
+- Applied a safety margin to create a controller design target
+- Rounded the controller recommendation upward to the nearest 10 amps
+- Added charge controller results to the results section
+- Added the controller margin to the system input summary
+- Updated the Reset button to clear the new controller input and outputs
+- Added a note reminding users to check the controller’s PV input-voltage limit separately
+
+---
+
+## 🐞 Bugs Encountered
+
+No major bugs were encountered during this sprint.
+
+---
+
+## 💡 What I Learned
+
+- A charge controller can be sized approximately using installed solar capacity divided by battery voltage.
+- Safety margins help prevent electrical components from being sized too close to their minimum requirement.
+- `Math.ceil()` is useful when a recommendation needs to round upward for safety.
+- Existing calculator values can be reused instead of asking the user to enter the same information again.
+- A calculator should clearly explain what it can and cannot verify.
+- Charge controller current sizing does not automatically verify the controller’s maximum PV input voltage.
+
+---
+
+## 🔜 Next Sprint
+
+- Review whether any important calculator factors are still missing
+- Improve user guidance and explanations
+- Begin redesigning the calculator with a clean two-column layout
+- Add modern dark-dashboard styling
+- Improve the appearance of inputs, buttons, results, spacing, and section cards
 
 
 

@@ -138,8 +138,6 @@
     </div>
     </div>
 
-    <p id="errorMessage" class="error-message"></p>
-
     <h2>Inverter Information</h2>
 
     <div class="input-grid">
@@ -189,8 +187,30 @@
 
     </div>
 
+    <h2>Charge Controller Information</h2>
 
+    <div class="input-grid">
 
+        <div class="input-group">
+            <label for="controllerMargin">
+                Charge Controller Safety Margin (%)
+            </label>
+
+            <small class="help-text">
+                Extra current capacity added above the calculated solar-array current.
+            </small>
+
+            <input
+                type="number"
+                id="controllerMargin"
+                placeholder="Example: 25"
+                step="0.1"
+            >
+        </div>
+
+    </div>
+
+    <p id="errorMessage" class="error-message"></p>
 
     <button type="button" onclick="calculate()">
         Calculate Solar System
@@ -260,6 +280,18 @@
         <p id = "inverterWarning">--</p>
     </div>
 
+    <div class="result-card">
+        <h3>Charge Controller Rating</h3>
+
+        <p id="controllerMinimum">--</p>
+        <p id="controllerDesignTarget">--</p>
+        <p id="controllerRecommended">--</p>
+
+        <small class="help-text">
+            Verify the final controller's PV input-voltage limit using the panel string design.
+        </small>
+    </div>
+
     <div class="result-card summary-card">
         <h3>System Input Summary</h3>
 
@@ -318,6 +350,11 @@
             <p>
                 <strong>Inverter Margin:</strong>
                 <span id="summaryInverterMargin">--</span>
+            </p>
+
+            <p>
+                <strong>Controller Margin:</strong>
+                <span id="summaryControllerMargin">--</span>
             </p>
 
         </div>

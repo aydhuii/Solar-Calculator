@@ -443,6 +443,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "Engineering Calculations",
+      "creation_time": "2026-07-28T22:21:45.786Z",
+      "description": {
+        "content": "Added a charge controller calculation based on installed solar capacity and battery voltage. The feature calculates the minimum current, applies a safety margin, and rounds the final recommendation upward to the nearest 10 amps.",
+        "mime": "text/markdown"
+      },
+      "id": "51",
+      "references": [],
+      "title": "Add Charge Controller Sizing"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Javascript",
       "creation_time": "2026-07-19T06:21:53.566Z",
       "description": {
@@ -597,6 +611,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "Frontend",
+      "creation_time": "2026-07-28T22:21:57.791Z",
+      "description": {
+        "content": "Added the controller safety-margin input, result card, validation, summary value, and Reset button support. Also included a note explaining that the final PV input-voltage limit must still be verified separately.",
+        "mime": "text/markdown"
+      },
+      "id": "52",
+      "references": [],
+      "title": "Integrate Charge Controller Feature"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Frontend / UI",
       "creation_time": "2026-07-26T21:29:47.599Z",
       "description": {
@@ -606,6 +634,20 @@
       "id": "48",
       "references": [],
       "title": "Integrate Inverter Results Into Calculator"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Project Planning",
+      "creation_time": "2026-07-28T22:22:12.378Z",
+      "description": {
+        "content": "Completed the main solar-array, battery-bank, inverter, and charge-controller sizing features so the project can begin moving toward a polished dashboard redesign.",
+        "mime": "text/markdown"
+      },
+      "id": "53",
+      "references": [],
+      "title": "Prepare Calculator for Design Phase"
     },
     {
       "assignedTo": {
