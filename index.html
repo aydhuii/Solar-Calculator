@@ -2,15 +2,61 @@
 <html>
 
 <head>
-    <title>Solar Calculator</title>
+    
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    
+    <title>Solar Calculator</title>
+    
+    
     <link rel="stylesheet" href="style.css">
+    
 </head>
 
 <body>
-    <div class="container">
-    <h1>Off-Grid Solar Panel Calculator</h1>
-    <h2>Load Information</h2>
+    <div class="app-shell">
+
+    <header class="app-header">
+
+        <div>
+            <p class="eyebrow">SOLAR SYSTEM DESIGN TOOL</p>
+
+            <h1>Off-Grid Solar Calculator</h1>
+
+            <p class="header-description">
+                Estimate solar array, battery bank, inverter,
+                and charge controller requirements.
+            </p>
+        </div>
+
+        <div class="header-badge">
+            Engineering Calculator
+        </div>
+
+    </header>
+    
+    <main class="calculator-layout">
+
+        <section class="input-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <p class="section-label">SYSTEM INPUTS</p>
+                    <h2>Design Assumptions</h2>
+                </div>
+
+                <p>
+                    Enter the expected load and equipment information.
+                </p>
+            </div>
+        </section>
+    </main>
+
+
+        <h2>Load Information</h2>
     <p>Enter your daily energy usage in Wh:</p>
     
     <input
@@ -210,21 +256,42 @@
 
     </div>
 
-    <p id="errorMessage" class="error-message"></p>
+            <p id="errorMessage" class="error-message"></p>
 
-    <button type="button" onclick="calculate()">
-        Calculate Solar System
-    </button>
-        
-    <button
-        type="button"
-        class="secondary-button"
-        onclick="resetCalculator()"
-    >
-        Reset Calculator
-    </button>
+        <div class="button-group">
 
+            <button
+                type="button"
+                class="primary-button"
+                onclick="calculate()"
+            >
+                Calculate Solar System
+            </button>
 
+            <button
+                type="button"
+                class="secondary-button"
+                onclick="resetCalculator()"
+            >
+                Reset Calculator
+            </button>
+
+        </div>
+
+    </section>
+
+    <aside class="results-panel">
+
+        <div class="panel-heading results-heading">
+            <div>
+                <p class="section-label">SYSTEM RESULTS</p>
+                <h2>Recommended System</h2>
+            </div>
+
+            <p>
+                Results update after completing all required inputs.
+            </p>
+        </div>
 
     
     

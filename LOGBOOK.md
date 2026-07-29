@@ -470,5 +470,44 @@ No major bugs were encountered during this sprint.
 - Add modern dark-dashboard styling
 - Improve the appearance of inputs, buttons, results, spacing, and section cards
 
+----------------------------------------------------------------------
 
+# 📅 July 29, 2026
 
+## 🎯 Sprint Goal
+
+Begin restructuring the calculator into a modern dashboard layout while preserving all existing functionality.
+
+---
+
+## ✅ Completed
+
+- Planned the overall dashboard layout for the redesigned calculator
+- Created a new application structure using a header, input panel, and results panel
+- Added a responsive viewport meta tag
+- Grouped calculator buttons into a dedicated button container
+- Prepared the HTML structure for the upcoming redesign without changing the existing calculator logic
+
+---
+
+## 🐞 Bugs Encountered
+
+No major bugs were encountered during this sprint.
+
+---
+
+## 💡 What I Learned
+
+- Separating layout from functionality makes large projects easier to maintain.
+- HTML classes are primarily used for styling, while IDs are used by JavaScript to locate elements.
+- Building the page structure first makes the CSS redesign much easier.
+- Responsive web design starts with a good HTML structure before adding styling.
+
+---
+
+## 🔜 Next Sprint
+
+- Begin the full dashboard redesign
+- Create the two-column desktop layout
+- Add modern card styling, colors, spacing, and typography
+- Improve button styling and overall user experience

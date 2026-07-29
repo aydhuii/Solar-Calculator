@@ -159,6 +159,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "CSS / UI",
+      "creation_time": "2026-07-29T21:08:22.923Z",
+      "description": {
+        "content": "Transform the calculator into a modern engineering dashboard using a clean two-column layout, dark navy theme, responsive cards, improved typography, and blue/teal accent colors inspired by professional engineering software.",
+        "mime": "text/markdown"
+      },
+      "id": "56",
+      "references": [],
+      "title": "Create Modern Dashboard Design"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "UI / UX",
       "creation_time": "2026-07-20T05:43:48.644Z",
       "description": {
@@ -527,6 +541,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "ui",
+      "creation_time": "2026-07-29T21:07:51.172Z",
+      "description": {
+        "content": "Reorganized the calculator into a structured dashboard layout with a dedicated header, input panel, results panel, and grouped action buttons while preserving all existing calculator functionality.",
+        "mime": "text/markdown"
+      },
+      "id": "54",
+      "references": [],
+      "title": "Build Dashboard Structure"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Engineering Calculations",
       "creation_time": "2026-07-20T05:40:12.369Z",
       "description": {
@@ -648,6 +676,20 @@
       "id": "53",
       "references": [],
       "title": "Prepare Calculator for Design Phase"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Frontend",
+      "creation_time": "2026-07-29T21:08:10.113Z",
+      "description": {
+        "content": "Added the foundation for responsive web design by including the viewport meta tag and organizing the HTML structure for future desktop and mobile layouts.",
+        "mime": "text/markdown"
+      },
+      "id": "55",
+      "references": [],
+      "title": "Prepare Responsive Layout/UI deisign"
     },
     {
       "assignedTo": {
