@@ -511,3 +511,45 @@ No major bugs were encountered during this sprint.
 - Create the two-column desktop layout
 - Add modern card styling, colors, spacing, and typography
 - Improve button styling and overall user experience
+
+----------------------------------------------------------------------
+
+# 📅 July 30, 2026
+
+## 🎯 Sprint Goal
+
+Plan the transition from a functional calculator to a polished engineering dashboard while keeping the project ahead of schedule for an October launch.
+
+---
+
+## ✅ Completed
+
+- Chose the overall dashboard design direction for the website
+- Planned a modern two-column layout with separate input and results panels
+- Identified the major CSS components needed for the redesign
+- Reviewed how the HTML structure supports the upcoming styling phase
+- Confirmed the project timeline remains ahead of schedule
+
+---
+
+## 🐞 Bugs Encountered
+
+No bugs were encountered today because the focus was on planning the redesign before implementation.
+
+---
+
+## 💡 What I Learned
+
+- A well-organized HTML structure makes CSS much easier to write.
+- Large visual redesigns should be broken into small, manageable steps.
+- Planning the UI before coding helps avoid rewriting large sections later.
+- Understanding why CSS properties are used is more valuable than simply copying them.
+
+---
+
+## 🔜 Next Sprint
+
+- Build the two-column layout using CSS Grid
+- Learn how each layout property affects the page
+- Begin styling the dashboard one component at a time
+- Continue keeping the calculator fully functional throughout the redesign

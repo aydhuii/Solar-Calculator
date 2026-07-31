@@ -159,20 +159,6 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
-      "category": "CSS / UI",
-      "creation_time": "2026-07-29T21:08:22.923Z",
-      "description": {
-        "content": "Transform the calculator into a modern engineering dashboard using a clean two-column layout, dark navy theme, responsive cards, improved typography, and blue/teal accent colors inspired by professional engineering software.",
-        "mime": "text/markdown"
-      },
-      "id": "56",
-      "references": [],
-      "title": "Create Modern Dashboard Design"
-    },
-    {
-      "assignedTo": {
-        "name": "ayd.huiii"
-      },
       "category": "UI / UX",
       "creation_time": "2026-07-20T05:43:48.644Z",
       "description": {
@@ -578,6 +564,20 @@
       "id": "13",
       "references": [],
       "title": "Calculate Number of Solar Panels"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "CSS / UI",
+      "creation_time": "2026-07-29T21:08:22.923Z",
+      "description": {
+        "content": "Transform the calculator into a modern engineering dashboard using a clean two-column layout, dark navy theme, responsive cards, improved typography, and blue/teal accent colors inspired by professional engineering software.",
+        "mime": "text/markdown"
+      },
+      "id": "56",
+      "references": [],
+      "title": "Create Modern Dashboard Design"
     },
     {
       "assignedTo": {
