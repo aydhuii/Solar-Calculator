@@ -553,3 +553,79 @@ No bugs were encountered today because the focus was on planning the redesign be
 - Learn how each layout property affects the page
 - Begin styling the dashboard one component at a time
 - Continue keeping the calculator fully functional throughout the redesign
+
+--------------------------------------------------------------------------------------------
+
+# 📅 August 4, 2026
+
+## 🎯 Sprint Goal
+
+Improve the calculator dashboard layout by organizing the input sections into cards and fixing the HTML structure so the input and results panels display correctly.
+
+---
+
+## ✅ Completed
+
+- Fixed incorrect HTML closing tags that were breaking the dashboard layout
+- Kept the input panel and results panel inside the main CSS Grid
+- Created separate cards for Load, Solar, Battery, Inverter, and Charge Controller information
+- Organized related inputs into two-column grids
+- Added full-width fields where a complete row was more appropriate
+- Added featured styling to the most important engineering results
+- Improved input labels by connecting them to their matching input IDs
+- Removed unnecessary line breaks from the form layout
+- Confirmed the calculator displays inputs and results side by side on desktop
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 010
+
+**Issue**
+
+The calculator inputs appeared outside the dashboard panels, and headings and fields were placed in unexpected locations.
+
+**Root Cause**
+
+The input panel and main calculator layout were closed too early with misplaced `</section>`, `</main>`, and `</div>` tags.
+
+**Resolution**
+
+Moved the closing tags so all input sections remained inside the input panel and both panels remained inside the main calculator grid.
+
+### Bug 011
+
+**Issue**
+
+Only the first input in several sections used the two-column layout while the remaining fields stretched across the page.
+
+**Root Cause**
+
+The `.input-grid` containers were closed immediately after the first input group.
+
+**Resolution**
+
+Moved the grid closing tags below all related input groups so every field became a direct child of the correct grid.
+
+---
+
+## 💡 What I Learned
+
+- HTML nesting directly affects how CSS Grid organizes elements.
+- Only direct children of a grid container become grid items.
+- Closing a container too early can make later content appear outside its intended panel.
+- Indentation makes it easier to identify mismatched or misplaced closing tags.
+- One element can use multiple classes, such as `input-group full-width`.
+- `grid-column: 1 / -1` allows an item to span the full width of a grid.
+- Form sections make a long calculator easier to scan and understand.
+
+---
+
+## 🔜 Next Sprint
+
+- Test the complete calculator after the layout changes
+- Improve spacing and consistency between input cards
+- Polish labels, helper text, and result hierarchy
+- Test the responsive design on tablet and mobile widths
+- Begin adding user-friendly explanations for technical inputs

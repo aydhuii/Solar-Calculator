@@ -44,7 +44,8 @@
 
             <div class="panel-heading">
                 <div>
-                    <p class="section-label">SYSTEM INPUTS</p>
+                    <p class="section-label">SYSTEM INPUTS</p> 
+         
                     <h2>Design Assumptions</h2>
                 </div>
 
@@ -52,34 +53,35 @@
                     Enter the expected load and equipment information.
                 </p>
             </div>
-        </section>
-    </main>
+       
+   
 
-
+<div class="form-section">
  
     <h2>Load Information</h2>
 
-<div class="input-grid">
-    <div class="input-group">
-        <label for="energy">Enter your Daily Energy Usage in Wh</label>
+    <div class="input-grid">
+        <div class="input-group full-width">
+            <label for="energy">Enter your Daily Energy Usage in Wh</label>
 
-        <input
-            type="number"
-            id="energy"
-            placeholder="Example: 12000"
-        >
+            <input
+                type="number"
+                id="energy"
+                placeholder="Example: 12000"
+            >
+        </div>
     </div>
-</div>
 
+</div>
     <br><br>
 
-
+<div class="form-section">
     <h2> Solar Information </h2>
     
     <div class = "input-grid">
     
         <div class="input-group">
-            <label>Peak Sun Hours:</label><br>
+            <label for="sunHours">Peak Sun Hours</label>
         
             <input
             type="number"
@@ -88,7 +90,7 @@
             step="0.1"
             >
         </div>
-        
+ 
         
         <div class="input-group">
             <label for="panelPreset">Solar Panel Preset</label>
@@ -106,7 +108,7 @@
 
 
         <div class="input-group">
-            <label>Solar Panel Wattage (W)</label><br>
+            <label for="panelWattage">Solar Panel Wattage (W)</label>
         
             <input
                 type="number"
@@ -119,7 +121,7 @@
 
 
         <div class="input-group">
-            <label>System Efficiency (%):</label><br>
+           <label for="efficiency">System Efficiency (%)</label>
 
             <input
             type="number"
@@ -130,13 +132,15 @@
         </div>
 
     </div>
-   
+
+</div>
+<div class="form-section">
    <h2>Battery Information</h2>
 
    <div class="input-grid">
 
     <div class="input-group">
-    <label>Battery Voltage(V):</label><br>
+    <label for="batteryVoltage">Battery Voltage (V)</label>
    
     <input
     type="number"
@@ -145,7 +149,7 @@
     >
 
     </div>
-    
+
     <div class="input-group">
         <label>Depth of Discharge (%):</label><br>
 
@@ -180,7 +184,7 @@
         >
 
     </div>
-    <div class="input-group">
+    <div class="input-group full-width"> 
         <label># of Autonomy Days:</label><br>
 
         <input
@@ -190,8 +194,12 @@
         step="0.1"
         >
     </div>
-    </div>
 
+</div>
+
+
+
+    <div class="form-section">
     <h2>Inverter Information</h2>
 
     <div class="input-grid">
@@ -239,13 +247,14 @@
             >
         </div>
 
-    </div>
+</div>
 
+<div class="form-section">
     <h2>Charge Controller Information</h2>
 
     <div class="input-grid">
 
-        <div class="input-group">
+        <div class="input-group full-width">
             <label for="controllerMargin">
                 Charge Controller Safety Margin (%)
             </label>
@@ -263,7 +272,7 @@
         </div>
 
     </div>
-
+</div>
             <p id="errorMessage" class="error-message"></p>
 
         <div class="button-group">
@@ -303,11 +312,11 @@
 
     
     
-    <h2>Results:</h2>
+
 
 <div class="results-grid">
 
-    <div class="result-card">
+    <div class="result-card featured-card">
         <h3>Required Solar Array</h3>
         <p id="solarSize">--</p>
     </div>
@@ -323,7 +332,7 @@
         <p id="solarMargin">--</p>
     </div>
 
-    <div class="result-card">
+    <div class="result-card featured-card">
         <h3>Required Battery Capacity</h3>
         <p id="batteryWh">--</p>
         <p id="batteryAh">--</p>
@@ -340,7 +349,7 @@
         <p id="batteryMargin">--</p>
     </div>
 
-    <div class="result-card">
+    <div class="result-card featured-card">
         <h3>Inverter Continuous Rating</h3>
 
         <p id = "inverterMinimum">--</p>
@@ -355,7 +364,7 @@
         <p id = "inverterWarning">--</p>
     </div>
 
-    <div class="result-card">
+    <div class="result-card featured-card">
         <h3>Charge Controller Rating</h3>
 
         <p id="controllerMinimum">--</p>
@@ -366,6 +375,8 @@
             Verify the final controller's PV input-voltage limit using the panel string design.
         </small>
     </div>
+
+    
 
     <div class="result-card summary-card">
         <h3>System Input Summary</h3>
@@ -434,11 +445,12 @@
 
         </div>
     </div>
+    </aside>
 
+</main>
 </div>
 
-
-
+  
 
 
 
@@ -448,7 +460,7 @@
 
 
     <script src="script.js"></script>
-</div>
+
 </body>
 
 

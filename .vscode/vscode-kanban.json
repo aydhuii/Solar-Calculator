@@ -371,6 +371,21 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "HTML / Layout",
+      "creation_time": "2026-08-05T02:44:21.172Z",
+      "description": {
+        "content": "Corrected misplaced closing tags so the input panel and results panel remain inside the main dashboard grid.",
+        "mime": "text/markdown"
+      },
+      "id": "57",
+      "references": [],
+      "title": "Fix Dashboard HTML Structure",
+      "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Javascript",
       "creation_time": "2026-07-26T21:30:02.029Z",
       "description": {
@@ -570,6 +585,20 @@
         "name": "ayd.huiii"
       },
       "category": "CSS / UI",
+      "creation_time": "2026-08-05T02:44:36.667Z",
+      "description": {
+        "content": "Grouped the load, solar, battery, inverter, and charge-controller inputs into clearly separated form cards.",
+        "mime": "text/markdown"
+      },
+      "id": "58",
+      "references": [],
+      "title": "Create Input Section Cards"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "CSS / UI",
       "creation_time": "2026-07-29T21:08:22.923Z",
       "description": {
         "content": "Transform the calculator into a modern engineering dashboard using a clean two-column layout, dark navy theme, responsive cards, improved typography, and blue/teal accent colors inspired by professional engineering software.",
@@ -592,6 +621,20 @@
       "id": "22",
       "references": [],
       "title": "Display Battery Module Count"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-08-05T02:45:03.427Z",
+      "description": {
+        "content": "Added featured styling to the primary solar, battery, inverter, and charge-controller recommendations.",
+        "mime": "text/markdown"
+      },
+      "id": "60",
+      "references": [],
+      "title": "Highlight Main Results"
     },
     {
       "assignedTo": {
@@ -662,6 +705,20 @@
       "id": "48",
       "references": [],
       "title": "Integrate Inverter Results Into Calculator"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "HTML / CSS",
+      "creation_time": "2026-08-05T02:44:50.169Z",
+      "description": {
+        "content": "Placed related input groups inside shared two-column grids and added full-width fields where appropriate.",
+        "mime": "text/markdown"
+      },
+      "id": "59",
+      "references": [],
+      "title": "Organize Form Input Grids"
     },
     {
       "assignedTo": {
