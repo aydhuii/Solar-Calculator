@@ -62,12 +62,7 @@ select {
 }
 
 .header-badge {
-    padding: 12px 18px;
-    border: 1px solid #2d536d;
-    border-radius: 999px;
-    background: rgba(16, 48, 69, 0.8);
-    color: #76e0d4;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 
@@ -169,6 +164,35 @@ select:focus {
     box-shadow: 0 0 0 3px rgba(78, 212, 197, 0.12);
 }
 
+.appliance-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.appliance-builder {
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #1f435a;
+}
+
+.appliance-builder h3 {
+    margin: 0 0 16px;
+}
+
+.load-total {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 16px 0;
+    padding: 14px;
+    border-radius: 10px;
+    background: #0b2333;
+}
+
+.load-total strong {
+    color: #76e0d4;
+}
 
 /* ---------- buttons ---------- */
 
@@ -280,6 +304,8 @@ button:hover {
     }
 }
 
+
+
 @media (max-width: 650px) {
     .app-shell {
         width: 92%;
@@ -310,6 +336,29 @@ button:hover {
     .summary-card {
         grid-column: auto;
     }
+
+    .form-section {
+    padding: 16px;
+    margin-bottom: 16px;
+    }   
+
+    .app-header h1 {
+        font-size: 2rem;
+    }
+
+    .result-card {
+        padding: 16px;
+    }
+
+    .appliance-row {
+    grid-template-columns: 1fr;
+    }
+}
+
+.calculator-layout > *,
+.input-grid > *,
+.results-grid > * {
+    min-width: 0;
 }
 
 .featured-card {
@@ -337,3 +386,11 @@ button:hover {
 .full-width {
     grid-column: 1 / -1;
 }
+
+button:focus-visible {
+    outline: 3px solid rgba(78, 212, 197, 0.45);
+    outline-offset: 3px;
+}
+
+
+

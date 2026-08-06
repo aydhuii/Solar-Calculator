@@ -1,469 +1,371 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
-    
-    <meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-    
-    <title>Solar Calculator</title>
-    
-    
-    <link rel="stylesheet" href="style.css">
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Solar Calculator</title>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <div class="app-shell">
-
+  <div class="app-shell">
     <header class="app-header">
+      <div>
+        <p class="eyebrow">SOLAR SYSTEM DESIGN TOOL</p>
 
-        <div>
-            <p class="eyebrow">SOLAR SYSTEM DESIGN TOOL</p>
+        <h1>Off-Grid Solar Calculator</h1>
 
-            <h1>Off-Grid Solar Calculator</h1>
-
-            <p class="header-description">
-                Estimate solar array, battery bank, inverter,
-                and charge controller requirements.
-            </p>
-        </div>
-
-        <div class="header-badge">
-            Engineering Calculator
-        </div>
-
+        <p class="header-description">Estimate solar array, battery bank, inverter, and charge controller requirements.
+        </p>
+      </div>
     </header>
-    
+
     <main class="calculator-layout">
+      <section class="input-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="section-label">SYSTEM INPUTS</p>
 
-        <section class="input-panel">
+            <h2>Design Assumptions</h2>
+          </div>
 
-            <div class="panel-heading">
-                <div>
-                    <p class="section-label">SYSTEM INPUTS</p> 
-         
-                    <h2>Design Assumptions</h2>
-                </div>
+          <p>Enter the expected load and equipment information.</p>
+        </div>
 
-                <p>
-                    Enter the expected load and equipment information.
-                </p>
+        <div class="form-section">
+          <h2>Load Information</h2>
+
+          <div class="input-grid">
+            <div class="input-group full-width">
+              <label for="energy">Enter your Daily Energy Usage in Wh</label>
+
+              <input type="number" id="energy" placeholder="Example: 12000" />
             </div>
-       
-   
-
-<div class="form-section">
- 
-    <h2>Load Information</h2>
-
-    <div class="input-grid">
-        <div class="input-group full-width">
-            <label for="energy">Enter your Daily Energy Usage in Wh</label>
-
-            <input
-                type="number"
-                id="energy"
-                placeholder="Example: 12000"
-            >
+          </div>
         </div>
-    </div>
 
-</div>
-    <br><br>
-
-<div class="form-section">
-    <h2> Solar Information </h2>
-    
-    <div class = "input-grid">
-    
-        <div class="input-group">
-            <label for="sunHours">Peak Sun Hours</label>
+        <div class="appliance-builder">
         
-            <input
-            type="number"
-            id="sunHours"
-            placeholder="Example:5"
-            step="0.1"
-            >
+          <h3>Appliance Load Builder</h3>
+        
+          <div class="appliance-row">
+        
+            <div class="input-group">
+              <label for="applianceName">Appliance Name</label>
+        
+              <input type="text" id="applianceName" placeholder="Example: Refrigerator">
+            </div>
+        
+            <div class="input-group">
+              <label for="applianceWatts">Power (W)</label>
+        
+              <input type="number" id="applianceWatts" placeholder="150" min="0">
+            </div>
+        
+            <div class="input-group">
+              <label for="applianceHours">Hours per Day</label>
+        
+              <input type="number" id="applianceHours" placeholder="8" min="0" max="24" step="0.1">
+            </div>
+        
+            <div class="input-group">
+              <label for="applianceQuantity">Quantity</label>
+        
+              <input type="number" id="applianceQuantity" value="1" min="1" step="1">
+            </div>
+        
+          </div>
+        
+          <div class="load-total">
+            <span>Calculated Daily Load</span>
+            <strong id="loadBuilderTotal">0 Wh/day</strong>
+          </div>
+        
+          <button type="button" class="secondary-button" id="useLoadTotal">
+            Use Calculated Load
+          </button>
+        
         </div>
- 
-        
-        <div class="input-group">
-            <label for="panelPreset">Solar Panel Preset</label>
 
-            <select id="panelPreset" onchange="applyPanelPreset()">
-                <option value ="custom">Custom wattage</option>
+        <div class="form-section">
+          <h2>Solar Information</h2>
+
+          <div class="input-grid">
+            <div class="input-group">
+              <label for="sunHours">Peak Sun Hours</label>
+
+              <input type="number" id="sunHours" placeholder="Example:5" step="0.1" />
+            </div>
+
+            <div class="input-group">
+              <label for="panelPreset">Solar Panel Preset</label>
+
+              <select id="panelPreset" onchange="applyPanelPreset()">
+                <option value="custom">Custom wattage</option>
                 <option value="400">400 W</option>
                 <option value="450">450 W</option>
                 <option value="500">500 W</option>
                 <option value="550">550 W</option>
-            </select>
-        </div>
-
-        
-
-
-        <div class="input-group">
-            <label for="panelWattage">Solar Panel Wattage (W)</label>
-        
-            <input
-                type="number"
-                id="panelWattage"
-                placeholder="Example: 450"
-                oninput="syncPanelPreset()"
-            >
-        </div>
-        
-
-
-        <div class="input-group">
-           <label for="efficiency">System Efficiency (%)</label>
-
-            <input
-            type="number"
-            id="efficiency"
-            placeholder="Example: 85"
-            step="0.1"
-            >
-        </div>
-
-    </div>
-
-</div>
-<div class="form-section">
-   <h2>Battery Information</h2>
-
-   <div class="input-grid">
-
-    <div class="input-group">
-    <label for="batteryVoltage">Battery Voltage (V)</label>
-   
-    <input
-    type="number"
-    id="batteryVoltage"
-    placeholder="Example: 48"
-    >
-
-    </div>
-
-    <div class="input-group">
-        <label>Depth of Discharge (%):</label><br>
-
-        <input
-        type="number"
-        id="dod"
-        placeholder="Example: 80"
-        >
-
-    </div>
-   
-
-    <div class="input-group">
-        <label for="batteryPreset">Battery Module Preset</label><br>
-        
-        <select id="batteryPreset" onchange="applyBatteryPreset()">
-            <option value ="custom">Custom capacity</option>
-            <option value ="5120">5.12kWh module</option>
-            <option value ="10240">10.24kWh module</option>
-            <option value ="15360">15.36kWh module</option>
-        </select>
-
-    </div>
-
-    <div class="input-group">
-        <label for="batteryModule">Battery Module Capacity (Wh)</label><br>
-        <input
-            type="number"
-            id="batteryModule"
-            placeholder="Example: 5120"
-            oninput="syncBatteryPreset()"
-        >
-
-    </div>
-    <div class="input-group full-width"> 
-        <label># of Autonomy Days:</label><br>
-
-        <input
-        type="number"
-        id="autonomy"
-        placeholder="Example: 3"
-        step="0.1"
-        >
-    </div>
-
-</div>
-
-
-
-    <div class="form-section">
-    <h2>Inverter Information</h2>
-
-    <div class="input-grid">
-
-        <div class="input-group">
-            <label for="peakLoad">Peak Continuous Load (W)</label>
-
-            <small class="help-text">
-                The highest total wattage expected to operate at the same time.
-            </small>
-
-            <input
-                type="number"
-                id="peakLoad"
-                placeholder="Example: 500"
-            >
-        </div>
-
-        <div class="input-group">
-            <label for="surgeLoad">Peak Surge Load (W)</label>
-
-            <small class="help-text">
-                The highest short startup load from equipment such as motors or pumps.
-            </small>
-
-            <input
-                type="number"
-                id="surgeLoad"
-                placeholder="Example: 800"
-            >
-        </div>
-
-        <div class="input-group">
-            <label for="inverterMargin">Inverter Safety Margin (%)</label>
-
-            <small class="help-text">
-                Extra continuous capacity for future loads and operating conditions.
-            </small>
-
-            <input
-                type="number"
-                id="inverterMargin"
-                placeholder="Example: 25"
-                step="0.1"
-            >
-        </div>
-
-</div>
-
-<div class="form-section">
-    <h2>Charge Controller Information</h2>
-
-    <div class="input-grid">
-
-        <div class="input-group full-width">
-            <label for="controllerMargin">
-                Charge Controller Safety Margin (%)
-            </label>
-
-            <small class="help-text">
-                Extra current capacity added above the calculated solar-array current.
-            </small>
-
-            <input
-                type="number"
-                id="controllerMargin"
-                placeholder="Example: 25"
-                step="0.1"
-            >
-        </div>
-
-    </div>
-</div>
-            <p id="errorMessage" class="error-message"></p>
-
-        <div class="button-group">
-
-            <button
-                type="button"
-                class="primary-button"
-                onclick="calculate()"
-            >
-                Calculate Solar System
-            </button>
-
-            <button
-                type="button"
-                class="secondary-button"
-                onclick="resetCalculator()"
-            >
-                Reset Calculator
-            </button>
-
-        </div>
-
-    </section>
-
-    <aside class="results-panel">
-
-        <div class="panel-heading results-heading">
-            <div>
-                <p class="section-label">SYSTEM RESULTS</p>
-                <h2>Recommended System</h2>
+              </select>
             </div>
 
-            <p>
-                Results update after completing all required inputs.
-            </p>
+            <div class="input-group">
+              <label for="panelWattage">Solar Panel Wattage (W)</label>
+
+              <input type="number" id="panelWattage" placeholder="Example: 450" oninput="syncPanelPreset()" />
+            </div>
+
+            <div class="input-group">
+              <label for="efficiency">System Efficiency (%)</label>
+
+              <input type="number" id="efficiency" placeholder="Example: 85" step="0.1" />
+            </div>
+          </div>
+        </div>
+        <div class="form-section">
+          <h2>Battery Information</h2>
+
+          <div class="input-grid">
+            <div class="input-group">
+              <label for="batteryVoltage">Battery Voltage (V)</label>
+
+              <input type="number" id="batteryVoltage" placeholder="Example: 48" />
+            </div>
+
+            <div class="input-group">
+              <label for="dod">Depth of Discharge (%)</label>
+
+              <input type="number" id="dod" placeholder="Example: 80" />
+            </div>
+
+            <div class="input-group">
+              <label for="batteryPreset">Battery Module Preset</label>
+
+              <select id="batteryPreset" onchange="applyBatteryPreset()">
+                <option value="custom">Custom capacity</option>
+                <option value="5120">5.12kWh module</option>
+                <option value="10240">10.24kWh module</option>
+                <option value="15360">15.36kWh module</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="batteryModule">Battery Module Capacity (Wh)</label>
+              <input type="number" id="batteryModule" placeholder="Example: 5120" oninput="syncBatteryPreset()" />
+            </div>
+            <div class="input-group full-width">
+              <label for="autonomy"># Autonomy Days</label>
+
+              <input type="number" id="autonomy" placeholder="Example: 3" step="0.1" />
+            </div>
+          </div>
         </div>
 
-    
-    
+        <div class="form-section">
+          <h2>Inverter Information</h2>
 
+          <div class="input-grid">
+            <div class="input-group">
+              <label for="peakLoad">Peak Continuous Load (W)</label>
 
-<div class="results-grid">
+              <small class="help-text"> The highest total wattage expected to operate at the same time. </small>
 
-    <div class="result-card featured-card">
-        <h3>Required Solar Array</h3>
-        <p id="solarSize">--</p>
-    </div>
+              <input type="number" id="peakLoad" placeholder="Example: 500" />
+            </div>
 
-    <div class="result-card">
-        <h3>Solar Panels Required</h3>
-        <p id="panelCount">--</p>
-    </div>
+            <div class="input-group">
+              <label for="surgeLoad">Peak Surge Load (W)</label>
 
-    <div class="result-card">
-        <h3>Installed Solar Capacity</h3>
-        <p id="installedSolarW">--</p>
-        <p id="solarMargin">--</p>
-    </div>
+              <small class="help-text"> The highest short startup load from equipment such as motors or pumps. </small>
 
-    <div class="result-card featured-card">
-        <h3>Required Battery Capacity</h3>
-        <p id="batteryWh">--</p>
-        <p id="batteryAh">--</p>
-    </div>
+              <input type="number" id="surgeLoad" placeholder="Example: 800" />
+            </div>
 
-    <div class="result-card">
-        <h3>Battery Modules Required</h3>
-        <p id="batteryCount">--</p>
-    </div>
+            <div class="input-group">
+              <label for="inverterMargin">Inverter Safety Margin (%)</label>
 
-    <div class="result-card">
-        <h3>Installed Battery Capacity</h3>
-        <p id="installedBatteryWh">--</p>
-        <p id="batteryMargin">--</p>
-    </div>
+              <small class="help-text"> Extra continuous capacity for future loads and operating conditions. </small>
 
-    <div class="result-card featured-card">
-        <h3>Inverter Continuous Rating</h3>
+              <input type="number" id="inverterMargin" placeholder="Example: 25" step="0.1" />
+            </div>
+          </div>
+        </div>
 
-        <p id = "inverterMinimum">--</p>
-        <p id = "inverterDesignTarget">--</p>
-        <p id = "inverterRecommended">--</p>
-    </div>
+        <div class="form-section">
+          <h2>Charge Controller Information</h2>
 
-    <div class="result-card">
-        <h3>Inverter Surge Requirement</h3>
+          <div class="input-grid">
+            <div class="input-group full-width">
+              <label for="controllerMargin"> Charge Controller Safety Margin (%) </label>
 
-        <p id = "inverterSurge">--</p>
-        <p id = "inverterWarning">--</p>
-    </div>
+              <small class="help-text"> Extra current capacity added above the calculated solar-array current. </small>
 
-    <div class="result-card featured-card">
-        <h3>Charge Controller Rating</h3>
+              <input type="number" id="controllerMargin" placeholder="Example: 25" step="0.1" />
+            </div>
+          </div>
+        </div>
+        <p id="errorMessage" class="error-message"></p>
 
-        <p id="controllerMinimum">--</p>
-        <p id="controllerDesignTarget">--</p>
-        <p id="controllerRecommended">--</p>
+        <div class="button-group">
+          <button type="button" class="primary-button" onclick="calculate()">Calculate Solar System</button>
 
-        <small class="help-text">
-            Verify the final controller's PV input-voltage limit using the panel string design.
-        </small>
-    </div>
+          <button type="button" class="secondary-button" onclick="resetCalculator()">Reset Calculator</button>
+        </div>
+      </section>
 
-    
+      <aside class="results-panel">
+        <div class="panel-heading results-heading">
+          <div>
+            <p class="section-label">SYSTEM RESULTS</p>
+            <h2>Recommended System</h2>
+          </div>
 
-    <div class="result-card summary-card">
-        <h3>System Input Summary</h3>
+          <p>Results update after completing all required inputs.</p>
+        </div>
 
-        <div class="summary-grid">
+        <div class="results-grid">
+          <div class="result-card featured-card">
+            <h3>Required Solar Array</h3>
+            <p id="solarSize">--</p>
+          </div>
 
-            <p>
+          <div class="result-card">
+            <h3>Solar Panels Required</h3>
+            <p id="panelCount">--</p>
+          </div>
+
+          <div class="result-card">
+            <h3>Installed Solar Capacity</h3>
+            <p id="installedSolarW">--</p>
+            <p id="solarMargin">--</p>
+          </div>
+
+          <div class="result-card featured-card">
+            <h3>Required Battery Capacity</h3>
+            <p id="batteryWh">--</p>
+            <p id="batteryAh">--</p>
+          </div>
+
+          <div class="result-card">
+            <h3>Battery Modules Required</h3>
+            <p id="batteryCount">--</p>
+          </div>
+
+          <div class="result-card">
+            <h3>Installed Battery Capacity</h3>
+            <p id="installedBatteryWh">--</p>
+            <p id="batteryMargin">--</p>
+          </div>
+
+          <div class="result-card featured-card">
+            <h3>Inverter Continuous Rating</h3>
+
+            <p id="inverterMinimum">--</p>
+            <p id="inverterDesignTarget">--</p>
+            <p id="inverterRecommended">--</p>
+          </div>
+
+          <div class="result-card">
+            <h3>Inverter Surge Requirement</h3>
+
+            <p id="inverterSurge">--</p>
+            <p id="inverterWarning">--</p>
+          </div>
+
+          <div class="result-card featured-card">
+            <h3>Charge Controller Rating</h3>
+
+            <p id="controllerMinimum">--</p>
+            <p id="controllerDesignTarget">--</p>
+            <p id="controllerRecommended">--</p>
+
+            <small class="help-text"> Verify the final controller's PV input-voltage limit using the panel string
+              design. </small>
+          </div>
+
+          <div class="result-card summary-card">
+            <h3>System Input Summary</h3>
+
+            <div class="summary-grid">
+              <p>
                 <strong>Daily Energy:</strong>
                 <span id="summaryEnergy">--</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                 <strong>Peak Sun Hours:</strong>
                 <span id="summarySunHours">--</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                 <strong>System Efficiency:</strong>
                 <span id="summaryEfficiency">--</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                 <strong>Panel Wattage:</strong>
                 <span id="summaryPanelWattage">--</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                 <strong>Autonomy:</strong>
                 <span id="summaryAutonomy">--</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                 <strong>Battery Voltage:</strong>
                 <span id="summaryBatteryVoltage">--</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                 <strong>Depth of Discharge:</strong>
                 <span id="summaryDod">--</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                 <strong>Battery Module:</strong>
                 <span id="summaryBatteryModule">--</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                 <strong>Peak Continuous Load:</strong>
                 <span id="summaryPeakLoad">--</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                 <strong>Peak Surge Load:</strong>
                 <span id="summarySurgeLoad">--</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                 <strong>Inverter Margin:</strong>
                 <span id="summaryInverterMargin">--</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                 <strong>Controller Margin:</strong>
                 <span id="summaryControllerMargin">--</span>
-            </p>
-
+              </p>
+            </div>
+          </div>
         </div>
-    </div>
-    </aside>
+      </aside>
+    </main>
+  </div>
 
-</main>
-</div>
-
-  
-
-
-
-
-
-
-
-
-    <script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 
 
 
 
-</html> 
+
+
+
+
+
+</html>

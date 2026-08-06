@@ -356,6 +356,21 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "HTML",
+      "creation_time": "2026-08-06T03:07:40.291Z",
+      "description": {
+        "content": "Removed outdated line breaks, improved label connections, and corrected missing container closing tags.",
+        "mime": "text/markdown"
+      },
+      "id": "61",
+      "references": [],
+      "title": "Clean Form HTML",
+      "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "JavaScript",
       "creation_time": "2026-07-21T06:48:08.461Z",
       "description": {
@@ -411,6 +426,20 @@
       "references": [],
       "title": "Fix Results Display Bug",
       "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-08-06T03:08:10.096Z",
+      "description": {
+        "content": "Added a calculated daily-load display and a button that will later transfer the calculated energy into the main system inputs.",
+        "mime": "text/markdown"
+      },
+      "id": "64",
+      "references": [],
+      "title": "Add Appliance Load Summary"
     },
     {
       "assignedTo": {
@@ -537,6 +566,20 @@
       "id": "38",
       "references": [],
       "title": "Add Solar Panel Presets"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "HJTML / CSS",
+      "creation_time": "2026-08-06T03:08:01.082Z",
+      "description": {
+        "content": "Created the first appliance-entry row with fields for appliance name, wattage, daily operating hours, and quantity.",
+        "mime": "text/markdown"
+      },
+      "id": "63",
+      "references": [],
+      "title": "Build Appliance Load Interface"
     },
     {
       "assignedTo": {
@@ -724,6 +767,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "Engineering Development",
+      "creation_time": "2026-08-06T03:08:20.086Z",
+      "description": {
+        "content": "Outlined future features including multiple appliances, battery configuration, PV string sizing, detailed system losses, visual results, and launch analytics.",
+        "mime": "text/markdown"
+      },
+      "id": "65",
+      "references": [],
+      "title": "Plan Advanced Calculator Features"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Project Planning",
       "creation_time": "2026-07-28T22:22:12.378Z",
       "description": {
@@ -831,6 +888,20 @@
       "id": "34",
       "references": [],
       "title": "Show Solar Capacity Margin"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "UI / UX",
+      "creation_time": "2026-08-06T03:07:52.556Z",
+      "description": {
+        "content": "Removed the unnecessary Engineering Calculator badge to create a cleaner and less artificial-looking header.",
+        "mime": "text/markdown"
+      },
+      "id": "62",
+      "references": [],
+      "title": "Simplify Dashboard Header"
     },
     {
       "assignedTo": {

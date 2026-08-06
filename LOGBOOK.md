@@ -629,3 +629,69 @@ Moved the grid closing tags below all related input groups so every field became
 - Polish labels, helper text, and result hierarchy
 - Test the responsive design on tablet and mobile widths
 - Begin adding user-friendly explanations for technical inputs
+
+-------------------------------------------------------
+
+# 📅 August 5, 2026
+
+## 🎯 Sprint Goal
+
+Improve the calculator’s responsive design, clean up the HTML structure, and begin developing an appliance-based load calculator.
+
+---
+
+## ✅ Completed
+
+- Removed unnecessary `<br>` tags from the form
+- Connected remaining labels to their matching input IDs
+- Corrected unclosed Battery, Inverter, and Results containers
+- Removed the Engineering Calculator badge from the header
+- Tested the two-column dashboard layout
+- Added the first Appliance Load Builder interface
+- Added appliance name, power, daily operating hours, and quantity fields
+- Added a calculated daily-load display
+- Added a button for transferring the calculated load into the solar calculator
+- Styled the appliance fields using a four-column grid
+- Added responsive behavior so appliance fields can stack on smaller screens
+- Planned additional engineering features for the calculator
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 012
+
+**Issue**
+
+Some form cards and the results grid were not properly closed in the HTML.
+
+**Root Cause**
+
+Closing `</div>` tags were missing after the Battery grid, Inverter grid, and Results grid.
+
+**Resolution**
+
+Added the missing closing tags and checked the page’s container hierarchy.
+
+---
+
+## 💡 What I Learned
+
+- Browsers may display invalid HTML without clearly showing an error.
+- Proper indentation makes missing closing tags easier to find.
+- CSS should control spacing instead of repeated `<br>` elements.
+- A responsive form can use different grid-column ratios for fields of different importance.
+- The `2fr 1fr 1fr 1fr` layout gives the appliance name more room than numerical inputs.
+- A complex engineering calculator can calculate daily energy from individual appliance usage instead of requiring users to know the total beforehand.
+- Interface development should happen before connecting the feature to JavaScript.
+
+---
+
+## 🔜 Next Sprint
+
+- Decide whether the Appliance Load Builder should be inside the Load Information card or use its own card
+- Calculate appliance energy using watts, hours, and quantity
+- Update the displayed daily-load total automatically
+- Transfer the calculated total into the Daily Energy field
+- Add input validation for hours and quantity
+- Begin supporting multiple appliance rows
