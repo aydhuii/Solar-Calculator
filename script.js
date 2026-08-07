@@ -482,6 +482,34 @@ function resetCalculator() {
     document.getElementById("errorMessage").textContent = "";
 }
 
+function calculateApplianceLoad() {
+    let watts = Number(document.getElementById("applianceWatts").value);
+    let hours = Number(document.getElementById("applianceHours").value);
+    let quantity = Number(document.getElementById("applianceQuantity").value);
+
+    let dailyLoad = watts * hours * quantity;
+
+    document.getElementById("loadBuilderTotal").textContent = 
+        dailyLoad.toLocaleString() + " Wh/day";
+
+    return dailyLoad;
+}
+
+
+
+document.getElementById("applianceHours")
+    .addEventListener("input", calculateApplianceLoad);
+
+document.getElementById("applianceQuantity")
+    .addEventListener("input", calculateApplianceLoad);
+
+document.getElementById("useLoadTotal")
+    .addEventListener("click", function() {
+
+        let dailyLoad = calculateApplianceLoad();
+
+        document.getElementById("energy").value = dailyLoad;
+    });
 
 
 

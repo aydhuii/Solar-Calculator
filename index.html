@@ -46,50 +46,47 @@
               <input type="number" id="energy" placeholder="Example: 12000" />
             </div>
           </div>
+
+          <div class="appliance-builder"> <br>
+          
+            <h3>Appliance Load Builder</h3>
+          
+            <div id="applianceRows">
+            
+              <div class="appliance-row">
+            
+                <input type="text" class="appliance-name" placeholder="Ex: Refrigerator">
+            
+                <input type="number" class="appliance-watts" placeholder="150" min="0">
+            
+                <input type="number" class="appliance-hours" placeholder="8" min="0" max="24" step="0.1">
+            
+                <input type="number" class="appliance-quantity" value="1" min="1" step="1">
+            
+              </div>
+            
+            </div>
+          
+
+
+            <div class="load-total">
+              <span>Calculated Daily Load</span>
+              <strong id="loadBuilderTotal">0 Wh/day</strong>
+            </div>
+          
+            <button type="button" class="secondary-button" id="addAppliance">
+              + Add Appliance
+            </button>
+
+            <button type="button" class="secondary-button" id="useLoadTotal">
+              Use Calculated Load
+            </button>
+          
+          </div>
+          
         </div>
 
-        <div class="appliance-builder">
-        
-          <h3>Appliance Load Builder</h3>
-        
-          <div class="appliance-row">
-        
-            <div class="input-group">
-              <label for="applianceName">Appliance Name</label>
-        
-              <input type="text" id="applianceName" placeholder="Example: Refrigerator">
-            </div>
-        
-            <div class="input-group">
-              <label for="applianceWatts">Power (W)</label>
-        
-              <input type="number" id="applianceWatts" placeholder="150" min="0">
-            </div>
-        
-            <div class="input-group">
-              <label for="applianceHours">Hours per Day</label>
-        
-              <input type="number" id="applianceHours" placeholder="8" min="0" max="24" step="0.1">
-            </div>
-        
-            <div class="input-group">
-              <label for="applianceQuantity">Quantity</label>
-        
-              <input type="number" id="applianceQuantity" value="1" min="1" step="1">
-            </div>
-        
-          </div>
-        
-          <div class="load-total">
-            <span>Calculated Daily Load</span>
-            <strong id="loadBuilderTotal">0 Wh/day</strong>
-          </div>
-        
-          <button type="button" class="secondary-button" id="useLoadTotal">
-            Use Calculated Load
-          </button>
-        
-        </div>
+    
 
         <div class="form-section">
           <h2>Solar Information</h2>

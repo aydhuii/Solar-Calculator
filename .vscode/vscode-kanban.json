@@ -571,6 +571,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "Javscript",
+      "creation_time": "2026-08-07T04:13:00.260Z",
+      "description": {
+        "content": "Added appliance energy calculations using watts × hours/day × quantity and connected the result to the main daily-energy input.",
+        "mime": "text/markdown"
+      },
+      "id": "66",
+      "references": [],
+      "title": "Appliance Energy Calculation"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "HJTML / CSS",
       "creation_time": "2026-08-06T03:08:01.082Z",
       "description": {

@@ -695,3 +695,79 @@ Added the missing closing tags and checked the page’s container hierarchy.
 - Transfer the calculated total into the Daily Energy field
 - Add input validation for hours and quantity
 - Begin supporting multiple appliance rows
+  
+--------------------------------------------------
+
+# 📅 August 6, 2026
+
+## 🎯 Sprint Goal
+
+Make the Appliance Load Builder functional and begin restructuring it so users can eventually add multiple appliances.
+
+---
+
+## ✅ Completed
+
+- Added a working appliance daily-energy calculation
+- Calculated appliance energy using wattage, daily operating hours, and quantity
+- Made the calculated daily load update from appliance information
+- Connected the Use Calculated Load button to the main Daily Energy input
+- Began converting the appliance builder from a single appliance to multiple appliances
+- Replaced unique appliance input IDs with reusable classes
+- Created the structure for storing multiple appliance rows
+- Added an Add Appliance button for the next stage of development
+- Continued improving the calculator into a more advanced system-design tool
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 013
+
+**Issue**
+
+The first multiple-appliance HTML structure was missing the container that will hold all appliance rows.
+
+**Root Cause**
+
+The individual `.appliance-row` was created without wrapping it inside the planned `#applianceRows` container.
+
+**Resolution**
+
+Added an `applianceRows` container so JavaScript will have one location where new appliance rows can be dynamically inserted.
+
+### Bug 014
+
+**Issue**
+
+An accidental backslash appeared inside the Add Appliance button HTML.
+
+**Root Cause**
+
+A stray `\` was typed after `type="button"`.
+
+**Resolution**
+
+Removed the character and checked the button markup.
+
+---
+
+## 💡 What I Learned
+
+- An ID should usually identify one unique element, while classes can be reused across many similar elements.
+- Multiple appliance rows cannot all use the same input IDs.
+- A parent container makes it easier for JavaScript to manage dynamically created elements.
+- HTML structure should be designed around how JavaScript will eventually interact with the page.
+- Reusing a calculation function is better than rewriting the same formula in multiple places.
+- Event listeners can make results update immediately when users edit inputs.
+
+---
+
+## 🔜 Next Sprint
+
+- Make the Add Appliance button dynamically create new rows
+- Learn how `querySelector()` and `querySelectorAll()` work
+- Learn how `cloneNode()` can duplicate an appliance row
+- Calculate the combined energy consumption of every appliance
+- Add a Remove button to each appliance row
+- Improve validation for appliance hours, wattage, and quantity
