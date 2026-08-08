@@ -483,25 +483,70 @@ function resetCalculator() {
 }
 
 function calculateApplianceLoad() {
-    let watts = Number(document.getElementById("applianceWatts").value);
-    let hours = Number(document.getElementById("applianceHours").value);
-    let quantity = Number(document.getElementById("applianceQuantity").value);
+    let rows = document.querySelectorAll(".appliance-row");
 
-    let dailyLoad = watts * hours * quantity;
+    let totalDailyLoad = 0;
+    
+    rows.forEach(function(row) {
 
-    document.getElementById("loadBuilderTotal").textContent = 
-        dailyLoad.toLocaleString() + " Wh/day";
+        let watts =
+            Number(row.querySelector(".appliance-watts").value);
 
-    return dailyLoad;
+        let hours =
+            Number(row.querySelector(".appliance-hours").value);
+
+        let quantity =
+            Number(row.querySelector(".appliance-quantity").value);
+
+        let applianceEnergy =
+            watts * hours * quantity;
+
+        totalDailyLoad += applianceEnergy; //is equal to totaldailyload = totaldailyload + applianceenergy
+    });
+        document.getElementById("loadBuilderTotal").textContent =
+        totalDailyLoad.toLocaleString() + " Wh per day";
+
+    return totalDailyLoad;
 }
 
+let applianceRows =
+    document.getElementById("applianceRows");
+
+applianceRows.addEventListener("input", function(event) {
+
+    if (
+        event.target.matches(".appliance-watts") ||
+        event.target.matches(".appliance-hours") ||
+        event.target.matches(".appliance-quantity")
+    ) {
+        calculateApplianceLoad();
+    }
+
+});
+
+applianceRows.addEventListener("click", function(event) {
+
+    if (event.target.matches(".remove-appliance")) {
+
+        let rows =
+            applianceRows.querySelectorAll(".appliance-row");
+
+        if (rows.length > 1) {
+
+            let row =
+                event.target.closest(".appliance-row");
+
+            row.remove();
+
+            calculateApplianceLoad();
+        }
+
+    }
+
+});
 
 
-document.getElementById("applianceHours")
-    .addEventListener("input", calculateApplianceLoad);
-
-document.getElementById("applianceQuantity")
-    .addEventListener("input", calculateApplianceLoad);
+    
 
 document.getElementById("useLoadTotal")
     .addEventListener("click", function() {
@@ -509,6 +554,26 @@ document.getElementById("useLoadTotal")
         let dailyLoad = calculateApplianceLoad();
 
         document.getElementById("energy").value = dailyLoad;
+    });
+
+document.getElementById("addAppliance")
+    .addEventListener("click", function() {
+
+        let container =
+            document.getElementById("applianceRows");
+
+        let firstRow =
+            container.querySelector(".appliance-row");
+
+        let newRow =
+            firstRow.cloneNode(true); //copies html element, true copies everything inside
+        newRow.querySelector(".appliance-name").value = "";
+        newRow.querySelector(".appliance-watts").value = "";
+        newRow.querySelector(".appliance-hours").value = "";
+        newRow.querySelector(".appliance-quantity").value = 1;
+        container.appendChild(newRow); //append child inserts copy into page
+
+        calculateApplianceLoad();
     });
 
 

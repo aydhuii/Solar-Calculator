@@ -165,9 +165,9 @@ select:focus {
 }
 
 .appliance-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
     gap: 12px;
+    align-items: end;
 }
 
 .appliance-builder {
@@ -178,6 +178,16 @@ select:focus {
 
 .appliance-builder h3 {
     margin: 0 0 16px;
+}
+
+.appliance-headings {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 12px;
+    margin-bottom: 8px;
+    color: #829baa;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
 .load-total {

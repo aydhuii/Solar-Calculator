@@ -771,3 +771,86 @@ Removed the character and checked the button markup.
 - Calculate the combined energy consumption of every appliance
 - Add a Remove button to each appliance row
 - Improve validation for appliance hours, wattage, and quantity
+
+---------------------------------------------------------------------
+
+# 📅 August 7, 2026
+
+## 🎯 Sprint Goal
+
+Expand the Appliance Load Builder so it can support multiple appliances, update the total automatically, and allow users to remove individual appliance rows.
+
+---
+
+## ✅ Completed
+
+- Converted the appliance builder into a multi-row system
+- Used reusable classes for appliance name, wattage, hours, and quantity
+- Added an `applianceRows` container for dynamically created rows
+- Added an Add Appliance button that clones a new appliance row
+- Cleared cloned values so new rows start blank
+- Reset new appliance quantities to 1
+- Added column headings for appliance, power, hours, and quantity
+- Added a Remove Appliance button to each row
+- Used event delegation so dynamically created rows still respond to input changes
+- Prevented the last remaining appliance row from being deleted
+- Updated the total automatically when appliance values change
+- Updated the total automatically when rows are removed
+- Confirmed multiple appliance loads add together correctly
+- Kept the Use Calculated Load button connected to the main Daily Energy input
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 015
+
+**Issue**
+
+The calculated daily load did not update when appliance values were entered.
+
+**Root Cause**
+
+The live `input` event listener was missing after switching the appliance inputs from IDs to reusable classes.
+
+**Resolution**
+
+Added an event listener to the parent `applianceRows` container and used `event.target.matches()` to detect changes to appliance wattage, hours, and quantity fields.
+
+### Bug 016
+
+**Issue**
+
+The Remove Appliance button originally did not work correctly with dynamically created rows.
+
+**Root Cause**
+
+The button and event-listener structure needed to be organized around the shared appliance-row container.
+
+**Resolution**
+
+Placed the Remove button inside each `.appliance-row` and used event delegation with `closest(".appliance-row")` to identify and remove the correct row.
+
+---
+
+## 💡 What I Learned
+
+- `querySelectorAll()` can find multiple elements instead of only one.
+- `forEach()` can loop through every appliance row and combine their energy usage.
+- `+=` adds a new value to an existing running total.
+- `cloneNode(true)` can duplicate an HTML element and everything inside it.
+- Dynamically created elements work better with event delegation than individual event listeners.
+- `event.target` identifies the exact element that caused an event.
+- `matches()` can check whether that element belongs to a certain class.
+- `closest()` can find the parent row that contains a clicked button.
+- A parent container can manage input and click events for all current and future child elements.
+
+---
+
+## 🔜 Next Sprint
+
+- Add an Energy (Wh/day) result for each individual appliance row
+- Improve the appliance load builder so it looks more like an electrical load schedule
+- Add clearer appliance-row styling
+- Improve validation for appliance wattage, hours, and quantity
+- Consider adding appliance presets or common-load examples

@@ -401,6 +401,21 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "javascript",
+      "creation_time": "2026-08-08T06:19:16.319Z",
+      "description": {
+        "content": "Fixed the missing live-input listener and used event delegation so newly added appliance rows work without requiring separate listeners.",
+        "mime": "text/markdown"
+      },
+      "id": "68",
+      "references": [],
+      "title": "Fix Dynamic Event Handling",
+      "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Javascript",
       "creation_time": "2026-07-26T21:30:02.029Z",
       "description": {
@@ -916,6 +931,20 @@
       "id": "62",
       "references": [],
       "title": "Simplify Dashboard Header"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "javascript",
+      "creation_time": "2026-08-08T06:18:55.906Z",
+      "description": {
+        "content": "Expanded the load builder from one appliance to multiple dynamically created appliance rows.",
+        "mime": "text/markdown"
+      },
+      "id": "67",
+      "references": [],
+      "title": "Support Multiple Appliances"
     },
     {
       "assignedTo": {
