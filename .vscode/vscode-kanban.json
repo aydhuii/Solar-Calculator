@@ -227,6 +227,21 @@
       "prio": 1,
       "references": [],
       "title": "Calculate Solar Array Size"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "javascrfipt",
+      "creation_time": "2026-08-08T22:15:01.782Z",
+      "description": {
+        "content": "Fix the appliance warning so it disappears once every appliance row contains valid values.",
+        "mime": "text/markdown"
+      },
+      "id": "70",
+      "references": [],
+      "title": "Debug Validation Message",
+      "type": "bug"
     }
   ],
   "testing": [],
@@ -441,6 +456,20 @@
       "references": [],
       "title": "Fix Results Display Bug",
       "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "javascrfipt",
+      "creation_time": "2026-08-08T22:14:51.466Z",
+      "description": {
+        "content": "Added an individual Wh/day result to each appliance row and connected it to the live appliance calculations.",
+        "mime": "text/markdown"
+      },
+      "id": "69",
+      "references": [],
+      "title": "Add Appliance Energy Column"
     },
     {
       "assignedTo": {

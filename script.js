@@ -483,9 +483,21 @@ function resetCalculator() {
 }
 
 function calculateApplianceLoad() {
+
+
     let rows = document.querySelectorAll(".appliance-row");
 
     let totalDailyLoad = 0;
+    
+    let applianceError =
+    document.getElementById("applianceError");
+
+    let hasApplianceError = true;
+
+    applianceError.textContent =
+    "";
+    
+
     
     rows.forEach(function(row) {
 
@@ -498,16 +510,40 @@ function calculateApplianceLoad() {
         let quantity =
             Number(row.querySelector(".appliance-quantity").value);
 
+         if (
+            watts < 0 ||
+            hours < 0 ||
+            hours > 24 ||
+            quantity < 1
+        ) {
+            row.classList.add("appliance-error");
+            return;
+        } else {
+            row.classList.remove("appliance-error");
+        }
+
         let applianceEnergy =
             watts * hours * quantity;
 
+        let energyDisplay =
+            row.querySelector(".appliance-energy"); //only search in this particular row
+
+        energyDisplay.textContent =
+            formatNumber(applianceEnergy, 0) + " Wh";
+
         totalDailyLoad += applianceEnergy; //is equal to totaldailyload = totaldailyload + applianceenergy
     });
-        document.getElementById("loadBuilderTotal").textContent =
-        totalDailyLoad.toLocaleString() + " Wh per day";
+         if (hasApplianceError) {
+        applianceError.textContent =
+            "Check your appliance values. Hours must be 0–24 and quantity must be at least 1.";
+        }
 
-    return totalDailyLoad;
-}
+        document.getElementById("loadBuilderTotal").textContent =
+            totalDailyLoad.toLocaleString() + " Wh per day";
+
+        return totalDailyLoad;
+}        
+
 
 let applianceRows =
     document.getElementById("applianceRows");
@@ -571,6 +607,7 @@ document.getElementById("addAppliance")
         newRow.querySelector(".appliance-watts").value = "";
         newRow.querySelector(".appliance-hours").value = "";
         newRow.querySelector(".appliance-quantity").value = 1;
+        newRow.querySelector(".appliance-energy").textContent = "0 Wh";
         container.appendChild(newRow); //append child inserts copy into page
 
         calculateApplianceLoad();

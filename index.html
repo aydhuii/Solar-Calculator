@@ -56,6 +56,7 @@
               <span>Power (W)</span>
               <span>Hours / Day</span>
               <span>Quantity</span>
+              <span>Energy (Wh/day)</span>
               <span></span>
             </div>
 
@@ -70,9 +71,11 @@
                 <input type="number" class="appliance-hours" placeholder="8" aria-label="Hours used per day">
                 
                 <input type="number" class="appliance-quantity" value="1" aria-label="Quantity">
+                
+                <span class="appliance-energy">0 Wh</span>
             
                 <button type="button" class="remove-appliance">
-                  Remove appliance
+                  Remove
                 </button>
               </div>
             
@@ -84,6 +87,8 @@
               <span>Calculated Daily Load</span>
               <strong id="loadBuilderTotal">0 Wh/day</strong>
             </div>
+
+            <p id="applianceError" class="error-message"></p>
           
             <button type="button" class="secondary-button" id="addAppliance">
               + Add Appliance

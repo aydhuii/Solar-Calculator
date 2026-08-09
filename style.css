@@ -165,9 +165,11 @@ select:focus {
 }
 
 .appliance-row {
-    grid-template-columns: 2fr 1fr 1fr 1fr auto;
-    gap: 12px;
-    align-items: end;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 0.8fr 1.2fr auto;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .appliance-builder {
@@ -182,13 +184,32 @@ select:focus {
 
 .appliance-headings {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    grid-template-columns: 2fr 1fr 1fr 0.8fr 1.2fr auto;
     gap: 12px;
     margin-bottom: 8px;
     color: #829baa;
     font-size: 0.8rem;
     font-weight: bold;
 }
+
+.remove-appliance {
+    padding: 9px 10px;
+    white-space: nowrap;
+    font-size: 0.78rem;
+}
+
+.appliance-error {
+    outline: 2px solid #ff7d7d;
+    border-radius: 10px;
+}
+
+.appliance-energy {
+    align-self: center;
+    font-weight: bold;
+    color: #76e0d4;
+}
+
+
 
 .load-total {
     display: flex;

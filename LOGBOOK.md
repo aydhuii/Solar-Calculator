@@ -854,3 +854,65 @@ Placed the Remove button inside each `.appliance-row` and used event delegation 
 - Add clearer appliance-row styling
 - Improve validation for appliance wattage, hours, and quantity
 - Consider adding appliance presets or common-load examples
+
+--------------------------------------------------------------------
+
+# 📅 August 8, 2026
+
+## 🎯 Sprint Goal
+
+Improve the Appliance Load Builder so each appliance shows its own daily energy use and add validation for unrealistic appliance values.
+
+---
+
+## ✅ Completed
+
+- Added an Energy (Wh/day) column to the appliance load schedule
+- Calculated and displayed each appliance’s individual daily energy usage
+- Updated the total load automatically when appliance values change
+- Reset cloned appliance rows to 0 Wh
+- Improved the appliance grid so headings and row values align more clearly
+- Added validation for negative wattage, invalid hours, and quantity below 1
+- Added red highlighting for appliance rows with invalid values
+- Added an appliance-specific warning message
+- Continued testing Add Appliance, Remove Appliance, and live calculations
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 017
+
+**Issue**
+
+The appliance validation warning remains visible even after the invalid value is corrected, although the red row outline disappears and the calculations update correctly.
+
+**Root Cause**
+
+The validation-message logic is still not clearing correctly after all appliance rows return to valid values.
+
+**Resolution**
+
+Not fully resolved yet. The validation code was reorganized using a `hasApplianceError` variable, but the warning still remains in some cases. This will be the first debugging task next sprint. :contentReference[oaicite:0]{index=0}
+
+---
+
+## 💡 What I Learned
+
+- Individual row results make a load calculator easier to understand.
+- `row.querySelector()` can target an element inside one specific appliance row.
+- Validation needs to consider every dynamically created row, not only one input.
+- A Boolean variable such as `hasApplianceError` can track whether any row contains invalid data.
+- A feature can partly work while still having a separate UI-state bug that needs debugging.
+
+---
+
+## 🔜 Next Sprint
+
+- Fix the appliance warning so it disappears when all rows are valid
+- Improve appliance validation and error handling
+- Polish the load schedule layout
+- Consider common appliance presets
+- Continue toward battery configuration and PV string sizing
+
+
