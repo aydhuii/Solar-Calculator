@@ -201,6 +201,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "EE",
+      "creation_time": "2026-08-12T04:16:10.657Z",
+      "description": {
+        "content": "Begin sizing solar-panel strings using panel voltage specifications and charge-controller PV input limits.",
+        "mime": "text/markdown"
+      },
+      "id": "74",
+      "references": [],
+      "title": "PV String Design"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "UI / UX",
       "creation_time": "2026-07-26T21:30:23.219Z",
       "description": {
@@ -988,6 +1002,20 @@
       "id": "62",
       "references": [],
       "title": "Simplify Dashboard Header"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "Javascriptg",
+      "creation_time": "2026-08-12T04:15:56.171Z",
+      "description": {
+        "content": "Expanded battery presets so a single selection automatically fills matching Wh, nominal voltage, and Ah values.",
+        "mime": "text/markdown"
+      },
+      "id": "73",
+      "references": [],
+      "title": "Smart Battery Presets"
     },
     {
       "assignedTo": {

@@ -46,11 +46,14 @@ function calculate() {
     let inverterMarginPercent =
         Number(document.getElementById("inverterMargin").value);
 
-     let controllerMarginPercent = 
+    let controllerMarginPercent = 
         Number(document.getElementById("controllerMargin").value);
 
     let inverterWarning =
         document.getElementById("inverterWarning");
+
+    let batterySpecWarning =
+        document.getElementById("batterySpecWarning");
 
     
 
@@ -119,7 +122,15 @@ function calculate() {
         return;
     }
 
+    if (moduleWhDifferencePercent > 5) {
 
+        batterySpecWarning.textContent =
+            "Battery specifications do not match. Check the module voltage, Ah, and Wh values.";
+
+        return;
+    }
+
+    batterySpecWarning.textContent = "";
 
 
      errorMessage.textContent = "";
@@ -233,6 +244,17 @@ function calculate() {
             controllerDesignTargetA /
             controllerRoundingIncrementA
         ) * controllerRoundingIncrementA;
+
+    let calculatedModuleWh =
+        batteryModuleVoltage * batteryModuleAh;
+
+    let moduleWhDifference =
+    Math.abs(
+        batteryModule - calculatedModuleWh
+    ); //Math abs makes the number positive(absolutevalue)
+
+    let moduleWhDifferencePercent =
+        (moduleWhDifference / batteryModule) * 100;
 
     //INVERTER WARNING
     if (inverterMarginPercent < 20) {
@@ -455,21 +477,66 @@ function syncBatteryPreset() {
 
 //BATTERY PRESET CODE
 
+let batteryPresets = {
+
+    "5120": {
+        wh: 5120,
+        voltage: 51.2,
+        ah: 100
+    },
+
+    "10240": {
+        wh: 10240,
+        voltage: 51.2,
+        ah: 200
+    },
+
+    "15360": {
+        wh: 15360,
+        voltage: 51.2,
+        ah: 300
+    }
+
+};
+
 function applyBatteryPreset() { 
-    let selectedCapacity = 
+
+    let selectedPreset =
         document.getElementById("batteryPreset").value;
 
-    let batteryModuleInput = 
+    let batteryModuleInput =
         document.getElementById("batteryModule");
 
-    if (selectedCapacity === "custom") {
+    let batteryVoltageInput =
+        document.getElementById("batteryModuleVoltage");
+
+    let batteryAhInput =
+        document.getElementById("batteryModuleAh");
+
+    if (selectedPreset === "custom") {
+
         batteryModuleInput.value = "";
+        batteryVoltageInput.value = "";
+        batteryAhInput.value = "";
+
         batteryModuleInput.focus();
+
         return;
     }
 
-    batteryModuleInput.value = selectedCapacity;
+    let preset =
+    batteryPresets[selectedPreset];
+
+    batteryModuleInput.value =
+        preset.wh;
+
+    batteryVoltageInput.value =
+        preset.voltage;
+
+    batteryAhInput.value =
+        preset.ah;
 }
+
 
 //PANEL PRESET CODE
 function applyPanelPreset() {

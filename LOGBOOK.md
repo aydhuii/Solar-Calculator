@@ -1022,4 +1022,86 @@ Identified the inconsistency. A battery specification consistency checker will b
 - Improve reset behavior for the Appliance Load Builder and new battery inputs
 - Continue toward PV panel string sizing and charge-controller voltage checking
 
+--------------------------------------------------------------
 
+# 📅 August 11, 2026
+
+## 🎯 Sprint Goal
+
+Improve the battery system by checking battery specifications for consistency and making battery presets automatically populate matching Wh, voltage, and Ah values.
+
+---
+
+## ✅ Completed
+
+- Added battery module voltage and Ah values into the main calculator inputs
+- Added a battery specification warning area to the Battery Information section
+- Created calculations for comparing entered battery Wh against voltage × Ah
+- Added a percentage-difference calculation for checking battery specification consistency
+- Started a 5% tolerance system for small differences between advertised and calculated battery capacity
+- Created a `batteryPresets` JavaScript object
+- Expanded battery presets to store:
+  - Watt-hours
+  - Nominal voltage
+  - Amp-hours
+- Updated the Battery Module Preset dropdown so one selection can populate all three battery specification fields
+- Added working presets for:
+  - 5.12 kWh / 51.2 V / 100 Ah
+  - 10.24 kWh / 51.2 V / 200 Ah
+  - 15.36 kWh / 51.2 V / 300 Ah
+- Tested the preset dropdown and confirmed the correct values now populate automatically
+- Continued improving the battery system so users are less likely to enter contradictory specifications
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 021
+
+**Issue**
+
+Selecting a battery preset did not populate the battery Wh, voltage, or Ah fields.
+
+**Root Cause**
+
+`applyBatteryPreset()` was accidentally declared twice, with one copy nested inside the other. The outer function only created the inner function instead of running the preset logic.
+
+**Resolution**
+
+Removed the duplicate function declaration and kept one working `applyBatteryPreset()` function.
+
+### Bug 022
+
+**Issue**
+
+The battery specification consistency checker is not fully ready yet.
+
+**Root Cause**
+
+`moduleWhDifferencePercent` is currently checked before the variable is calculated in `calculate()`.
+
+**Resolution**
+
+Identified the order-of-execution problem. The battery consistency calculations need to be moved above the validation check during the next sprint.
+
+---
+
+## 💡 What I Learned
+
+- JavaScript executes code from top to bottom, so a variable must be calculated before it can be used in validation.
+- Accidentally nesting two functions with the same name can cause the visible feature to do nothing even when most of the code looks correct.
+- JavaScript objects are useful for storing multiple specifications for one equipment preset.
+- Battery capacity in Wh can be checked using module voltage × module Ah.
+- Presets can reduce user error by automatically filling related engineering values together.
+- Debugging often involves checking code structure and execution order, not just formulas.
+
+---
+
+## 🔜 Next Sprint
+
+- Fix the battery consistency checker execution order
+- Test the 5% battery specification tolerance
+- Unify the energy-only battery count with the physically buildable series/parallel battery count
+- Update battery results to clearly show required versus configured capacity
+- Improve the Reset button for appliance rows and new battery fields
+- Begin PV string sizing if the battery section is stable
