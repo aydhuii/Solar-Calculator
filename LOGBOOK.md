@@ -915,4 +915,111 @@ Not fully resolved yet. The validation code was reorganized using a `hasApplianc
 - Consider common appliance presets
 - Continue toward battery configuration and PV string sizing
 
+--------------------------------------------------------------------------------------
+
+# 📅 August 9, 2026
+
+## 🎯 Sprint Goal
+
+Expand the calculator with faster appliance input tools and begin a more realistic battery bank configuration system using series and parallel battery arrangements.
+
+---
+
+## ✅ Completed
+
+- Fixed the Quick Add Appliance feature after debugging JavaScript object and event-listener syntax
+- Added appliance presets for:
+  - Refrigerator
+  - LED Light
+  - Laptop
+  - Television
+  - Fan
+- Used a JavaScript object to store appliance preset information
+- Connected the appliance preset dropdown to dynamically populate appliance rows
+- Made Quick Add use the existing blank row before creating additional rows
+- Allowed presets and manually entered appliances to work together
+- Added Battery Module Voltage input
+- Added Battery Module Capacity (Ah) input
+- Added the new battery inputs to the calculator validation
+- Calculated the number of battery modules required in series
+- Calculated the number of parallel battery strings required
+- Calculated the total number of modules in the configured battery bank
+- Calculated configured battery-bank voltage
+- Calculated installed battery-bank Ah
+- Calculated configured battery-bank energy in Wh and kWh
+- Added a Battery Bank Configuration result card
+- Tested battery configuration calculations with a 48 V system and 12 V / 100 Ah modules
+- Discovered that battery Wh, voltage, and Ah inputs can contradict each other and should be checked automatically
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 018
+
+**Issue**
+
+The Quick Add Appliance dropdown did not respond when an appliance preset was selected.
+
+**Root Cause**
+
+The event listener was accidentally placed inside the `appliancePresets` JavaScript object.
+
+**Resolution**
+
+Separated the preset data object from the event-listener code.
+
+### Bug 019
+
+**Issue**
+
+Quick Add still failed after rearranging the preset code.
+
+**Root Cause**
+
+The `appliancePresets` object was missing its closing `};`, causing a JavaScript syntax error and preventing the code below it from running.
+
+**Resolution**
+
+Closed the preset object before starting the dropdown event listener and corrected the extra braces at the bottom of the script.
+
+### Bug 020
+
+**Issue**
+
+The energy-based battery module count and the series/parallel battery configuration produced different battery quantities during testing.
+
+**Root Cause**
+
+The entered battery specifications were inconsistent. A 12 V, 100 Ah battery equals about 1,200 Wh, while the Battery Module Capacity field was set to 5,120 Wh.
+
+**Resolution**
+
+Identified the inconsistency. A battery specification consistency checker will be added next sprint so incompatible Wh, V, and Ah values are automatically flagged.
+
+---
+
+## 💡 What I Learned
+
+- JavaScript objects can store related information such as appliance name, wattage, and operating hours together.
+- Event listeners must be outside a data object unless they are intentionally stored as object properties.
+- A missing brace can prevent an entire section of JavaScript from running.
+- Series-connected batteries increase voltage while maintaining the same Ah capacity.
+- Parallel battery strings increase Ah capacity while maintaining the same voltage.
+- The required number of batteries can depend on electrical configuration, not only total energy capacity.
+- Battery energy can be checked using voltage × amp-hours.
+- Validating relationships between inputs is just as important as checking whether individual inputs are positive numbers.
+- Testing with realistic engineering values can uncover problems that normal code debugging does not.
+
+---
+
+## 🔜 Next Sprint
+
+- Add a battery specification consistency checker using module voltage, Ah, and Wh
+- Update battery presets so each preset can automatically populate Wh, voltage, and Ah together
+- Reconcile the old energy-only battery count with the new series/parallel configuration result
+- Add warnings when a selected module cannot reasonably match the desired system voltage
+- Improve reset behavior for the Appliance Load Builder and new battery inputs
+- Continue toward PV panel string sizing and charge-controller voltage checking
+
 

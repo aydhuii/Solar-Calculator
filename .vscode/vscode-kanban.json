@@ -629,6 +629,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "Validation/ EE",
+      "creation_time": "2026-08-09T23:18:21.906Z",
+      "description": {
+        "content": "Compare entered battery-module Wh against voltage × Ah and warn when the specifications conflict.",
+        "mime": "text/markdown"
+      },
+      "id": "72",
+      "references": [],
+      "title": "Battery Specification Consistency Check"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "HJTML / CSS",
       "creation_time": "2026-08-06T03:08:01.082Z",
       "description": {
@@ -862,6 +876,20 @@
       "id": "55",
       "references": [],
       "title": "Prepare Responsive Layout/UI deisign"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "JavaScript / UX",
+      "creation_time": "2026-08-09T23:17:59.337Z",
+      "description": {
+        "content": "Added common appliance presets stored in a JavaScript object and connected them to the dynamic Appliance Load Builder.",
+        "mime": "text/markdown"
+      },
+      "id": "71",
+      "references": [],
+      "title": "Quick Add Appliance Presets"
     },
     {
       "assignedTo": {

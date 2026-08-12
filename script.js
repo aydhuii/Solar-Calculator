@@ -28,6 +28,12 @@ function calculate() {
     let batteryModule = 
         Number(document.getElementById("batteryModule").value);
 
+    let batteryModuleVoltage =
+    Number(document.getElementById("batteryModuleVoltage").value);
+
+    let batteryModuleAh =
+        Number(document.getElementById("batteryModuleAh").value);
+
     let errorMessage = 
         document.getElementById("errorMessage");
 
@@ -60,6 +66,8 @@ function calculate() {
         batteryVoltage,
         dodPercent,
         batteryModule,
+        batteryModuleVoltage,
+        batteryModuleAh,
         peakLoad,
         surgeLoad,
         inverterMarginPercent,
@@ -146,6 +154,37 @@ function calculate() {
 
     let batteryCapacityAh = 
         batteryCapacityWh / batteryVoltage;
+
+    let modulesInSeries =
+    Math.max(
+        1,
+        Math.round(
+            batteryVoltage /
+            batteryModuleVoltage
+        )
+    );
+
+    let configuredBankVoltage =
+    modulesInSeries *
+    batteryModuleVoltage;
+
+    let parallelStrings =
+        Math.ceil(
+            batteryCapacityAh /
+            batteryModuleAh
+        );
+
+    let configuredBatteryCount =
+        modulesInSeries *
+        parallelStrings;
+
+    let configuredBankAh =
+        parallelStrings *
+        batteryModuleAh;
+
+    let configuredBankWh =
+        configuredBankVoltage *
+        configuredBankAh;
 
     let numberOfBatteries = 
         Math.ceil(batteryCapacityWh / batteryModule);
@@ -337,6 +376,32 @@ function calculate() {
         formatNumber(controllerMarginPercent, 1) +
         "%";
 
+    document.getElementById("batterySeries").textContent =
+    formatNumber(modulesInSeries, 0) +
+    " modules in series";
+
+    document.getElementById("batteryParallel").textContent =
+        formatNumber(parallelStrings, 0) +
+        " parallel strings";
+
+    document.getElementById("batteryConfiguredCount").textContent =
+        formatNumber(configuredBatteryCount, 0) +
+        " total modules";
+
+    document.getElementById("batteryConfiguredVoltage").textContent =
+        formatNumber(configuredBankVoltage, 1) +
+        " V configured bank";
+
+    document.getElementById("batteryConfiguredAh").textContent =
+        formatNumber(configuredBankAh, 1) +
+        " Ah installed";
+
+    document.getElementById("batteryConfiguredWh").textContent =
+        formatNumber(configuredBankWh, 0) +
+        " Wh (" +
+        formatNumber(configuredBankWh / 1000, 2) +
+        " kWh)";
+
     
 }
 
@@ -484,21 +549,15 @@ function resetCalculator() {
 
 function calculateApplianceLoad() {
 
-
-    let rows = document.querySelectorAll(".appliance-row");
+    let rows =
+        document.querySelectorAll(".appliance-row");
 
     let totalDailyLoad = 0;
-    
+    let hasApplianceError = false;
+
     let applianceError =
-    document.getElementById("applianceError");
+        document.getElementById("applianceError");
 
-    let hasApplianceError = true;
-
-    applianceError.textContent =
-    "";
-    
-
-    
     rows.forEach(function(row) {
 
         let watts =
@@ -510,39 +569,52 @@ function calculateApplianceLoad() {
         let quantity =
             Number(row.querySelector(".appliance-quantity").value);
 
-         if (
-            watts < 0 ||
-            hours < 0 ||
-            hours > 24 ||
-            quantity < 1
-        ) {
-            row.classList.add("appliance-error");
-            return;
-        } else {
-            row.classList.remove("appliance-error");
-        }
-
-        let applianceEnergy =
-            watts * hours * quantity;
-
         let energyDisplay =
             row.querySelector(".appliance-energy"); //only search in this particular row
 
-        energyDisplay.textContent =
-            formatNumber(applianceEnergy, 0) + " Wh";
+        let rowIsInvalid =
+            watts < 0 ||
+            hours < 0 ||
+            hours > 24 ||
+            quantity < 1;
 
-        totalDailyLoad += applianceEnergy; //is equal to totaldailyload = totaldailyload + applianceenergy
+        if (rowIsInvalid) {
+
+            row.classList.add("appliance-error");
+
+            energyDisplay.textContent = "--";
+
+            hasApplianceError = true;
+
+        } else {
+
+            row.classList.remove("appliance-error");
+
+            let applianceEnergy =
+                watts * hours * quantity;
+
+            energyDisplay.textContent =
+                formatNumber(applianceEnergy, 0) + " Wh";
+
+            totalDailyLoad += applianceEnergy;
+        }
     });
-         if (hasApplianceError) {
+
+    if (hasApplianceError) {
+
         applianceError.textContent =
             "Check your appliance values. Hours must be 0–24 and quantity must be at least 1.";
-        }
 
-        document.getElementById("loadBuilderTotal").textContent =
-            totalDailyLoad.toLocaleString() + " Wh per day";
+    } else {
 
-        return totalDailyLoad;
-}        
+        applianceError.textContent = "";
+    }
+
+    document.getElementById("loadBuilderTotal").textContent =
+        totalDailyLoad.toLocaleString() + " Wh per day";
+
+    return totalDailyLoad;
+}
 
 
 let applianceRows =
@@ -612,6 +684,102 @@ document.getElementById("addAppliance")
 
         calculateApplianceLoad();
     });
+
+    let appliancePresets = {
+
+         refrigerator: {
+            name: "Refrigerator",
+            watts: 150,
+            hours: 8
+        },
+
+        ledLight: {
+            name: "LED Light",
+            watts: 10,
+            hours: 5
+        },
+
+        laptop: {
+            name: "Laptop",
+            watts: 60,
+            hours: 5
+        },
+
+        tv: {
+            name: "Television",
+            watts: 100,
+            hours: 4
+        },
+
+        fan: {
+            name: "Fan",
+            watts: 50,
+            hours: 8
+        }
+        
+    };
+
+        document.getElementById("appliancePreset")
+            .addEventListener("change", function(event) {
+
+                let selectedPreset = event.target.value;
+
+                if (selectedPreset === "") {
+                    return;
+                }
+
+                let preset =
+                    appliancePresets[selectedPreset];
+
+                let container =
+                    document.getElementById("applianceRows");
+
+                let firstRow =
+                    container.querySelector(".appliance-row");
+
+                let firstRowIsEmpty =
+                    firstRow.querySelector(".appliance-name").value === "" &&
+                    firstRow.querySelector(".appliance-watts").value === "" &&
+                    firstRow.querySelector(".appliance-hours").value === "";
+
+                let targetRow;
+
+                    if (firstRowIsEmpty) {
+
+                        targetRow = firstRow;
+
+                    } else {
+
+                        targetRow = firstRow.cloneNode(true);
+
+                        targetRow.querySelector(".appliance-name").value = "";
+                        targetRow.querySelector(".appliance-watts").value = "";
+                        targetRow.querySelector(".appliance-hours").value = "";
+                        targetRow.querySelector(".appliance-quantity").value = 1;
+                        targetRow.querySelector(".appliance-energy").textContent = "0 Wh";
+
+                        container.appendChild(targetRow);
+                            }
+                    targetRow.querySelector(".appliance-name").value =
+                        preset.name;
+
+                    targetRow.querySelector(".appliance-watts").value =
+                        preset.watts;
+
+                    targetRow.querySelector(".appliance-hours").value =
+                        preset.hours;
+
+                    targetRow.querySelector(".appliance-quantity").value =
+                        1;
+                    calculateApplianceLoad();
+
+                        event.target.value = "";
+            });
+                        
+
+   
+
+
 
 
 

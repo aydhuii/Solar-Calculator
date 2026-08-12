@@ -47,18 +47,37 @@
             </div>
           </div>
 
-          <div class="appliance-builder"> <br>
+          <div class="appliance-builder"> 
           
             <h3>Appliance Load Builder</h3>
-          
-            <div class="appliance-headings">
-              <span>Appliance</span>
-              <span>Power (W)</span>
-              <span>Hours / Day</span>
-              <span>Quantity</span>
-              <span>Energy (Wh/day)</span>
-              <span></span>
-            </div>
+            
+              <div class="input-group appliance-preset-group">
+              
+                <label for="appliancePreset">
+                  Quick Add Appliance
+                </label>
+              
+                <select id="appliancePreset">
+                  <option value="">Choose an appliance</option>
+                  <option value="refrigerator">Refrigerator</option>
+                  <option value="ledLight">LED Light</option>
+                  <option value="laptop">Laptop</option>
+                  <option value="tv">Television</option>
+                  <option value="fan">Fan</option>
+                </select>
+              
+              </div>
+
+              <div class="appliance-headings">
+                <span>Appliance</span>
+                <span>Power (W)</span>
+                <span>Hours / Day</span>
+                <span>Quantity</span>
+                <span>Energy (Wh/day)</span>
+                <span></span>
+              </div>
+
+            
 
             <div id="applianceRows">
             
@@ -170,6 +189,27 @@
               <label for="batteryModule">Battery Module Capacity (Wh)</label>
               <input type="number" id="batteryModule" placeholder="Example: 5120" oninput="syncBatteryPreset()" />
             </div>
+
+            <div class="input-group">
+            
+              <label for="batteryModuleVoltage">
+                Battery Module Voltage (V)
+              </label>
+            
+              <input type="number" id="batteryModuleVoltage" placeholder="Example: 12" step="0.1">
+            
+            </div>
+            
+            <div class="input-group">
+            
+              <label for="batteryModuleAh">
+                Battery Module Capacity (Ah)
+              </label>
+            
+              <input type="number" id="batteryModuleAh" placeholder="Example: 100" step="0.1">
+            
+            </div>
+
             <div class="input-group full-width">
               <label for="autonomy"># Autonomy Days</label>
 
@@ -272,6 +312,24 @@
             <h3>Installed Battery Capacity</h3>
             <p id="installedBatteryWh">--</p>
             <p id="batteryMargin">--</p>
+          </div>
+
+          <div class="result-card featured-card">
+          
+            <h3>Battery Bank Configuration</h3>
+          
+            <p id="batterySeries">--</p>
+          
+            <p id="batteryParallel">--</p>
+          
+            <p id="batteryConfiguredCount">--</p>
+          
+            <p id="batteryConfiguredVoltage">--</p>
+          
+            <p id="batteryConfiguredAh">--</p>
+          
+            <p id="batteryConfiguredWh">--</p>
+          
           </div>
 
           <div class="result-card featured-card">
