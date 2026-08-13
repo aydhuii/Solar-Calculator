@@ -401,6 +401,21 @@
         "name": "ayd.huiii"
       },
       "category": "JavaScript",
+      "creation_time": "2026-08-13T03:12:35.293Z",
+      "description": {
+        "content": "Moved battery specification calculations before the consistency check so validation uses values that already exist.",
+        "mime": "text/markdown"
+      },
+      "id": "75",
+      "references": [],
+      "title": "Fix Battery Validation Order",
+      "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "JavaScript",
       "creation_time": "2026-07-21T06:48:08.461Z",
       "description": {
         "content": "Fixed a syntax error in the input validation and removed code that referenced the deleted result element. The calculator now updates each result card separately.",
@@ -764,6 +779,20 @@
       "id": "60",
       "references": [],
       "title": "Highlight Main Results"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "JavaScript",
+      "creation_time": "2026-08-13T03:12:47.800Z",
+      "description": {
+        "content": "Reset now removes extra appliance rows, restores one clean row, resets quantity and energy values, and clears appliance and battery warnings.",
+        "mime": "text/markdown"
+      },
+      "id": "76",
+      "references": [],
+      "title": "Improve Calculator Reset"
     },
     {
       "assignedTo": {

@@ -91,6 +91,17 @@ function calculate() {
         return;
     }
 
+    let calculatedModuleWh =
+        batteryModuleVoltage * batteryModuleAh;
+
+    let moduleWhDifference =
+    Math.abs(
+        batteryModule - calculatedModuleWh
+    ); //Math abs makes the number positive(absolutevalue)
+
+    let moduleWhDifferencePercent =
+        (moduleWhDifference / batteryModule) * 100;
+
     if (
         efficiencyPercent > 100 ||
         dodPercent > 100 
@@ -198,10 +209,10 @@ function calculate() {
         configuredBankAh;
 
     let numberOfBatteries = 
-        Math.ceil(batteryCapacityWh / batteryModule);
+        configuredBatteryCount;
 
     let installedBatteryCapacityWh =
-        numberOfBatteries * batteryModule;
+        configuredBankWh;
 
     let batteryCapacityMarginWh =
         installedBatteryCapacityWh - batteryCapacityWh;
@@ -245,16 +256,6 @@ function calculate() {
             controllerRoundingIncrementA
         ) * controllerRoundingIncrementA;
 
-    let calculatedModuleWh =
-        batteryModuleVoltage * batteryModuleAh;
-
-    let moduleWhDifference =
-    Math.abs(
-        batteryModule - calculatedModuleWh
-    ); //Math abs makes the number positive(absolutevalue)
-
-    let moduleWhDifferencePercent =
-        (moduleWhDifference / batteryModule) * 100;
 
     //INVERTER WARNING
     if (inverterMarginPercent < 20) {
@@ -600,6 +601,12 @@ function resetCalculator() {
         "summarySurgeLoad",
         "summaryInverterMargin",
         "summaryControllerMargin"
+        "batterySeries",
+        "batteryParallel",
+        "batteryConfiguredCount",
+        "batteryConfiguredVoltage",
+        "batteryConfiguredAh",
+        "batteryConfiguredWh",
     ];
 
     resultIds.forEach(function(id) {
@@ -612,6 +619,40 @@ function resetCalculator() {
     });
     
     document.getElementById("errorMessage").textContent = "";
+
+    let applianceContainer =
+    document.getElementById("applianceRows");
+
+    let applianceRows =
+        applianceContainer.querySelectorAll(".appliance-row");
+
+    applianceRows.forEach(function(row, index) {
+
+        if (index > 0) {
+            row.remove();
+        }
+    });
+
+    let firstApplianceRow =
+        applianceContainer.querySelector(".appliance-row");
+
+    firstApplianceRow.querySelector(".appliance-name").value = "";
+    firstApplianceRow.querySelector(".appliance-watts").value = "";
+    firstApplianceRow.querySelector(".appliance-hours").value = "";
+    firstApplianceRow.querySelector(".appliance-quantity").value = 1;
+    firstApplianceRow.querySelector(".appliance-energy").textContent = "0 Wh";
+
+    document.getElementById("loadBuilderTotal").textContent =
+        "0 Wh/day";
+
+    document.getElementById("appliancePreset").value =
+        "";
+
+    document.getElementById("applianceError").textContent =
+        "";
+
+    document.getElementById("batterySpecWarning").textContent =
+        "";
 }
 
 function calculateApplianceLoad() {

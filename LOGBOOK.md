@@ -1105,3 +1105,119 @@ Identified the order-of-execution problem. The battery consistency calculations 
 - Update battery results to clearly show required versus configured capacity
 - Improve the Reset button for appliance rows and new battery fields
 - Begin PV string sizing if the battery section is stable
+
+--------------------------------------------------------------------------------------
+
+# 📅 August 12, 2026
+
+## 🎯 Sprint Goal
+
+Clean up the battery calculation system, fix the battery specification checker, and improve the Reset button before moving on to PV string sizing.
+
+---
+
+## ✅ Completed
+
+- Fixed the battery specification checker execution order
+- Moved battery Wh consistency calculations before the validation check
+- Kept a 5% tolerance between entered battery Wh and voltage × Ah
+- Unified the energy-based battery count with the series/parallel configuration
+- Updated Battery Modules Required to use the configured battery count
+- Updated Installed Battery Capacity to use the configured battery bank energy
+- Kept the battery capacity margin connected to the final configured bank
+- Improved the Reset button for the Appliance Load Builder
+- Reset now removes all extra appliance rows
+- Reset keeps one blank appliance row
+- Reset restores appliance quantity to 1
+- Reset clears individual appliance energy
+- Reset clears the calculated daily appliance load
+- Reset clears the Quick Add Appliance dropdown
+- Reset clears appliance validation warnings
+- Reset clears the battery specification warning
+- Verified the JavaScript has no syntax errors
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 023
+
+**Issue**
+
+The battery specification checker previously tried to use `moduleWhDifferencePercent` before the value had been calculated.
+
+**Root Cause**
+
+The battery specification calculations were located too far down inside `calculate()`.
+
+**Resolution**
+
+Moved the calculated module Wh, Wh difference, and percentage difference above the battery consistency validation.
+
+### Bug 024
+
+**Issue**
+
+The calculator could show one battery count based only on energy and another count from the series/parallel configuration.
+
+**Root Cause**
+
+The older battery module calculation was still being used for the main Battery Modules Required result.
+
+**Resolution**
+
+Changed the main battery recommendation and installed capacity to use the physically configured series/parallel battery bank.
+
+### Bug 025
+
+**Issue**
+
+Reset previously left extra appliance rows and cleared the default quantity value.
+
+**Root Cause**
+
+The general number-input reset did not account for dynamically generated appliance rows.
+
+**Resolution**
+
+Added specific reset logic that removes extra rows, clears the first row, restores quantity to 1, and resets the load-builder interface.
+
+### Bug 026
+
+**Issue**
+
+Battery Bank Configuration results may remain visible after pressing Reset.
+
+**Root Cause**
+
+The new battery configuration result IDs have not yet been added to the `resultIds` reset array.
+
+**Resolution**
+
+Identified for a quick fix during the next sprint.
+
+---
+
+## 💡 What I Learned
+
+- JavaScript variables must be calculated before validation code can use them.
+- A mathematically sufficient battery quantity is not always a physically buildable battery configuration.
+- The final battery recommendation should respect series and parallel requirements.
+- Dynamic interface elements need their own reset behavior instead of relying only on a general input reset.
+- Reset functionality is part of application state management, not just clearing input boxes.
+- Testing old features after adding new ones helps find places where new results were not added to existing systems.
+
+---
+
+## 🔜 Next Sprint
+
+- Add Battery Bank Configuration outputs to the Reset function
+- Test battery specification consistency with several valid and invalid examples
+- Begin PV string design
+- Add panel Voc and Vmp inputs
+- Add charge controller PV voltage limit
+- Calculate panels per string and number of parallel strings
+- Add warnings for unsafe PV string voltage
+
+
+
