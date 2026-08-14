@@ -256,6 +256,20 @@
       "references": [],
       "title": "Debug Validation Message",
       "type": "bug"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "JavaScript / UX",
+      "creation_time": "2026-08-14T04:09:27.955Z",
+      "description": {
+        "content": "\nStarted PV string sizing with Voc, Vmp, and charge controller voltage inputs.",
+        "mime": "text/markdown"
+      },
+      "id": "78",
+      "references": [],
+      "title": "PV string design"
     }
   ],
   "testing": [],
@@ -868,6 +882,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "JavaScript / UX",
+      "creation_time": "2026-08-14T04:09:09.128Z",
+      "description": {
+        "content": "Split the calculator into smaller sections so users do not need every input to calculate one part.",
+        "mime": "text/markdown"
+      },
+      "id": "77",
+      "references": [],
+      "title": "Modular Calculator"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "HTML / CSS",
       "creation_time": "2026-08-05T02:44:50.169Z",
       "description": {
@@ -1045,6 +1073,20 @@
       "id": "73",
       "references": [],
       "title": "Smart Battery Presets"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "JavaScript / UX",
+      "creation_time": "2026-08-14T04:09:39.874Z",
+      "description": {
+        "content": "Added an independent solar sizing calculation using only the solar-related inputs.",
+        "mime": "text/markdown"
+      },
+      "id": "79",
+      "references": [],
+      "title": "Solar Only Calculator"
     },
     {
       "assignedTo": {

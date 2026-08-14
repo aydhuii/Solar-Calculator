@@ -1219,5 +1219,50 @@ Identified for a quick fix during the next sprint.
 - Calculate panels per string and number of parallel strings
 - Add warnings for unsafe PV string voltage
 
+--------------------------------------------------------------------
+
+# 📅 August 13, 2026
+
+## 🎯 Sprint Goal
+
+Start making the calculator more modular and begin PV string design.
+
+---
+
+## ✅ Completed
+
+* Added PV inputs for Voc, Vmp, and controller max voltage
+* Added basic Voc/Vmp validation
+* Started separating the calculator into smaller sections
+* Added a Solar Only calculation button
+* Made solar sizing work without needing battery or inverter inputs
+* Kept the full calculator working while starting the refactor
+
+---
+
+## 🐞 Bugs Encountered
+
+No major bugs today.
+
+The main issue was realizing the calculator required too many inputs just to calculate one section.
+
+---
+
+## 💡 What I Learned
+
+* Different parts of the calculator should use their own required inputs
+* Smaller functions are easier to debug and update
+* Advanced inputs should not block basic calculations
+
+---
+
+## 🔜 Next Sprint
+
+* Make a Battery Only calculation
+* Continue separating the main calculator into modules
+* Continue PV string sizing
+* Add cold-temperature Voc safety later
+
+
 
 

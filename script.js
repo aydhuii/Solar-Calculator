@@ -55,7 +55,14 @@ function calculate() {
     let batterySpecWarning =
         document.getElementById("batterySpecWarning");
 
-    
+    let panelVoc =
+        Number(document.getElementById("panelVoc").value);
+
+    let panelVmp =
+        Number(document.getElementById("panelVmp").value);
+
+    let controllerMaxPvVoltage =
+        Number(document.getElementById("controllerMaxPvVoltage").value);
 
     
     //create input array
@@ -139,6 +146,14 @@ function calculate() {
             "Battery specifications do not match. Check the module voltage, Ah, and Wh values.";
 
         return;
+    }
+
+    if (panelVoc <= panelVmp) {
+
+    errorMessage.textContent =
+        "Panel Voc must be greater than panel Vmp.";
+
+    return;
     }
 
     batterySpecWarning.textContent = "";
@@ -600,13 +615,13 @@ function resetCalculator() {
         "summaryPeakLoad",
         "summarySurgeLoad",
         "summaryInverterMargin",
-        "summaryControllerMargin"
+        "summaryControllerMargin",
         "batterySeries",
         "batteryParallel",
         "batteryConfiguredCount",
         "batteryConfiguredVoltage",
         "batteryConfiguredAh",
-        "batteryConfiguredWh",
+        "batteryConfiguredWh"
     ];
 
     resultIds.forEach(function(id) {
@@ -884,9 +899,103 @@ document.getElementById("addAppliance")
                         event.target.value = "";
             });
                         
+function calculateSolarSection() {
 
+    let energy =
+        Number(document.getElementById("energy").value);
+
+    let sunHours =
+        Number(document.getElementById("sunHours").value);
+
+    let efficiencyPercent =
+        Number(document.getElementById("efficiency").value);
+
+    let panelWattage =
+        Number(document.getElementById("panelWattage").value);
+
+    let solarWarning =
+        document.getElementById("solarWarning");
+
+    let solarInputs = [
+        energy,
+        sunHours,
+        efficiencyPercent,
+        panelWattage
+    ];
+
+    let hasInvalidSolarInput =
+        solarInputs.some(function(value) {
+            return Number.isNaN(value) || value <= 0;
+        });
+
+    if (hasInvalidSolarInput) {
+
+        solarWarning.textContent =
+            "Enter Daily Energy, Peak Sun Hours, Efficiency, and Panel Wattage.";
+
+        return;
+    }
+
+    if (efficiencyPercent > 100) {
+
+        solarWarning.textContent =
+            "System efficiency must be between 1 and 100 percent.";
+
+        return;
+    }
+
+    solarWarning.textContent = "";
+
+    let efficiency =
+        efficiencyPercent / 100;
+
+    let solarArray =
+        energy / (sunHours * efficiency);
+
+    let numberOfPanels =
+        Math.ceil(
+            solarArray / panelWattage
+        );
+
+    let installedSolarCapacityW =
+        numberOfPanels * panelWattage;
+
+    let solarCapacityMarginW =
+        installedSolarCapacityW - solarArray;
+
+    let solarCapacityMarginPercent =
+        (solarCapacityMarginW / solarArray) * 100;
+
+    document.getElementById("solarSize").textContent =
+        formatNumber(solarArray, 0) +
+        " W (" +
+        formatNumber(solarArray / 1000, 2) +
+        " kW)";
+
+    document.getElementById("panelCount").textContent =
+        formatNumber(numberOfPanels, 0) +
+        " panels";
+
+    document.getElementById("installedSolarW").textContent =
+        formatNumber(installedSolarCapacityW, 0) +
+        " W (" +
+        formatNumber(installedSolarCapacityW / 1000, 2) +
+        " kW)";
+
+    document.getElementById("solarMargin").textContent =
+        formatNumber(solarCapacityMarginW, 0) +
+        " W above required (" +
+        formatNumber(solarCapacityMarginPercent, 1) +
+        "%)";
+
+}
    
+document.getElementById("calculateSolarOnly")
+    .addEventListener("click", function() {
 
+        calculateSolarSection();
+
+    });
 
 
 
