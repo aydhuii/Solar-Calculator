@@ -261,6 +261,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "JavaScript / Electrical Engineering",
+      "creation_time": "2026-08-15T20:00:41.591Z",
+      "description": {
+        "content": "Continue splitting the full calculator into independent Solar, Battery, Inverter, Controller, and PV string sections.",
+        "mime": "text/markdown"
+      },
+      "id": "82",
+      "references": [],
+      "title": "Modular Calculator"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "JavaScript / UX",
       "creation_time": "2026-08-14T04:09:27.955Z",
       "description": {
@@ -672,6 +686,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "JavaScript / Electrical Engineering",
+      "creation_time": "2026-08-15T20:00:14.484Z",
+      "description": {
+        "content": "Added independent basic battery sizing using Daily Energy, autonomy, DoD, and system voltage.",
+        "mime": "text/markdown"
+      },
+      "id": "80",
+      "references": [],
+      "title": "Battery Only Calculator"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Validation/ EE",
       "creation_time": "2026-08-09T23:18:21.906Z",
       "description": {
@@ -891,6 +919,20 @@
       "id": "77",
       "references": [],
       "title": "Modular Calculator"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "JavaScript / Electrical Engineering",
+      "creation_time": "2026-08-15T20:00:22.603Z",
+      "description": {
+        "content": "Made module Wh, voltage, and Ah optional and added advanced series/parallel results when all module information is available.",
+        "mime": "text/markdown"
+      },
+      "id": "81",
+      "references": [],
+      "title": "Optional Battery Configuration"
     },
     {
       "assignedTo": {

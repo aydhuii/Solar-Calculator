@@ -997,7 +997,238 @@ document.getElementById("calculateSolarOnly")
 
     });
 
+function calculateBatterySection() {
+
+    let energy =
+        Number(document.getElementById("energy").value);
+
+    let autonomy =
+        Number(document.getElementById("autonomy").value);
+
+    let dodPercent =
+        Number(document.getElementById("dod").value);
+
+    let batteryVoltage =
+        Number(document.getElementById("batteryVoltage").value);
+
+    let batteryWarning =
+        document.getElementById("batteryWarning");
+
+    let batteryModule =
+        Number(document.getElementById("batteryModule").value);
+
+    let batteryModuleVoltage =
+        Number(document.getElementById("batteryModuleVoltage").value);
+
+    let batteryModuleAh =
+        Number(document.getElementById("batteryModuleAh").value);
+
+    let batteryInputs = [
+        energy,
+        autonomy,
+        dodPercent,
+        batteryVoltage
+    ];
+    
+
+    let hasInvalidBatteryInput =
+        batteryInputs.some(function(value) {
+            return Number.isNaN(value) || value <= 0;
+        });
+
+    if (hasInvalidBatteryInput) {
+
+        batteryWarning.textContent =
+            "Enter Daily Energy, Autonomy, Depth of Discharge, and Battery Voltage.";
+
+        return;
+    }
+
+    if (dodPercent > 100) {
+
+        batteryWarning.textContent =
+            "Depth of Discharge must be between 1 and 100 percent.";
+
+        return;
+    }
 
 
+    batteryWarning.textContent = "";
+
+    let dod =
+    dodPercent / 100;
+
+    let batteryCapacityWh =
+        (energy * autonomy) / dod;
+
+    let batteryCapacityAh =
+        batteryCapacityWh / batteryVoltage;
+
+    let moduleValues = [
+        batteryModule,
+        batteryModuleVoltage,
+        batteryModuleAh
+    ];
+
+    let filledModuleValues =
+        moduleValues.filter(function(value) {   //createws a list containing balues that meet a condition
+            return value > 0;
+        }).length;
+
+    if (
+        filledModuleValues > 0 &&
+        filledModuleValues < 3
+    ) {
+
+        batteryWarning.textContent =
+            "For battery configuration, enter Module Wh, Voltage, and Ah.";
+
+        return;
+    }
+
+    if (filledModuleValues === 3) {
+        let calculatedModuleWh =
+            batteryModuleVoltage * batteryModuleAh;
+
+        let moduleWhDifference =
+            Math.abs(
+                batteryModule - calculatedModuleWh
+            );
+
+        let moduleWhDifferencePercent =
+            (moduleWhDifference / batteryModule) * 100;
+
+            let modulesInSeries =
+                Math.max(
+                    1,
+                    Math.round(
+                        batteryVoltage /
+                        batteryModuleVoltage
+                    )
+                );
+
+            let configuredBankVoltage =
+                modulesInSeries *
+                batteryModuleVoltage;
+
+            let parallelStrings =
+                Math.ceil(
+                    batteryCapacityAh /
+                    batteryModuleAh
+                );
+
+            let configuredBatteryCount =
+                modulesInSeries *
+                parallelStrings;
+
+            let configuredBankAh =
+                parallelStrings *
+                batteryModuleAh;
+
+            let configuredBankWh =
+                configuredBankVoltage *
+                configuredBankAh;
+
+            let batteryCapacityMarginWh =
+                configuredBankWh -
+                batteryCapacityWh;
+
+            let batteryCapacityMarginPercent =
+                (batteryCapacityMarginWh /
+                batteryCapacityWh) * 100;
+
+            document.getElementById("batteryCount").textContent =
+                formatNumber(configuredBatteryCount, 0) +
+                " batteries";
+
+            document.getElementById("installedBatteryWh").textContent =
+                formatNumber(configuredBankWh, 0) +
+                " Wh (" +
+                formatNumber(configuredBankWh / 1000, 2) +
+                " kWh)";
+
+            document.getElementById("batteryMargin").textContent =
+                formatNumber(batteryCapacityMarginWh, 0) +
+                " Wh above required (" +
+                formatNumber(batteryCapacityMarginPercent, 1) +
+                "%)";
+
+            document.getElementById("batterySeries").textContent =
+                formatNumber(modulesInSeries, 0) +
+                " modules in series";
+
+            document.getElementById("batteryParallel").textContent =
+                formatNumber(parallelStrings, 0) +
+                " parallel strings";
+
+            document.getElementById("batteryConfiguredCount").textContent =
+                formatNumber(configuredBatteryCount, 0) +
+                " total modules";
+
+            document.getElementById("batteryConfiguredVoltage").textContent =
+                formatNumber(configuredBankVoltage, 1) +
+                " V configured bank";
+
+            document.getElementById("batteryConfiguredAh").textContent =
+                formatNumber(configuredBankAh, 1) +
+                " Ah installed";
+
+            document.getElementById("batteryConfiguredWh").textContent =
+                formatNumber(configuredBankWh, 0) +
+                " Wh (" +
+                formatNumber(configuredBankWh / 1000, 2) +
+                " kWh)";
+    
+    }   
+
+    if (moduleWhDifferencePercent > 5) {
+
+        batteryWarning.textContent =
+            "Battery specifications don't match. Check Module Wh, Voltage, and Ah inputs.";
+
+        return;
+    }
+
+    batteryWarning.textContent = "";
+
+
+    document.getElementById("batteryWh").textContent =
+        formatNumber(batteryCapacityWh, 0) +
+        " Wh (" +
+        formatNumber(batteryCapacityWh / 1000, 2) +
+        " kWh)";
+
+    document.getElementById("batteryAh").textContent =
+        formatNumber(batteryCapacityAh, 1) +
+        " Ah at " +
+        formatNumber(batteryVoltage, 0) +
+        " V";
+
+    let advancedBatteryResultIds = [
+        "batteryCount",
+        "installedBatteryWh",
+        "batteryMargin",
+        "batterySeries",
+        "batteryParallel",
+        "batteryConfiguredCount",
+        "batteryConfiguredVoltage",
+        "batteryConfiguredAh",
+        "batteryConfiguredWh"
+    ];
+
+    advancedBatteryResultIds.forEach(function(id) {
+
+        document.getElementById(id).textContent = "---";
+
+    });
+    
+}
+
+document.getElementById("calculateBatteryOnly")
+    .addEventListener("click", function() {
+
+        calculateBatterySection();
+
+    });
 
 

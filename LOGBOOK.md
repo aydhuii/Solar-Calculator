@@ -1263,6 +1263,55 @@ The main issue was realizing the calculator required too many inputs just to cal
 * Continue PV string sizing
 * Add cold-temperature Voc safety later
 
+------------------------------------------------------------------------
+
+# 📅 August 15, 2026
+
+## 🎯 Sprint Goal
+
+Create an independent Battery Only calculator with optional advanced battery configuration.
+
+---
+
+## ✅ Completed
+
+* Added a Battery Only calculation button
+* Made battery sizing work without solar, inverter, or controller inputs
+* Kept Daily Energy as a shared system input
+* Added separate battery-only validation
+* Calculated required battery Wh and Ah independently
+* Made battery module information optional
+* Added checks for partially filled module information
+* Added battery Wh, voltage, and Ah consistency checking
+* Connected optional module specs to series/parallel calculations
+* Added advanced battery results only when enough information is provided
+* Cleared old advanced results when using basic battery sizing
+
+---
+
+## 🐞 Bugs Encountered
+
+No major bugs today.
+
+Most of the work was reorganizing existing battery calculations so optional inputs would not block basic results.
+
+---
+
+## 💡 What I Learned
+
+* Some inputs can be shared between calculator sections
+* Optional inputs need different validation from required inputs
+* Advanced calculations should only run when enough information is available
+* Old results should be cleared when inputs are removed
+
+---
+
+## 🔜 Next Sprint
+
+* Create an independent Inverter calculator
+* Create an independent Charge Controller calculator
+* Continue simplifying the main Calculate function
+* Return to PV string sizing
 
 
 

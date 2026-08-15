@@ -189,65 +189,74 @@
         <div class="form-section">
           <h2>Battery Information</h2>
 
-          <div class="input-grid">
-            <div class="input-group">
-              <label for="batteryVoltage">Battery Voltage (V)</label>
+            <div class="input-grid">
+              <div class="input-group">
+                <label for="batteryVoltage">Battery Voltage (V)</label>
 
-              <input type="number" id="batteryVoltage" placeholder="Example: 48" />
+                <input type="number" id="batteryVoltage" placeholder="Example: 48" />
+              </div>
+
+              <div class="input-group">
+                <label for="dod">Depth of Discharge (%)</label>
+
+                <input type="number" id="dod" placeholder="Example: 80" />
+              </div>
+
+              <div class="input-group">
+                <label for="batteryPreset">Battery Module Preset</label>
+
+                <select id="batteryPreset" onchange="applyBatteryPreset()">
+                  <option value="custom">Custom capacity</option>
+                  <option value="5120">5.12kWh module</option>
+                  <option value="10240">10.24kWh module</option>
+                  <option value="15360">15.36kWh module</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="batteryModule">Battery Module Capacity (Wh)</label>
+                <input type="number" id="batteryModule" placeholder="Example: 5120" oninput="syncBatteryPreset()" />
+              </div>
+
+              <div class="input-group">
+              
+                <label for="batteryModuleVoltage">
+                  Battery Module Voltage (V)
+                </label>
+              
+                <input type="number" id="batteryModuleVoltage" placeholder="Example: 12" step="0.1">
+              
+                
+
+              </div>
+              
+              <div class="input-group">
+              
+                <label for="batteryModuleAh">
+                  Battery Module Capacity (Ah)
+                </label>
+              
+                <input type="number" id="batteryModuleAh" placeholder="Example: 100" step="0.1">
+              
+              </div>
+
+              <div class="input-group full-width">
+                <label for="autonomy"># Autonomy Days</label>
+
+                <input type="number" id="autonomy" placeholder="Example: 3" step="0.1" />
+              </div>
+
+              <p id="batterySpecWarning" class="error-message"></p>
+
+              
             </div>
 
-            <div class="input-group">
-              <label for="dod">Depth of Discharge (%)</label>
-
-              <input type="number" id="dod" placeholder="Example: 80" />
-            </div>
-
-            <div class="input-group">
-              <label for="batteryPreset">Battery Module Preset</label>
-
-              <select id="batteryPreset" onchange="applyBatteryPreset()">
-                <option value="custom">Custom capacity</option>
-                <option value="5120">5.12kWh module</option>
-                <option value="10240">10.24kWh module</option>
-                <option value="15360">15.36kWh module</option>
-              </select>
-            </div>
-
-            <div class="input-group">
-              <label for="batteryModule">Battery Module Capacity (Wh)</label>
-              <input type="number" id="batteryModule" placeholder="Example: 5120" oninput="syncBatteryPreset()" />
-            </div>
-
-            <div class="input-group">
+            <p id="batteryWarning" class="error-message"></p>
             
-              <label for="batteryModuleVoltage">
-                Battery Module Voltage (V)
-              </label>
-            
-              <input type="number" id="batteryModuleVoltage" placeholder="Example: 12" step="0.1">
-            
-            </div>
-            
-            <div class="input-group">
-            
-              <label for="batteryModuleAh">
-                Battery Module Capacity (Ah)
-              </label>
-            
-              <input type="number" id="batteryModuleAh" placeholder="Example: 100" step="0.1">
-            
-            </div>
+            <button type="button" class="secondary-button" id="calculateBatteryOnly">
+              Calculate Battery Only
+            </button>
 
-            <div class="input-group full-width">
-              <label for="autonomy"># Autonomy Days</label>
-
-              <input type="number" id="autonomy" placeholder="Example: 3" step="0.1" />
-            </div>
-
-            <p id="batterySpecWarning" class="error-message"></p>
-
-            
-          </div>
         </div>
 
         <div class="form-section">
