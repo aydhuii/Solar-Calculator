@@ -916,22 +916,30 @@ function calculateSolarSection() {
     let solarWarning =
         document.getElementById("solarWarning");
 
-    let solarInputs = [
-        energy,
-        sunHours,
-        efficiencyPercent,
-        panelWattage
-    ];
+    let missingSolarFields = [];
 
-    let hasInvalidSolarInput =
-        solarInputs.some(function(value) {
-            return Number.isNaN(value) || value <= 0;
-        });
+    if (energy <= 0) {
+        missingSolarFields.push("Daily Energy Usage");
+    }
 
-    if (hasInvalidSolarInput) {
+    if (sunHours <= 0) {
+        missingSolarFields.push("Peak Sun Hours");
+    }
+
+    if (efficiencyPercent <= 0) {
+        missingSolarFields.push("System Efficiency");
+    }
+
+    if (panelWattage <= 0) {
+        missingSolarFields.push("Panel Wattage");
+    }
+
+    if (missingSolarFields.length > 0) {
 
         solarWarning.textContent =
-            "Enter Daily Energy, Peak Sun Hours, Efficiency, and Panel Wattage.";
+            "REQUIRED: " +
+            missingSolarFields.join(", ") +
+            ".";
 
         return;
     }
@@ -959,6 +967,9 @@ function calculateSolarSection() {
 
     let installedSolarCapacityW =
         numberOfPanels * panelWattage;
+
+    document.getElementById("controllerPvCapacity").value =
+    installedSolarCapacityW;
 
     let solarCapacityMarginW =
         installedSolarCapacityW - solarArray;
@@ -1231,4 +1242,213 @@ document.getElementById("calculateBatteryOnly")
 
     });
 
+function calculateInverterSection() {
 
+    let peakLoad =
+        Number(document.getElementById("peakLoad").value);
+
+    let surgeLoad =
+        Number(document.getElementById("surgeLoad").value);
+
+    let inverterMarginPercent =
+        Number(document.getElementById("inverterMargin").value);
+
+    let inverterWarning =
+        document.getElementById("inverterSectionWarning");
+
+    let inverterInputs = [
+        peakLoad,
+        surgeLoad,
+        inverterMarginPercent
+    ];
+
+    let hasInvalidInverterInput =
+        inverterInputs.some(function(value) {
+            return Number.isNaN(value) || value <= 0;
+        });
+
+    if (hasInvalidInverterInput) {
+
+        inverterWarning.textContent =
+            "Enter Peak Load, Surge Load, and Inverter Safety Margin.";
+
+        return;
+    }
+
+    if (inverterMarginPercent > 100) {
+
+        inverterWarning.textContent =
+            "Inverter safety margin must be between 1 and 100 percent.";
+
+        return;
+    }
+
+    if (surgeLoad < peakLoad) {
+
+        inverterWarning.textContent =
+            "Peak surge load cannot be lower than peak continuous load.";
+
+        return;
+    }
+
+    inverterWarning.textContent = "";
+
+    let inverterMargin =
+        inverterMarginPercent / 100;
+
+    let minimumInverterW =
+        peakLoad;
+
+    let inverterDesignTargetW =
+        peakLoad * (1 + inverterMargin);
+
+    let inverterRoundingIncrementW =
+        250;
+
+    let recommendedInverterW =
+        Math.ceil(
+            inverterDesignTargetW /
+            inverterRoundingIncrementW
+        ) * inverterRoundingIncrementW;
+
+    let inverterResultWarning =
+        document.getElementById("inverterWarning");
+
+     if (inverterMarginPercent < 20) {
+        inverterWarning.textContent =
+            "Warning: The selected continuous-load safety margin is below 20%.";
+    } else if (surgeLoad > recommendedInverterW) {
+        inverterWarning.textContent =
+            "Check that the selected inverter can provide at least " +
+            formatNumber(surgeLoad, 0) +
+            " W of short-term surge output.";
+    } else {
+        inverterWarning.textContent =
+            "The entered surge requirement doesn't exceed the rounded continuous recommendation.";
+    }
+
+    document.getElementById("inverterMinimum").textContent =
+        formatNumber(minimumInverterW, 0) +
+        " W minimum continuous rating";
+
+    document.getElementById("inverterDesignTarget").textContent =
+        formatNumber(inverterDesignTargetW, 0) +
+        " W calculated design target";
+
+    document.getElementById("inverterRecommended").textContent =
+        formatNumber(recommendedInverterW, 0) +
+        " W rounded recommendation";
+
+    document.getElementById("inverterSurge").textContent =
+        formatNumber(surgeLoad, 0) +
+        " W required surge rating";
+
+   
+
+}
+
+document.getElementById("calculateInverterOnly")
+    .addEventListener("click", function() {
+
+        calculateInverterSection();
+
+    });
+
+
+function calculateControllerSection() {
+
+    let pvCapacity =
+        Number(
+            document.getElementById("controllerPvCapacity").value
+        );
+
+
+    let batteryVoltage =
+        Number(
+            document.getElementById("batteryVoltage").value
+        );
+
+    let controllerMarginPercent =
+        Number(
+            document.getElementById("controllerMargin").value
+        );
+
+    let controllerWarning =
+        document.getElementById("controllerSectionWarning");
+
+    let missingControllerFields = []; //empty array
+
+    if (pvCapacity <= 0) {
+        missingControllerFields.push("Installed PV Capacity");
+    }
+
+    if (batteryVoltage <= 0) {
+        missingControllerFields.push("Battery Voltage");
+    }
+
+    if (controllerMarginPercent <= 0) {
+        missingControllerFields.push("Controller Safety Margin");
+    }
+
+    if (missingControllerFields.length > 0) {
+
+        controllerWarning.textContent =
+            "REQUIRED: " +
+            missingControllerFields.join(", ") +
+            ".";
+
+        return;
+    }
+
+    
+
+    if (controllerMarginPercent > 100) {
+
+        controllerWarning.textContent =
+            "Controller safety margin must be between 1 and 100 percent.";
+
+        return;
+    }
+
+    controllerWarning.textContent = "";
+
+    let controllerMargin =
+        controllerMarginPercent / 100;
+
+    let controllerMinimumA =
+        pvCapacity / batteryVoltage;
+
+    let controllerDesignTargetA =
+        controllerMinimumA *
+        (1 + controllerMargin);
+
+    let controllerRoundingIncrementA =
+        10;
+
+    let recommendedControllerA =
+        Math.ceil(
+            controllerDesignTargetA /
+            controllerRoundingIncrementA
+        ) * controllerRoundingIncrementA;
+
+        document.getElementById("controllerMinimum").textContent =
+        formatNumber(controllerMinimumA, 1) +
+        " A minimum output current";
+
+    document.getElementById("controllerDesignTarget").textContent =
+        formatNumber(controllerDesignTargetA, 1) +
+        " A calculated design target";
+
+    document.getElementById("controllerRecommended").textContent =
+        formatNumber(recommendedControllerA, 0) +
+        " A rounded recommendation";
+
+
+}
+
+document.getElementById("calculateControllerOnly")
+    .addEventListener("click", function() {
+
+        calculateControllerSection();
+
+    });

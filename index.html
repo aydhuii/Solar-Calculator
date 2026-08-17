@@ -287,6 +287,13 @@
               <input type="number" id="inverterMargin" placeholder="Example: 25" step="0.1" />
             </div>
           </div>
+
+          <p id="inverterSectionWarning" class="error-message"></p>
+          
+          <button type="button" class="secondary-button" id="calculateInverterOnly">
+            Calculate Inverter Only
+          </button>
+
         </div>
 
         <div class="form-section">
@@ -296,11 +303,34 @@
             <div class="input-group full-width">
               <label for="controllerMargin"> Charge Controller Safety Margin (%) </label>
 
-              <small class="help-text"> Extra current capacity added above the calculated solar-array current. </small>
+              <small class="help-text"> Extra current capacity added above calculated solar-array current. </small>
 
               <input type="number" id="controllerMargin" placeholder="Example: 25" step="0.1" />
             </div>
           </div>
+
+          <div class="input-group">
+            <label for="controllerPvCapacity">
+              Installed PV Capacity (W)
+            </label>
+
+            <small class="help-text">
+              Is filled automatically after Solar Sizing, or enter your array wattage manually.
+            </small>
+          
+            <small class="help-text">
+              Enter the total installed solar array wattage
+            </small>
+          
+            <input type="number" id="controllerPvCapacity" placeholder="Example: 3150">
+          </div>
+
+          <p id="controllerSectionWarning" class="error-message"></p>
+          
+          <button type="button" class="secondary-button" id="calculateControllerOnly">
+            Calculate Charge Controller Only
+          </button>
+
         </div>
         <p id="errorMessage" class="error-message"></p>
 

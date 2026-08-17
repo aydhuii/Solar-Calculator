@@ -1313,5 +1313,59 @@ Most of the work was reorganizing existing battery calculations so optional inpu
 * Continue simplifying the main Calculate function
 * Return to PV string sizing
 
+---------------------------------------------------------------------------
 
+# 📅 August 16, 2026
+
+## 🎯 Sprint Goal
+
+Finish the independent inverter and charge controller calculators and improve input warnings.
+
+---
+
+## ✅ Completed
+
+- Finished the Inverter Only calculator
+- Finished the Charge Controller Only calculator
+- Added an Installed PV Capacity input for controller sizing
+- Made Solar Only automatically fill the controller PV capacity
+- Fixed a JavaScript error caused by HTML being pasted into the JS file
+- Added more specific missing-field warnings for Solar and Charge Controller inputs
+- Kept each calculator section independent from unrelated inputs
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 027
+
+**Issue**
+
+Charge Controller Only did not calculate anything.
+
+**Root Cause**
+
+HTML help text was accidentally placed inside the JavaScript function.
+
+**Resolution**
+
+Removed the HTML from the JS file and kept it in the HTML section.
+
+---
+
+## 💡 What I Learned
+
+- HTML cannot be placed directly inside JavaScript
+- Each calculator section should validate only the inputs it needs
+- Specific warnings are more helpful than one generic error message
+- Shared inputs like Daily Energy and Battery Voltage can be reused across sections
+
+---
+
+## 🔜 Next Sprint
+
+- Clean up the main Calculate button
+- Make it use the smaller calculator functions
+- Continue PV string sizing
+- Improve validation for the other sections
 

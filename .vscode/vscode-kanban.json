@@ -770,6 +770,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "JavaScript",
+      "creation_time": "2026-08-17T01:48:34.910Z",
+      "description": {
+        "content": "Added independent charge controller sizing using PV capacity, battery voltage, and safety margin.",
+        "mime": "text/markdown"
+      },
+      "id": "84",
+      "references": [],
+      "title": "Charge Controller Only Calculator"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "CSS / UI",
       "creation_time": "2026-08-05T02:44:36.667Z",
       "description": {
@@ -905,6 +919,20 @@
       "id": "48",
       "references": [],
       "title": "Integrate Inverter Results Into Calculator"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "JavaScript",
+      "creation_time": "2026-08-17T01:48:22.802Z",
+      "description": {
+        "content": "Added independent inverter sizing using peak load, surge load, and safety margin.",
+        "mime": "text/markdown"
+      },
+      "id": "83",
+      "references": [],
+      "title": "Inverter Only Calculator"
     },
     {
       "assignedTo": {
