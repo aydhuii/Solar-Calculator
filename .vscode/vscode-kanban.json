@@ -952,6 +952,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "JavaScript",
+      "creation_time": "2026-08-18T05:45:35.493Z",
+      "description": {
+        "content": "Changed the main Calculate button to run the separate Solar, Battery, Inverter, and Controller functions.",
+        "mime": "text/markdown"
+      },
+      "id": "85",
+      "references": [],
+      "title": "Modular Calculator Refactor"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "JavaScript / Electrical Engineering",
       "creation_time": "2026-08-15T20:00:22.603Z",
       "description": {

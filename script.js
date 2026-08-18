@@ -2,445 +2,14 @@
 //CALCUJLATOR CODE
 function calculate() {
 
-    //INPUT VALUES
+    calculateSolarSection();
 
-    let energy = 
-        Number(document.getElementById("energy").value);
+    calculateBatterySection();
 
-    let sunHours = 
-        Number(document.getElementById("sunHours").value);
+    calculateInverterSection();
 
-    let efficiencyPercent =
-        parseFloat(document.getElementById("efficiency").value);
+    calculateControllerSection();
 
-    let dodPercent =
-        parseFloat(document.getElementById("dod").value);
-
-    let panelWattage = 
-        Number(document.getElementById("panelWattage").value);
-
-    let autonomy =
-        Number(document.getElementById("autonomy").value);
-
-    let batteryVoltage =
-        Number(document.getElementById("batteryVoltage").value);
-
-    let batteryModule = 
-        Number(document.getElementById("batteryModule").value);
-
-    let batteryModuleVoltage =
-    Number(document.getElementById("batteryModuleVoltage").value);
-
-    let batteryModuleAh =
-        Number(document.getElementById("batteryModuleAh").value);
-
-    let errorMessage = 
-        document.getElementById("errorMessage");
-
-    let peakLoad =
-        Number(document.getElementById("peakLoad").value);
-
-    let surgeLoad =
-        Number(document.getElementById("surgeLoad").value);
-
-    let inverterMarginPercent =
-        Number(document.getElementById("inverterMargin").value);
-
-    let controllerMarginPercent = 
-        Number(document.getElementById("controllerMargin").value);
-
-    let inverterWarning =
-        document.getElementById("inverterWarning");
-
-    let batterySpecWarning =
-        document.getElementById("batterySpecWarning");
-
-    let panelVoc =
-        Number(document.getElementById("panelVoc").value);
-
-    let panelVmp =
-        Number(document.getElementById("panelVmp").value);
-
-    let controllerMaxPvVoltage =
-        Number(document.getElementById("controllerMaxPvVoltage").value);
-
-    
-    //create input array
-
-    let inputValues = [
-        energy,
-        sunHours,
-        efficiencyPercent,
-        panelWattage,
-        autonomy,
-        batteryVoltage,
-        dodPercent,
-        batteryModule,
-        batteryModuleVoltage,
-        batteryModuleAh,
-        peakLoad,
-        surgeLoad,
-        inverterMarginPercent,
-        controllerMarginPercent
-    ];
-
-    let hasInvalidInput = 
-        inputValues.some(function(value) {
-            return Number.isNaN(value) || value <= 0;
-        });
-
-    //CHECK INPUTS BEFORE CALCULATING
-
-    if (hasInvalidInput) {
-        errorMessage.textContent = 
-        "Please enter a positive value in every field.";
-
-        return;
-    }
-
-    let calculatedModuleWh =
-        batteryModuleVoltage * batteryModuleAh;
-
-    let moduleWhDifference =
-    Math.abs(
-        batteryModule - calculatedModuleWh
-    ); //Math abs makes the number positive(absolutevalue)
-
-    let moduleWhDifferencePercent =
-        (moduleWhDifference / batteryModule) * 100;
-
-    if (
-        efficiencyPercent > 100 ||
-        dodPercent > 100 
-    ) {
-        errorMessage.textContent = 
-        "Please enter a value between 1 and 100 for efficiency or depth of discharge."
-
-        return;
-    }
-
-    if (inverterMarginPercent > 100) {
-        errorMessage.textContent = 
-            "The inverter safety margin needs to be between 1 and 100 percent.";
-
-        return;
-    }
-
-    if (controllerMarginPercent > 100) {
-        errorMessage.textContent = 
-            "The charge controller safety margin needs to be between 1 and 100 percent."
-
-        return;
-    }
-
-    if (surgeLoad < peakLoad) {
-        errorMessage.textContent = 
-            "The peak surge load can't be lower than the peak continuous load"
-
-        return;
-    }
-
-    if (moduleWhDifferencePercent > 5) {
-
-        batterySpecWarning.textContent =
-            "Battery specifications do not match. Check the module voltage, Ah, and Wh values.";
-
-        return;
-    }
-
-    if (panelVoc <= panelVmp) {
-
-    errorMessage.textContent =
-        "Panel Voc must be greater than panel Vmp.";
-
-    return;
-    }
-
-    batterySpecWarning.textContent = "";
-
-
-     errorMessage.textContent = "";
-     
-
-
-    //convert percentages to decimals
-    let efficiency =
-    efficiencyPercent / 100;
-
-    let dod =
-    dodPercent / 100;
-
-    //CALCULATIONS
-    let solarArray = 
-        energy / (sunHours * efficiency);
-
-    let numberOfPanels = 
-        Math.ceil(solarArray / panelWattage);
-
-    let installedSolarCapacityW = 
-        numberOfPanels * panelWattage;
-
-    let solarCapacityMarginW =
-        installedSolarCapacityW - solarArray;
-
-    let solarCapacityMarginPercent = 
-        (solarCapacityMarginW / solarArray) * 100;
-
-    let batteryCapacityWh =
-        (energy * autonomy) / dod;
-
-    let batteryCapacityAh = 
-        batteryCapacityWh / batteryVoltage;
-
-    let modulesInSeries =
-    Math.max(
-        1,
-        Math.round(
-            batteryVoltage /
-            batteryModuleVoltage
-        )
-    );
-
-    let configuredBankVoltage =
-    modulesInSeries *
-    batteryModuleVoltage;
-
-    let parallelStrings =
-        Math.ceil(
-            batteryCapacityAh /
-            batteryModuleAh
-        );
-
-    let configuredBatteryCount =
-        modulesInSeries *
-        parallelStrings;
-
-    let configuredBankAh =
-        parallelStrings *
-        batteryModuleAh;
-
-    let configuredBankWh =
-        configuredBankVoltage *
-        configuredBankAh;
-
-    let numberOfBatteries = 
-        configuredBatteryCount;
-
-    let installedBatteryCapacityWh =
-        configuredBankWh;
-
-    let batteryCapacityMarginWh =
-        installedBatteryCapacityWh - batteryCapacityWh;
-        
-    let batteryCapacityMarginPercent = 
-        (batteryCapacityMarginWh / batteryCapacityWh) * 100;
-
-    let inverterMargin = 
-        inverterMarginPercent / 100;
-    
-    let minimumInverterW =           //absolute min continuous output needed to power expected load.
-        peakLoad;
-    
-    let inverterDesignTargetW =
-        peakLoad * (1 + inverterMargin);
-        
-    let inverterRoundingIncrementW = 
-        250;
-
-    let controllerMargin =
-        controllerMarginPercent / 100;
-
-    let controllerMinimumA =
-        installedSolarCapacityW / batteryVoltage;
-
-    let controllerDesignTargetA =
-        controllerMinimumA * (1 + controllerMargin);
-
-    let controllerRoundingIncrementA =
-        10;
-
-    let recommendedInverterW =              //round upwards in 250W increments
-        Math.ceil(
-            inverterDesignTargetW /
-            inverterRoundingIncrementW 
-        ) * inverterRoundingIncrementW;
-
-    let recommendedControllerA =           //round upwards in 10 increments
-        Math.ceil(
-            controllerDesignTargetA /
-            controllerRoundingIncrementA
-        ) * controllerRoundingIncrementA;
-
-
-    //INVERTER WARNING
-    if (inverterMarginPercent < 20) {
-        inverterWarning.textContent =
-            "Warning: The selected continuous-load safety margin is below 20%.";
-    } else if (surgeLoad > recommendedInverterW) {
-        inverterWarning.textContent =
-            "Check that the selected inverter can provide at least " +
-            formatNumber(surgeLoad, 0) +
-            " W of short-term surge output.";
-    } else {
-        inverterWarning.textContent =
-            "The entered surge requirement doesn't exceed the rounded continuous recommendation.";
-    }
-
-    //RESULTS
-
-    document.getElementById("solarSize").textContent =
-    formatNumber(solarArray, 0) +
-    " W (" +
-    formatNumber(solarArray / 1000, 2) +
-    " kW)";
-
-    document.getElementById("panelCount").textContent =
-        formatNumber(numberOfPanels, 0) +
-        " panels";
-
-    document.getElementById("installedSolarW").textContent =
-        formatNumber(installedSolarCapacityW, 0) +
-        " W (" +
-        formatNumber(installedSolarCapacityW / 1000, 2) +
-        " kW)";
-
-    document.getElementById("solarMargin").textContent =
-        formatNumber(solarCapacityMarginW, 0) +
-        " W above required (" +
-        formatNumber(solarCapacityMarginPercent, 1) +
-        "%)";
-
-    document.getElementById("batteryWh").textContent =
-        formatNumber(batteryCapacityWh, 0) +
-        " Wh (" +
-        formatNumber(batteryCapacityWh / 1000, 2) +
-        " kWh)";
-
-    document.getElementById("batteryAh").textContent =
-        formatNumber(batteryCapacityAh, 1) +
-        " Ah at " +
-        formatNumber(batteryVoltage, 0) +
-        " V";
-
-    document.getElementById("batteryCount").textContent =
-        formatNumber(numberOfBatteries, 0) +
-        " batteries";
-
-    document.getElementById("installedBatteryWh").textContent =
-        formatNumber(installedBatteryCapacityWh, 0) +
-        " Wh (" +
-        formatNumber(installedBatteryCapacityWh / 1000, 2) +
-        " kWh)";
-
-    document.getElementById("batteryMargin").textContent =
-        formatNumber(batteryCapacityMarginWh, 0) +
-        " Wh above required (" +
-        formatNumber(batteryCapacityMarginPercent, 1) +
-        "%)";
-    
-    document.getElementById("summaryEnergy").textContent =
-    formatNumber(energy, 0) +
-    " Wh/day";
-
-    document.getElementById("summarySunHours").textContent =
-        formatNumber(sunHours, 1) +
-        " hours/day";
-
-    document.getElementById("summaryEfficiency").textContent =
-        formatNumber(efficiencyPercent, 1) +
-        "%";
-
-    document.getElementById("summaryPanelWattage").textContent =
-        formatNumber(panelWattage, 0) +
-        " W";
-
-    document.getElementById("summaryAutonomy").textContent =
-        formatNumber(autonomy, 1) +
-        " days";
-
-    document.getElementById("summaryBatteryVoltage").textContent =
-        formatNumber(batteryVoltage, 0) +
-        " V";
-
-    document.getElementById("summaryDod").textContent =
-        formatNumber(dodPercent, 1) +
-        "%";
-
-    document.getElementById("summaryBatteryModule").textContent =
-        formatNumber(batteryModule, 0) +
-        " Wh";
-
-    document.getElementById("inverterMinimum").textContent = 
-        formatNumber(minimumInverterW, 0) +
-        "W minimum continous rating";
-
-    document.getElementById("inverterDesignTarget").textContent = 
-        formatNumber(inverterDesignTargetW, 0) + 
-        "W calculated design target";
-
-    document.getElementById("inverterRecommended").textContent = 
-        formatNumber(recommendedInverterW, 0) + 
-        "W rounded recommendation";
-
-    document.getElementById("inverterSurge").textContent = 
-        formatNumber(surgeLoad, 0) + 
-        "W required surge rating"
-
-    document.getElementById("controllerMinimum").textContent = 
-        formatNumber(controllerMinimumA, 1) +
-        " A minimum output current";
-
-    document.getElementById("controllerDesignTarget").textContent =
-        formatNumber(controllerDesignTargetA, 1) +
-        " A calculated design target";
-
-    document.getElementById("controllerRecommended").textContent =
-        formatNumber(recommendedControllerA, 0) +
-        " A rounded recommendation";
-
-    document.getElementById("summaryPeakLoad").textContent =
-        formatNumber(peakLoad, 0) +
-        " W";
-
-    document.getElementById("summarySurgeLoad").textContent =
-        formatNumber(surgeLoad, 0) +
-        " W";
-
-    document.getElementById("summaryInverterMargin").textContent =
-        formatNumber(inverterMarginPercent, 1) +
-        "%";
-    
-    document.getElementById("summaryControllerMargin").textContent =
-        formatNumber(controllerMarginPercent, 1) +
-        "%";
-
-    document.getElementById("batterySeries").textContent =
-    formatNumber(modulesInSeries, 0) +
-    " modules in series";
-
-    document.getElementById("batteryParallel").textContent =
-        formatNumber(parallelStrings, 0) +
-        " parallel strings";
-
-    document.getElementById("batteryConfiguredCount").textContent =
-        formatNumber(configuredBatteryCount, 0) +
-        " total modules";
-
-    document.getElementById("batteryConfiguredVoltage").textContent =
-        formatNumber(configuredBankVoltage, 1) +
-        " V configured bank";
-
-    document.getElementById("batteryConfiguredAh").textContent =
-        formatNumber(configuredBankAh, 1) +
-        " Ah installed";
-
-    document.getElementById("batteryConfiguredWh").textContent =
-        formatNumber(configuredBankWh, 0) +
-        " Wh (" +
-        formatNumber(configuredBankWh / 1000, 2) +
-        " kWh)";
-
-    
 }
 
 function syncPanelPreset() {
@@ -1047,22 +616,33 @@ function calculateBatterySection() {
             return Number.isNaN(value) || value <= 0;
         });
 
-    if (hasInvalidBatteryInput) {
+    let missingBatteryFields = [];
+
+    if (energy <= 0) {
+        missingBatteryFields.push("Daily Energy Usage");
+    }
+
+    if (autonomy <= 0) {
+        missingBatteryFields.push("Autonomy");
+    }
+
+    if (dodPercent <= 0) {
+        missingBatteryFields.push("Depth of Discharge");
+    }
+
+    if (batteryVoltage <= 0) {
+        missingBatteryFields.push("Battery Voltage");
+    }
+
+    if (missingBatteryFields.length > 0) {
 
         batteryWarning.textContent =
-            "Enter Daily Energy, Autonomy, Depth of Discharge, and Battery Voltage.";
+            "Required: " +
+            missingBatteryFields.join(", ") +
+            ".";
 
         return;
     }
-
-    if (dodPercent > 100) {
-
-        batteryWarning.textContent =
-            "Depth of Discharge must be between 1 and 100 percent.";
-
-        return;
-    }
-
 
     batteryWarning.textContent = "";
 
@@ -1097,6 +677,24 @@ function calculateBatterySection() {
         return;
     }
 
+    let advancedBatteryResultIds = [
+        "batteryCount",
+        "installedBatteryWh",
+        "batteryMargin",
+        "batterySeries",
+        "batteryParallel",
+        "batteryConfiguredCount",
+        "batteryConfiguredVoltage",
+        "batteryConfiguredAh",
+        "batteryConfiguredWh"
+    ];
+
+    advancedBatteryResultIds.forEach(function(id) {
+
+        document.getElementById(id).textContent = "---";
+
+    });
+
     if (filledModuleValues === 3) {
         let calculatedModuleWh =
             batteryModuleVoltage * batteryModuleAh;
@@ -1108,6 +706,14 @@ function calculateBatterySection() {
 
         let moduleWhDifferencePercent =
             (moduleWhDifference / batteryModule) * 100;
+
+        if (moduleWhDifferencePercent > 5) {
+
+            batteryWarning.textContent =
+                "Battery specifications don't match. Check the Module Wh, Voltage, and Ah.";
+
+            return;
+        }
 
             let modulesInSeries =
                 Math.max(
@@ -1192,13 +798,7 @@ function calculateBatterySection() {
     
     }   
 
-    if (moduleWhDifferencePercent > 5) {
-
-        batteryWarning.textContent =
-            "Battery specifications don't match. Check Module Wh, Voltage, and Ah inputs.";
-
-        return;
-    }
+    
 
     batteryWarning.textContent = "";
 
@@ -1215,23 +815,7 @@ function calculateBatterySection() {
         formatNumber(batteryVoltage, 0) +
         " V";
 
-    let advancedBatteryResultIds = [
-        "batteryCount",
-        "installedBatteryWh",
-        "batteryMargin",
-        "batterySeries",
-        "batteryParallel",
-        "batteryConfiguredCount",
-        "batteryConfiguredVoltage",
-        "batteryConfiguredAh",
-        "batteryConfiguredWh"
-    ];
 
-    advancedBatteryResultIds.forEach(function(id) {
-
-        document.getElementById(id).textContent = "---";
-
-    });
     
 }
 
@@ -1267,18 +851,26 @@ function calculateInverterSection() {
             return Number.isNaN(value) || value <= 0;
         });
 
-    if (hasInvalidInverterInput) {
+    let missingInverterFields = [];
 
-        inverterWarning.textContent =
-            "Enter Peak Load, Surge Load, and Inverter Safety Margin.";
-
-        return;
+    if (peakLoad <= 0) {
+        missingInverterFields.push("Peak Continuous Load");
     }
 
-    if (inverterMarginPercent > 100) {
+    if (surgeLoad <= 0) {
+        missingInverterFields.push("Peak Surge Load");
+    }
+
+    if (inverterMarginPercent <= 0) {
+        missingInverterFields.push("Inverter Safety Margin");
+    }
+
+    if (missingInverterFields.length > 0) {
 
         inverterWarning.textContent =
-            "Inverter safety margin must be between 1 and 100 percent.";
+            "Required: " +
+            missingInverterFields.join(", ") +
+            ".";
 
         return;
     }
@@ -1314,16 +906,29 @@ function calculateInverterSection() {
     let inverterResultWarning =
         document.getElementById("inverterWarning");
 
+    if (inverterMarginPercent > 100) {
+
+        inverterWarning.textContent =
+            "Inverter safety margin must be between 1 and 100 percent.";
+
+        return;
+    }
+
      if (inverterMarginPercent < 20) {
-        inverterWarning.textContent =
+
+        inverterResultWarning.textContent =
             "Warning: The selected continuous-load safety margin is below 20%.";
+
     } else if (surgeLoad > recommendedInverterW) {
-        inverterWarning.textContent =
+
+        inverterResultWarning.textContent =
             "Check that the selected inverter can provide at least " +
             formatNumber(surgeLoad, 0) +
             " W of short-term surge output.";
+
     } else {
-        inverterWarning.textContent =
+
+        inverterResultWarning.textContent =
             "The entered surge requirement doesn't exceed the rounded continuous recommendation.";
     }
 

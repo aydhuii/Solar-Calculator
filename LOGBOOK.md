@@ -1369,3 +1369,54 @@ Removed the HTML from the JS file and kept it in the HTML section.
 - Continue PV string sizing
 - Improve validation for the other sections
 
+--------------------------------------------------------------------------
+
+# 📅 August 17, 2026
+
+## 🎯 Sprint Goal
+
+Clean up the modular calculator and improve validation.
+
+---
+
+## ✅ Completed
+
+- Improved Battery and Inverter missing-field warnings
+- Fixed Battery advanced result clearing
+- Simplified the main Calculate function to use the separate calculator sections
+- Fixed the inverter surge warning so it displays in the correct place
+- Added inverter safety margin validation
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 028
+
+**Issue**
+
+Inverter surge message appeared like an input error.
+
+**Root Cause**
+
+The result warning was being sent to the wrong warning element.
+
+**Resolution**
+
+Changed it to use `inverterResultWarning`.
+
+---
+
+## 💡 What I Learned
+
+- Separate warning areas make errors easier to understand
+- Smaller functions make the main calculator easier to manage
+- Refactoring helps avoid duplicated calculations
+
+---
+
+## 🔜 Next Sprint
+
+- Restore/update the System Input Summary
+- Continue PV string sizing
+- Keep testing the modular calculator
