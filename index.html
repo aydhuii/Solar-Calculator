@@ -172,6 +172,30 @@
             </div>
 
             <div class="input-group">
+              <label for="minDesignTemp">
+                Minimum Design Temperature (°C)
+              </label>
+            
+              <input type="number" id="minDesignTemp" placeholder="Example: -5" step="0.1">
+            </div>
+            
+            <div class="input-group">
+              <label for="vocTempCoeff">
+                Voc Temperature Coefficient (%/°C)
+              </label>
+
+            <p id="pvStringWarning" class="error-message"></p>
+
+            <input type="number" id="vocTempCoeff" placeholder="Example: -0.28" step="0.01">
+            </div>
+            
+            <button type="button" class="secondary-button" id="calculatePvStringOnly">
+              Calculate PV String
+            </button>
+            
+             
+
+            <div class="input-group">
               <label for="efficiency">System Efficiency (%)</label>
 
               <input type="number" id="efficiency" placeholder="Example: 85" step="0.1" />
@@ -427,6 +451,25 @@
 
             <small class="help-text"> Verify the final controller's PV input-voltage limit using the panel string
               design. </small>
+          </div>
+
+          <div class="result-card">
+            <h3>PV String Design</h3>
+          
+            <p>
+              Cold-Corrected Panel Voc:
+              <strong id="correctedPanelVoc">--</strong>
+            </p>
+          
+            <p>
+              Maximum Panels Per String:
+              <strong id="maxPanelsPerString">--</strong>
+            </p>
+          
+            <p>
+              Estimated String Vmp:
+              <strong id="stringVmp">--</strong>
+            </p>
           </div>
 
           <div class="result-card summary-card">

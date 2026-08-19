@@ -1190,6 +1190,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "JavaScript / UX",
+      "creation_time": "2026-08-19T06:20:43.403Z",
+      "description": {
+        "content": "Restored the input summary after the calculator was split into separate modules.",
+        "mime": "text/markdown"
+      },
+      "id": "86",
+      "references": [],
+      "title": "System Input Summary"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "Javascript",
       "creation_time": "2026-07-21T06:49:33.134Z",
       "description": {

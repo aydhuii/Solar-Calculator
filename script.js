@@ -10,7 +10,86 @@ function calculate() {
 
     calculateControllerSection();
 
+   
+    updateInputSummary();
+
 }
+
+function updateInputSummary() {
+
+    let energy =
+        Number(document.getElementById("energy").value);
+
+    let sunHours =
+        Number(document.getElementById("sunHours").value);
+
+    let efficiencyPercent =
+        Number(document.getElementById("efficiency").value);
+
+    let panelWattage =
+        Number(document.getElementById("panelWattage").value);
+
+    let autonomy =
+        Number(document.getElementById("autonomy").value);
+
+    let batteryVoltage =
+        Number(document.getElementById("batteryVoltage").value);
+
+    let dodPercent =
+        Number(document.getElementById("dod").value);
+
+    let batteryModule =
+        Number(document.getElementById("batteryModule").value);
+
+    let peakLoad =
+        Number(document.getElementById("peakLoad").value);
+
+    let surgeLoad =
+        Number(document.getElementById("surgeLoad").value);
+
+    let inverterMarginPercent =
+        Number(document.getElementById("inverterMargin").value);
+
+    let controllerMarginPercent =
+        Number(document.getElementById("controllerMargin").value);
+
+    document.getElementById("summaryEnergy").textContent =
+        energy > 0 ? formatNumber(energy, 0) + " Wh/day" : "--";
+        //show energy if > 0, show -- if else
+    document.getElementById("summarySunHours").textContent =
+        sunHours > 0 ? formatNumber(sunHours, 1) + " hours/day" : "--";
+
+    document.getElementById("summaryEfficiency").textContent =
+        efficiencyPercent > 0 ? formatNumber(efficiencyPercent, 1) + "%" : "--";
+
+    document.getElementById("summaryPanelWattage").textContent =
+        panelWattage > 0 ? formatNumber(panelWattage, 0) + " W" : "--";
+
+    document.getElementById("summaryAutonomy").textContent =
+        autonomy > 0 ? formatNumber(autonomy, 1) + " days" : "--";
+
+    document.getElementById("summaryBatteryVoltage").textContent =
+        batteryVoltage > 0 ? formatNumber(batteryVoltage, 1) + " V" : "--";
+
+    document.getElementById("summaryDod").textContent =
+        dodPercent > 0 ? formatNumber(dodPercent, 1) + "%" : "--";
+
+    document.getElementById("summaryBatteryModule").textContent =
+        batteryModule > 0 ? formatNumber(batteryModule, 0) + " Wh" : "--";
+
+    document.getElementById("summaryPeakLoad").textContent =
+        peakLoad > 0 ? formatNumber(peakLoad, 0) + " W" : "--";
+
+    document.getElementById("summarySurgeLoad").textContent =
+        surgeLoad > 0 ? formatNumber(surgeLoad, 0) + " W" : "--";
+
+    document.getElementById("summaryInverterMargin").textContent =
+        inverterMarginPercent > 0 ? formatNumber(inverterMarginPercent, 1) + "%" : "--";
+
+    document.getElementById("summaryControllerMargin").textContent =
+        controllerMarginPercent > 0 ? formatNumber(controllerMarginPercent, 1) + "%" : "--";
+}
+
 
 function syncPanelPreset() {
     let panelValue =
@@ -1055,5 +1134,119 @@ document.getElementById("calculateControllerOnly")
     .addEventListener("click", function() {
 
         calculateControllerSection();
+
+    });
+
+function calculatePvStringSection() {
+
+    let panelVoc =
+        Number(document.getElementById("panelVoc").value);
+
+    let panelVmp =
+        Number(document.getElementById("panelVmp").value);
+
+    let controllerMaxPvVoltage =
+        Number(document.getElementById("controllerMaxPvVoltage").value);
+
+    let minDesignTemp =
+        Number(document.getElementById("minDesignTemp").value);
+
+    let vocTempCoeff =
+        Number(document.getElementById("vocTempCoeff").value);
+
+    let pvStringWarning =
+        document.getElementById("pvStringWarning");
+
+    let missingPvFields = [];
+
+    if (panelVoc <= 0) {
+        missingPvFields.push("Panel Voc");
+    }
+
+    if (panelVmp <= 0) {
+        missingPvFields.push("Panel Vmp");
+    }
+
+    if (controllerMaxPvVoltage <= 0) {
+        missingPvFields.push("Controller Max PV Voltage");
+    }
+
+    if (
+        document.getElementById("minDesignTemp").value === ""
+    ) {
+        missingPvFields.push("Minimum Design Temperature");
+    }
+
+    if (
+        document.getElementById("vocTempCoeff").value === ""
+    ) {
+        missingPvFields.push("Voc Temperature Coefficient");
+    }
+
+    if (missingPvFields.length > 0) {
+
+        pvStringWarning.textContent =
+            "Required: " +
+            missingPvFields.join(", ") +
+            ".";
+
+        return;
+    }
+
+    if (panelVoc <= panelVmp) {
+
+        pvStringWarning.textContent =
+            "Panel Voc must be greater than Panel Vmp.";
+
+        return;
+    }
+
+    pvStringWarning.textContent = "";
+
+    let temperatureDifference =
+    Math.max(
+        0,
+        25 - minDesignTemp
+    );
+
+    let vocCoefficientDecimal =
+    Math.abs(vocTempCoeff) / 100;
+
+    let correctedPanelVoc =
+    panelVoc *
+    (
+        1 +
+        vocCoefficientDecimal *
+        temperatureDifference
+    );
+
+    let maxPanelsPerString =
+    Math.floor(
+        controllerMaxPvVoltage /
+        correctedPanelVoc
+    );
+
+    let estimatedStringVmp =
+        maxPanelsPerString *
+        panelVmp;
+
+    document.getElementById("correctedPanelVoc").textContent =
+        formatNumber(correctedPanelVoc, 2) +
+        " V";
+
+    document.getElementById("maxPanelsPerString").textContent =
+        formatNumber(maxPanelsPerString, 0) +
+        " panels";
+
+    document.getElementById("stringVmp").textContent =
+        formatNumber(estimatedStringVmp, 1) +
+        " V";
+
+}
+
+document.getElementById("calculatePvStringOnly")
+    .addEventListener("click", function() {
+
+        calculatePvStringSection();
 
     });

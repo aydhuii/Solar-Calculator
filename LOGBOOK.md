@@ -1420,3 +1420,46 @@ Changed it to use `inverterResultWarning`.
 - Restore/update the System Input Summary
 - Continue PV string sizing
 - Keep testing the modular calculator
+  
+-----------------------------------------------------------
+
+# 📅 August 18, 2026
+
+## 🎯 Sprint Goal
+
+Restore the input summary and continue PV string design.
+
+---
+
+## ✅ Completed
+
+- Restored the System Input Summary
+- Added PV string temperature inputs
+- Added cold-corrected Voc calculation
+- Calculated voltage-limited maximum panels per string
+- Added estimated string Vmp
+- Added PV string missing-field warnings
+- Cleaned up the PV String button layout
+
+---
+
+## 🐞 Bugs Encountered
+
+No major bugs today.
+
+---
+
+## 💡 What I Learned
+
+- Cold temperatures can increase panel Voc
+- PV string sizing should account for temperature
+- Some fields can accept negative values, so validation has to be different
+- Button placement matters for making the UI easy to understand
+
+---
+
+## 🔜 Next Sprint
+
+- Connect Solar panel count to PV string layout
+- Add more PV string checks
+- Continue UI cleanup
