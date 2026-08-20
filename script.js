@@ -613,6 +613,9 @@ function calculateSolarSection() {
             solarArray / panelWattage
         );
 
+    document.getElementById("pvStringPanelCount").value =
+        numberOfPanels;
+    
     let installedSolarCapacityW =
         numberOfPanels * panelWattage;
 
@@ -1157,6 +1160,9 @@ function calculatePvStringSection() {
     let pvStringWarning =
         document.getElementById("pvStringWarning");
 
+    let totalPanels =
+        Number(document.getElementById("pvStringPanelCount").value);
+
     let missingPvFields = [];
 
     if (panelVoc <= 0) {
@@ -1201,6 +1207,20 @@ function calculatePvStringSection() {
         return;
     }
 
+    if (totalPanels <= 0) {
+    
+        missingPvFields.push("Total Number of Panels");
+
+    }
+
+    if (!Number.isInteger(totalPanels)) {
+
+        pvStringWarning.textContent =
+            "Total Number of Panels must be a whole number.";
+
+        return;
+    } //make sure its a whole number
+
     pvStringWarning.textContent = "";
 
     let temperatureDifference =
@@ -1226,6 +1246,28 @@ function calculatePvStringSection() {
         correctedPanelVoc
     );
 
+    let panelsPerString = 0;
+
+    for (
+        let panels = maxPanelsPerString;
+        panels >= 1;
+        panels--
+    ) {
+
+        if (totalPanels % panels === 0) { //% finds remainder
+
+            panelsPerString = panels;
+
+            break;
+        }
+    }
+
+    let numberOfStrings =
+        totalPanels / panelsPerString;
+
+    let estimatedStringVmp =
+        panelsPerString * panelVmp;
+
     let estimatedStringVmp =
         maxPanelsPerString *
         panelVmp;
@@ -1241,6 +1283,14 @@ function calculatePvStringSection() {
     document.getElementById("stringVmp").textContent =
         formatNumber(estimatedStringVmp, 1) +
         " V";
+
+    document.getElementById("suggestedPanelsPerString").textContent =
+        formatNumber(panelsPerString, 0) +
+        " panels/string";
+
+    document.getElementById("numberOfPvStrings").textContent =
+        formatNumber(numberOfStrings, 0) +
+        " strings";
 
 }
 

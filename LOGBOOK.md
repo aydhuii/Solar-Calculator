@@ -1463,3 +1463,54 @@ No major bugs today.
 - Connect Solar panel count to PV string layout
 - Add more PV string checks
 - Continue UI cleanup
+
+-------------------------------------------------------------------------------
+
+# 📅 August 20, 2026
+
+## 🎯 Sprint Goal
+
+Connect Solar panel count to the PV String Design section.
+
+---
+
+## ✅ Completed
+
+- Added Total Number of Panels to PV String Design
+- Added logic to auto-fill panel count from Solar Sizing
+- Started equal string layout calculations
+- Added planned outputs for panels per string and number of strings
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 029
+
+**Issue**
+
+The suggested PV string layout is not calculating correctly.
+
+**Root Cause**
+
+Not figured out yet.
+
+**Resolution**
+
+Debug next session.
+
+---
+
+## 💡 What I Learned
+
+- PV string layouts should divide panels evenly when possible
+- The `%` operator can check whether a number divides evenly
+- New features should be tested before marking them complete
+
+---
+
+## 🔜 Next Sprint
+
+- Debug the PV string layout
+- Confirm panel count transfers correctly
+- Finish the suggested string layout
