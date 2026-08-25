@@ -1163,6 +1163,16 @@ function calculatePvStringSection() {
     let totalPanels =
         Number(document.getElementById("pvStringPanelCount").value);
 
+    let controllerMinMpptVoltage =
+        Number(
+            document.getElementById("controllerMinMpptVoltage").value
+        );
+
+    let controllerMaxMpptVoltage =
+        Number(
+            document.getElementById("controllerMaxMpptVoltage").value
+        );
+
     let missingPvFields = [];
 
     if (panelVoc <= 0) {
@@ -1189,6 +1199,12 @@ function calculatePvStringSection() {
         missingPvFields.push("Voc Temperature Coefficient");
     }
 
+     if (totalPanels <= 0) {
+    
+        missingPvFields.push("Total Number of Panels");
+
+    }
+
     if (missingPvFields.length > 0) {
 
         pvStringWarning.textContent =
@@ -1207,11 +1223,7 @@ function calculatePvStringSection() {
         return;
     }
 
-    if (totalPanels <= 0) {
-    
-        missingPvFields.push("Total Number of Panels");
-
-    }
+   
 
     if (!Number.isInteger(totalPanels)) {
 
@@ -1246,6 +1258,31 @@ function calculatePvStringSection() {
         correctedPanelVoc
     );
 
+    if (maxPanelsPerString < 1) {
+
+        pvStringWarning.textContent =
+            "Controller PV voltage limit is too low for this panel.";
+
+        return;
+    }
+
+    if (controllerMinMpptVoltage <= 0) {
+        missingPvFields.push("Controller Minimum MPPT Voltage");
+    }
+
+    if (controllerMaxMpptVoltage <= 0) {
+        missingPvFields.push("Controller Maximum MPPT Voltage");
+    }
+
+    if (controllerMaxMpptVoltage <= controllerMinMpptVoltage) {
+
+    pvStringWarning.textContent =
+        "Maximum MPPT voltage must be greater than minimum MPPT voltage.";
+
+    return;
+    
+    }
+
     let panelsPerString = 0;
 
     for (
@@ -1254,7 +1291,17 @@ function calculatePvStringSection() {
         panels--
     ) {
 
-        if (totalPanels % panels === 0) { //% finds remainder
+        let possibleStringVmp =
+            panels * panelVmp;
+
+        let dividesEvenly =
+            totalPanels % panels === 0;
+
+        let isInsideMpptRange =
+            possibleStringVmp >= controllerMinMpptVoltage &&
+            possibleStringVmp <= controllerMaxMpptVoltage;
+
+        if (dividesEvenly && isInsideMpptRange) {
 
             panelsPerString = panels;
 
@@ -1262,15 +1309,20 @@ function calculatePvStringSection() {
         }
     }
 
+    if (panelsPerString === 0) {
+
+        pvStringWarning.textContent =
+            "No equal PV string layout matches the entered voltage limits and MPPT range.";
+
+        return;
+    }
+
     let numberOfStrings =
         totalPanels / panelsPerString;
-
+        
     let estimatedStringVmp =
         panelsPerString * panelVmp;
 
-    let estimatedStringVmp =
-        maxPanelsPerString *
-        panelVmp;
 
     document.getElementById("correctedPanelVoc").textContent =
         formatNumber(correctedPanelVoc, 2) +

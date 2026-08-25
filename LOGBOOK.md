@@ -1514,3 +1514,56 @@ Debug next session.
 - Debug the PV string layout
 - Confirm panel count transfers correctly
 - Finish the suggested string layout
+
+---------------------------------------------------------
+
+# 📅 August 24, 2026
+
+## 🎯 Sprint Goal
+
+Debug the PV string layout and add MPPT range checking.
+
+---
+
+## ✅ Completed
+
+- Fixed the duplicate `estimatedStringVmp` variable
+- Fixed Total Number of Panels validation order
+- Added a low controller voltage warning
+- Added controller minimum and maximum MPPT voltage inputs
+- Started checking whether suggested string Vmp falls inside the MPPT range
+- Updated the string layout loop to consider both equal strings and MPPT limits
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 029
+
+**Issue**
+
+PV string layout still does not appear to calculate correctly.
+
+**Root Cause**
+
+Still needs debugging in the MPPT/string layout logic.
+
+**Resolution**
+
+Continue debugging next session.
+
+---
+
+## 💡 What I Learned
+
+- PV string design needs more than just the controller max voltage
+- MPPT range is different from the absolute PV voltage limit
+- A layout should satisfy both voltage limits and equal-string requirements
+
+---
+
+## 🔜 Next Sprint
+
+- Debug the MPPT string layout
+- Verify all PV String outputs
+- Finish the PV String module
