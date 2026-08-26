@@ -117,6 +117,20 @@
       "assignedTo": {
         "name": "ayd.huiii"
       },
+      "category": "testing",
+      "creation_time": "2026-08-26T03:12:05.400Z",
+      "description": {
+        "content": "Finish the remaining engineering checks, test the calculator, improve usability, and prepare the website for public beta.",
+        "mime": "text/markdown"
+      },
+      "id": "87",
+      "references": [],
+      "title": "Beta launch prep"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
       "category": "UI / UX",
       "creation_time": "2026-07-26T05:39:55.650Z",
       "description": {
@@ -270,20 +284,6 @@
       "id": "82",
       "references": [],
       "title": "Modular Calculator"
-    },
-    {
-      "assignedTo": {
-        "name": "ayd.huiii"
-      },
-      "category": "JavaScript / UX",
-      "creation_time": "2026-08-14T04:09:27.955Z",
-      "description": {
-        "content": "\nStarted PV string sizing with Voc, Vmp, and charge controller voltage inputs.",
-        "mime": "text/markdown"
-      },
-      "id": "78",
-      "references": [],
-      "title": "PV string design"
     }
   ],
   "testing": [],
@@ -1031,6 +1031,20 @@
       "id": "55",
       "references": [],
       "title": "Prepare Responsive Layout/UI deisign"
+    },
+    {
+      "assignedTo": {
+        "name": "ayd.huiii"
+      },
+      "category": "JavaScript / UX",
+      "creation_time": "2026-08-14T04:09:27.955Z",
+      "description": {
+        "content": "\nStarted PV string sizing with Voc, Vmp, and charge controller voltage inputs.",
+        "mime": "text/markdown"
+      },
+      "id": "78",
+      "references": [],
+      "title": "PV string design"
     },
     {
       "assignedTo": {

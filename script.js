@@ -269,7 +269,12 @@ function resetCalculator() {
         "batteryConfiguredCount",
         "batteryConfiguredVoltage",
         "batteryConfiguredAh",
-        "batteryConfiguredWh"
+        "batteryConfiguredWh",
+        "correctedPanelVoc",
+        "maxPanelsPerString",
+        "stringVmp",
+        "suggestedPanelsPerString",
+        "numberOfPvStrings"
     ];
 
     resultIds.forEach(function(id) {
@@ -305,17 +310,23 @@ function resetCalculator() {
     firstApplianceRow.querySelector(".appliance-quantity").value = 1;
     firstApplianceRow.querySelector(".appliance-energy").textContent = "0 Wh";
 
-    document.getElementById("loadBuilderTotal").textContent =
-        "0 Wh/day";
+    document.getElementById("loadBuilderTotal").textContent = "0 Wh/day";
 
-    document.getElementById("appliancePreset").value =
-        "";
+    document.getElementById("appliancePreset").value = "";
 
-    document.getElementById("applianceError").textContent =
-        "";
+    document.getElementById("applianceError").textContent = "";
 
-    document.getElementById("batterySpecWarning").textContent =
-        "";
+    document.getElementById("batterySpecWarning").textContent = "";
+
+    document.getElementById("pvStringWarning").textContent = "";
+
+    document.getElementById("solarWarning").textContent = "";
+
+    document.getElementById("batteryWarning").textContent = "";
+
+    document.getElementById("inverterSectionWarning").textContent = "";
+    
+    document.getElementById("controllerSectionWarning").textContent = "";
 }
 
 function calculateApplianceLoad() {
@@ -1205,6 +1216,15 @@ function calculatePvStringSection() {
 
     }
 
+    if (controllerMinMpptVoltage <= 0) {
+        missingPvFields.push("Controller Minimum MPPT Voltage");
+    }
+
+    if (controllerMaxMpptVoltage <= 0) {
+        missingPvFields.push("Controller Maximum MPPT Voltage");
+    }
+
+
     if (missingPvFields.length > 0) {
 
         pvStringWarning.textContent =
@@ -1266,13 +1286,6 @@ function calculatePvStringSection() {
         return;
     }
 
-    if (controllerMinMpptVoltage <= 0) {
-        missingPvFields.push("Controller Minimum MPPT Voltage");
-    }
-
-    if (controllerMaxMpptVoltage <= 0) {
-        missingPvFields.push("Controller Maximum MPPT Voltage");
-    }
 
     if (controllerMaxMpptVoltage <= controllerMinMpptVoltage) {
 

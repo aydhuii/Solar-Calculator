@@ -1567,3 +1567,58 @@ Continue debugging next session.
 - Debug the MPPT string layout
 - Verify all PV String outputs
 - Finish the PV String module
+
+----------------------------------------------------------
+
+# 📅 August 25, 2026
+
+## 🎯 Sprint Goal
+
+Finish debugging PV string sizing and clean up the MPPT checks.
+
+---
+
+## ✅ Completed
+
+- Fixed MPPT missing-field validation
+- Moved MPPT inputs to a clearer location
+- Finished the equal PV string layout logic
+- Added MPPT range checking
+- Added controller max-voltage checking
+- Added Reset support for PV string results and warnings
+- Finished debugging Bug 029
+- Planned the remaining work needed before beta launch
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 029
+
+**Issue**
+
+PV string layout and MPPT calculations were not working correctly.
+
+**Root Cause**
+
+Validation order and string layout logic needed fixes.
+
+**Resolution**
+
+Fixed the validation and MPPT/string layout calculations.
+
+---
+
+## 💡 What I Learned
+
+- MPPT range and maximum PV voltage are different limits
+- PV strings should meet both voltage and equal-layout requirements
+- Finishing and testing features is more important than constantly adding new ones
+
+---
+
+## 🔜 Next Sprint
+
+- Add PV input-current checking
+- Finish the PV String module
+- Begin beta-launch testing and UI cleanup
