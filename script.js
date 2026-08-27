@@ -1184,6 +1184,16 @@ function calculatePvStringSection() {
             document.getElementById("controllerMaxMpptVoltage").value
         );
 
+    let panelIsc =
+        Number(
+            document.getElementById("panelIsc").value
+        );
+
+    let controllerMaxPvCurrent =
+        Number(
+            document.getElementById("controllerMaxPvCurrent").value
+        );
+
     let missingPvFields = [];
 
     if (panelVoc <= 0) {
@@ -1233,6 +1243,14 @@ function calculatePvStringSection() {
             ".";
 
         return;
+    }
+
+    if (panelIsc <= 0) {
+        missingPvFields.push("Panel Isc");
+    }
+
+    if (controllerMaxPvCurrent <= 0) {
+        missingPvFields.push("Controller Max PV Input Current");
     }
 
     if (panelVoc <= panelVmp) {
@@ -1333,9 +1351,27 @@ function calculatePvStringSection() {
     let numberOfStrings =
         totalPanels / panelsPerString;
         
+    let estimatedArrayIsc =
+        panelIsc * numberOfStrings;
+    
+    let currentLimitPass =
+        estimatedArrayIsc <= controllerMaxPvCurrent; //boolean true or false
+    
     let estimatedStringVmp =
         panelsPerString * panelVmp;
 
+    let currentCheckMessage;
+
+    if (currentLimitPass) {
+
+        currentCheckMessage =
+            "Within entered controller PV current limit";
+
+    } else {
+
+        currentCheckMessage =
+            "Exceeds entered controller PV current limit";
+    }
 
     document.getElementById("correctedPanelVoc").textContent =
         formatNumber(correctedPanelVoc, 2) +
@@ -1356,6 +1392,13 @@ function calculatePvStringSection() {
     document.getElementById("numberOfPvStrings").textContent =
         formatNumber(numberOfStrings, 0) +
         " strings";
+
+    document.getElementById("estimatedArrayIsc").textContent =
+        formatNumber(estimatedArrayIsc, 1) +
+        " A";
+
+    document.getElementById("pvCurrentCheck").textContent =
+        currentCheckMessage;
 
 }
 

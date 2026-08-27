@@ -1622,3 +1622,55 @@ Fixed the validation and MPPT/string layout calculations.
 - Add PV input-current checking
 - Finish the PV String module
 - Begin beta-launch testing and UI cleanup
+
+----------------------------------------------------------------------
+
+# 📅 August 26, 2026
+
+## 🎯 Sprint Goal
+
+Add the final major PV string current check.
+
+---
+
+## ✅ Completed
+
+- Added Panel Isc input
+- Added Controller Max PV Input Current input
+- Added estimated array current calculation
+- Added PV current limit comparison
+- Added current check results to the PV String section
+
+---
+
+## 🐞 Bugs Encountered
+
+### Bug 030
+
+**Issue**
+
+Not sure yet if the PV current calculation is working correctly.
+
+**Root Cause**
+
+Still needs testing.
+
+**Resolution**
+
+Test and debug next session.
+
+---
+
+## 💡 What I Learned
+
+- Current increases across parallel strings
+- PV current limits should be checked separately from voltage limits
+- Equipment limits should be compared against calculated array values
+
+---
+
+## 🔜 Next Sprint
+
+- Test and debug PV current checking
+- Finish PV String verification
+- Start beta-launch testing and UI cleanup
